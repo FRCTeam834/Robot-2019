@@ -59,16 +59,16 @@ public class DriveTrain extends Subsystem {
 
   SpeedControllerGroup leftDriveGroup = new SpeedControllerGroup(leftDrive1, leftDrive2);
   SpeedControllerGroup rightDriveGroup = new SpeedControllerGroup(rightDrive1, rightDrive2);
+  
 
   @Override
   public void initDefaultCommand() {
-    leftDriveGroup.setInverted(true);
     // Set the default command for a subsystem here.
     setDefaultCommand(new Drive());
   }
 
   public void leftDrive(double speed) {
-
+    leftDriveGroup.setInverted(true);
     leftDriveGroup.set(speed);
 
   }
@@ -80,16 +80,16 @@ public class DriveTrain extends Subsystem {
   }
 
   public void setDrive(double leftSpeed, double rightSpeed) {
-
-    leftDriveGroup.set(leftSpeed);
-    rightDriveGroup.set(rightSpeed);
+    
+    leftDrive(leftSpeed);
+    rightDrive(rightSpeed);
 
   }
 
   public void stop() {
 
-    leftDriveGroup.set(0);
-    rightDriveGroup.set(0);
+    leftDrive(0);
+    rightDrive(0);
 
   }
 

@@ -55,6 +55,7 @@ public class Robot extends TimedRobot {
     VacuumSolenoid = new VacuumSolenoid();
     GroundEye = new GroundEye();
 
+
     //m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);

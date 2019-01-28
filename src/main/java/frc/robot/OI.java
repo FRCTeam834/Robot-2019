@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import frc.robot.commands.*;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -45,13 +46,22 @@ public class OI {
   // until it is finished as determined by it's isFinished method.
   // button.whenReleased(new ExampleCommand());
 
+  // Joysticks
   public Joystick leftJoystick = new Joystick(0);
   public Joystick rightJoystick = new Joystick(1);
   public XboxController xbox = new XboxController(2);
-
-  public Button lb3 = new JoystickButton(leftJoystick, 3);
   public Joystick arduinoThing = new Joystick(4);
 
-  
+  // Buttons
+  public Button lb3 = new JoystickButton(leftJoystick, 3), 
+  xboxStart = new JoystickButton(xbox, 8), 
+  xboxB = new JoystickButton(xbox, 2),
+  xboxA = new JoystickButton(xbox, 1);
+
+  public OI() {
+    xboxStart.whenPressed(new AutoDrive());
+    xboxB.whenPressed(new StopRumble());
+    xboxA.whileHeld(new Vacuum());
+  }
 
 }

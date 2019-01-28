@@ -7,24 +7,16 @@
 
 package frc.robot.commands;
 
-import java.util.ArrayList;
-
-import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
 public class Drive extends Command {
 
 
-  
-  RumbleType kLeftRumble = RumbleType.kLeftRumble;
-  RumbleType kRightRumble = RumbleType.kRightRumble;
-
   public Drive() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Robot.DriveTrain);
-    requires(Robot.ArduinoPixy);
     
   }
 
@@ -42,47 +34,8 @@ public class Drive extends Command {
   @Override
   protected void execute() {
 
-    //Sets the joystick
-
-    if (Robot.oi.xbox.getStartButton()) { //Vision
-
-        System.out.println("AimAssist Activated");
-
-        ArrayList<String> targetLocation = Robot.ArduinoPixy.returnValues();
-        
-      if (!(targetLocation.get(1).equalsIgnoreCase("x"))) {
-
-        System.out.println("x: " + Integer.parseInt(targetLocation.get(1)));
-        System.out.println("y: " + Integer.parseInt(targetLocation.get(2)));
-        System.out.println("width: " + Integer.parseInt(targetLocation.get(3)));
-        System.out.println("height: " + Integer.parseInt(targetLocation.get(4)));
-
-      } else if ((targetLocation.get(1).equalsIgnoreCase("no"))) {
-
-        Robot.oi.xbox.setRumble(kLeftRumble, 1);
-        Robot.oi.xbox.setRumble(kRightRumble, 1);
-
-      }
-      
-    } //End Vision
-
-
-    //Stops Rumble, just for me rn
-    if (Robot.oi.xbox.getBButton()) {
-
-      Robot.oi.xbox.setRumble(kLeftRumble, 0);
-      Robot.oi.xbox.setRumble(kRightRumble, 0);
-
-    }
-
-
-
     //Regular Tank Drive
-    
-    double leftSpeed = Robot.oi.leftJoystick.getY();
-    double rightSpeed = Robot.oi.rightJoystick.getY();
-
-    Robot.DriveTrain.setDrive(leftSpeed, rightSpeed);
+    Robot.DriveTrain.setDrive(Robot.oi.leftJoystick.getY(), Robot.oi.rightJoystick.getY());
 
 
   }

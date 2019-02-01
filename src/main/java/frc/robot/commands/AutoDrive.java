@@ -63,12 +63,13 @@ public class AutoDrive extends Command {
       if(alignment){
         if(numBlocks == 1){
           if(targetLocation[0][1] > centerPixy){
-
+            System.out.println("Turning Right (1 Block w/ Alignment)");
           }
           else if(targetLocation[0][1] < centerPixy){
-
+            System.out.println("Turning Left (1 Block w/ Alignment)");
           }
           else{
+            System.out.println("No Idea");
             Robot.oi.xbox.setRumble(RumbleType.kLeftRumble, 1);
             Robot.oi.xbox.setRumble(RumbleType.kRightRumble, 1);
           }
@@ -76,17 +77,19 @@ public class AutoDrive extends Command {
         if(numBlocks == 2){
           avgX = (targetLocation[0][1] + targetLocation[1][1])/ 2;
           if(avgX < centerPixy){
-
+            System.out.println("Turning Right (2 Blocks w/ Alignment)");
           }
           else if(avgX > centerPixy){
-
+            System.out.println("Turning Left (2 Blocks w/ Alignment)");
           }
           else {
+            System.out.println("No Idea");
             Robot.oi.xbox.setRumble(RumbleType.kLeftRumble, 1);
             Robot.oi.xbox.setRumble(RumbleType.kRightRumble, 1);
           }
         }
         if(numBlocks == 3 || numBlocks == 4){
+          System.out.println("Too Many Blocks");
           Robot.oi.xbox.setRumble(RumbleType.kLeftRumble, 1);
           Robot.oi.xbox.setRumble(RumbleType.kRightRumble, 1);
         }
@@ -94,12 +97,13 @@ public class AutoDrive extends Command {
       else if(!alignment){
         if(numBlocks == 1){
           if(targetLocation[0][1] > centerPixy){
-            //Turn Right
+            System.out.println("Turning Right (1 Block No Alignment)");
           }
           else if(targetLocation[0][1] < centerPixy){
-            //Turn Left
+            System.out.println("Turning Left (1 Block No Alignment)");
           }
           else{
+            System.out.println("No Idea");
             Robot.oi.xbox.setRumble(RumbleType.kLeftRumble, 1);
             Robot.oi.xbox.setRumble(RumbleType.kRightRumble, 1);
           }
@@ -107,20 +111,24 @@ public class AutoDrive extends Command {
         if(numBlocks == 2){
           avgX = (targetLocation[0][1] + targetLocation[1][1])/ 2;
           if(avgX < centerPixy){
-
+            System.out.println("Turning Right (2 Blocks No Alignment)");
           }
           else if(avgX > centerPixy){
-
+            System.out.println("Turning Left (2 Blocks No Alignment)");
           }
           else {
+            System.out.println("No Idea");
             Robot.oi.xbox.setRumble(RumbleType.kLeftRumble, 1);
             Robot.oi.xbox.setRumble(RumbleType.kRightRumble, 1);
           }
         }
         if(numBlocks == 3 || numBlocks == 4){
+          
+          System.out.println("Too Many Blocks");
           Robot.oi.xbox.setRumble(RumbleType.kLeftRumble, 1);
           Robot.oi.xbox.setRumble(RumbleType.kRightRumble, 1);
         }
+
       }
     
 

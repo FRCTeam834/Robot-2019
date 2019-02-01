@@ -23,8 +23,7 @@ public class ArduinoPixy extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
   int i;
-  public static SerialPort.Port kOnboard;
-  SerialPort pixyPort = new SerialPort(9600, kOnboard);
+  SerialPort pixyPort = new SerialPort(9600, SerialPort.Port.kOnboard, 8, SerialPort.Parity.kNone, SerialPort.StopBits.kOne);
 
   @Override
   public void initDefaultCommand() {

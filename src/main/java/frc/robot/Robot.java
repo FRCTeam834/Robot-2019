@@ -50,10 +50,11 @@ public class Robot extends TimedRobot {
    // CameraServer.getInstance().startAutomaticCapture();
 
 
-    oi = new OI();
     DriveTrain = new DriveTrain();
     VacuumSolenoid = new VacuumSolenoid();
     GroundEye = new GroundEye();
+    ArduinoPixy = new ArduinoPixy();
+    oi = new OI();
 
 
     //m_chooser.setDefaultOption("Default Auto", new ExampleCommand());

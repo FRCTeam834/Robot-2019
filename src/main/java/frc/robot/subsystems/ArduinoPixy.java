@@ -9,9 +9,10 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-import java.util.ArrayList;
+//import java.util.ArrayList;
 
 import edu.wpi.first.wpilibj.SerialPort;
+
 
 /**
  * Arduino returns:
@@ -21,9 +22,9 @@ import edu.wpi.first.wpilibj.SerialPort;
 public class ArduinoPixy extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-
-  public static SerialPort.Port kUSB;
-  SerialPort pixyPort = new SerialPort(9600, kUSB);
+  int i;
+  public static SerialPort.Port kOnboard;
+  SerialPort pixyPort = new SerialPort(9600, kOnboard);
 
   @Override
   public void initDefaultCommand() {
@@ -35,33 +36,41 @@ public class ArduinoPixy extends Subsystem {
 
 
 
-  public ArrayList<String> returnValues() {
+  public int[][] returnValues() {
 
     String data = pixyPort.readString();
-    ArrayList<String> targetLoc = new ArrayList<String>();
-    targetLoc.set(0, "yes");
+   // ArrayList<String> targetLoc = new ArrayList<String>();
+    int[][] targetLoc = new int[10][10];
 
-    if (data.charAt(0) == 'x') {
-
-      String xPos = data.substring(1, 3);
-      String yPos = data.substring(4, 6);
-      String width = data.substring(7, 9);
-      String height = data.substring(10, 12);
+    
+      targetLoc[0][0] = 0;
+      int totalBlocks = Integer.parseInt(data.substring(1, 1));
       
-      targetLoc.set(1, xPos);
-      targetLoc.set(2, yPos);
-      targetLoc.set(3, width);
-      targetLoc.set(4, height);
+      for (int i = 0; i < totalBlocks; i++) {
+        
+        data = pixyPort.readString();
 
-    } else {
+        if (data.charAt(0) == 'x') {
+        
+          int blockNumber = Integer.parseInt(data.substring(2, 2));
+          int xPos = Integer.parseInt(data.substring(3, 5));
+          int yPos = Integer.parseInt(data.substring(6, 8));
+          int width = Integer.parseInt(data.substring(9, 11));
+          int height = Integer.parseInt(data.substring(12, 14));
 
-      targetLoc.set(0, "no");
-
-
-    }
+          targetLoc[blockNumber][0] = blockNumber;
+          targetLoc[blockNumber][1] = xPos;
+          targetLoc[blockNumber][2] = yPos;
+          targetLoc[blockNumber][3] = width;
+          targetLoc[blockNumber][4] = height;
+        }
+        
+        else {
+        targetLoc[0][0] = -1;
+        }
+      }
 
     return targetLoc;
   
-  }    
-
+  }
 }

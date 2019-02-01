@@ -14,7 +14,7 @@ public class Vacuum extends Command {
   public Vacuum() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);'
-    requires(Robot.VacuumSolenoid);
+    //requires(Robot.VacuumSolenoid);
   }
 
   // Called just before this Command runs the first time

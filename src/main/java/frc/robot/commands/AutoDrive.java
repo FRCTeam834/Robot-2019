@@ -7,7 +7,7 @@
 
 package frc.robot.commands;
 
-import java.util.ArrayList;
+//import java.util.ArrayList;
 
 import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj.command.Command;
@@ -37,26 +37,92 @@ public class AutoDrive extends Command {
   protected void execute() {
 
     //Sets the joystick
-
+    //Movement Algorithms
    
         System.out.println("AimAssist Activated");
 
-        ArrayList<String> targetLocation = Robot.ArduinoPixy.returnValues();
+        int[][] targetLocation = Robot.ArduinoPixy.returnValues();
+        boolean alignment = Robot.GroundEye.findTape();
+        int numBlocks = 4; //Placeholder
+        int avgX;
+        int centerPixy = 1; //Center of Pixy
         
-      if (!(targetLocation.get(1).equalsIgnoreCase("x"))) {
+      if (!(targetLocation[0][0] == -1)) {
 
-        System.out.println("x: " + Integer.parseInt(targetLocation.get(1)));
-        System.out.println("y: " + Integer.parseInt(targetLocation.get(2)));
-        System.out.println("width: " + Integer.parseInt(targetLocation.get(3)));
-        System.out.println("height: " + Integer.parseInt(targetLocation.get(4)));
+        System.out.println("x: " + (targetLocation[0][1]));
+        System.out.println("y: " + (targetLocation[0][2]));
+        System.out.println("width: " + (targetLocation[0][3]));
+        System.out.println("height: " + (targetLocation[0][4]));
 
-      } else if ((targetLocation.get(1).equalsIgnoreCase("no"))) {
+      } else {
 
         Robot.oi.xbox.setRumble(RumbleType.kLeftRumble, 1);
         Robot.oi.xbox.setRumble(RumbleType.kRightRumble, 1);
       }
 
-      
+      if(alignment){
+        if(numBlocks == 1){
+          if(targetLocation[0][1] > centerPixy){
+
+          }
+          else if(targetLocation[0][1] < centerPixy){
+
+          }
+          else{
+            Robot.oi.xbox.setRumble(RumbleType.kLeftRumble, 1);
+            Robot.oi.xbox.setRumble(RumbleType.kRightRumble, 1);
+          }
+        }
+        if(numBlocks == 2){
+          avgX = (targetLocation[0][1] + targetLocation[1][1])/ 2;
+          if(avgX < centerPixy){
+
+          }
+          else if(avgX > centerPixy){
+
+          }
+          else {
+            Robot.oi.xbox.setRumble(RumbleType.kLeftRumble, 1);
+            Robot.oi.xbox.setRumble(RumbleType.kRightRumble, 1);
+          }
+        }
+        if(numBlocks == 3 || numBlocks == 4){
+          Robot.oi.xbox.setRumble(RumbleType.kLeftRumble, 1);
+          Robot.oi.xbox.setRumble(RumbleType.kRightRumble, 1);
+        }
+      }
+      else if(!alignment){
+        if(numBlocks == 1){
+          if(targetLocation[0][1] > centerPixy){
+            //Turn Right
+          }
+          else if(targetLocation[0][1] < centerPixy){
+            //Turn Left
+          }
+          else{
+            Robot.oi.xbox.setRumble(RumbleType.kLeftRumble, 1);
+            Robot.oi.xbox.setRumble(RumbleType.kRightRumble, 1);
+          }
+        }
+        if(numBlocks == 2){
+          avgX = (targetLocation[0][1] + targetLocation[1][1])/ 2;
+          if(avgX < centerPixy){
+
+          }
+          else if(avgX > centerPixy){
+
+          }
+          else {
+            Robot.oi.xbox.setRumble(RumbleType.kLeftRumble, 1);
+            Robot.oi.xbox.setRumble(RumbleType.kRightRumble, 1);
+          }
+        }
+        if(numBlocks == 3 || numBlocks == 4){
+          Robot.oi.xbox.setRumble(RumbleType.kLeftRumble, 1);
+          Robot.oi.xbox.setRumble(RumbleType.kRightRumble, 1);
+        }
+      }
+    
 
 
 

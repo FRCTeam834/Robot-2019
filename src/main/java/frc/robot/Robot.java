@@ -19,6 +19,7 @@ import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.VacuumSolenoid;
 import frc.robot.subsystems.GroundEye;
 import frc.robot.subsystems.NavX;
+import frc.robot.subsystems.Scissor;
 
 
 
@@ -39,6 +40,7 @@ public class Robot extends TimedRobot {
   public static VacuumSolenoid VacuumSolenoid;
   public static GroundEye GroundEye;
   public static ArduinoPixy ArduinoPixy;
+  public static Scissor Scissor;
   
   
   Command m_autonomousCommand;
@@ -58,6 +60,7 @@ public class Robot extends TimedRobot {
     VacuumSolenoid = new VacuumSolenoid();
     GroundEye = new GroundEye();
     ArduinoPixy = new ArduinoPixy();
+    Scissor = new Scissor();
     //NavX = new NavX();
     oi = new OI();
 

@@ -89,13 +89,13 @@ public class DriveTrain extends Subsystem {
   }
 
   public void leftDrive(double speed) {
-    leftDriveGroup.setInverted(true);
     leftDriveGroup.set(speed);
 
   }
 
   public void rightDrive(double speed) {
 
+    rightDriveGroup.setInverted(true);
     rightDriveGroup.set(speed);
 
   }

@@ -34,8 +34,15 @@ public class Drive extends Command {
   @Override
   protected void execute() {
 
+    double leftSpeed = Robot.oi.leftJoystick.getY();
+    double rightSpeed = Robot.oi.rightJoystick.getY();
+
+    leftSpeed = (Math.abs(leftSpeed) < 0.05)? 0 : leftSpeed;
+    rightSpeed = (Math.abs(rightSpeed)< 0.05)? 0 : rightSpeed;
+
+
     //Regular Tank Drive
-    Robot.DriveTrain.setDrive(Robot.oi.leftJoystick.getY(), Robot.oi.rightJoystick.getY());
+    Robot.DriveTrain.setDrive(leftSpeed, rightSpeed);
 
 
   }

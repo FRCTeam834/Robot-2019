@@ -7,36 +7,33 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.Solenoid;
+//import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.command.Subsystem;
-
+import edu.wpi.first.wpilibj.SPI;
 /**
  * Add your docs here.
  */
-public class VacuumSolenoid extends Subsystem {
+public class NavX extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-
-  Solenoid vacuumSol = new Solenoid(10, 1);
+  //AHRS NavX = new AHRS(SPI.Port.kMXP);
 
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
-    //setDefaultCommand(new Vacuum());
 
   }
 
-  public void vacClose() {
+  /*public boolean lookupConnection() {
 
-    vacuumSol.set(true);
+    //return NavX.isConnected();
 
-  }
+  } */
 
-  public void vacOpen() {
 
-    vacuumSol.set(false);
 
-  }
 
 }
+
+

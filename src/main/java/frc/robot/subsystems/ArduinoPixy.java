@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 //import java.util.ArrayList;
 
 import edu.wpi.first.wpilibj.SerialPort;
+import edu.wpi.first.wpilibj.SerialPort.Port;
 
 
 /**
@@ -23,7 +24,7 @@ public class ArduinoPixy extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
   int i;
-  SerialPort pixyPort = new SerialPort(9600, SerialPort.Port.kOnboard, 8, SerialPort.Parity.kNone, SerialPort.StopBits.kOne);
+  SerialPort pixyPort = new SerialPort(9600, Port.kMXP);
 
   @Override
   public void initDefaultCommand() {

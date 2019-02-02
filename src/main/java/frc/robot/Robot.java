@@ -7,6 +7,8 @@
 
 package frc.robot;
 
+//import com.kauailabs.navx.frc.AHRS;
+
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -16,6 +18,8 @@ import frc.robot.subsystems.ArduinoPixy;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.VacuumSolenoid;
 import frc.robot.subsystems.GroundEye;
+import frc.robot.subsystems.NavX;
+
 
 
 //import edu.wpi.first.cameraserver.CameraServer; //Not used
@@ -31,6 +35,7 @@ public class Robot extends TimedRobot {
 
   public static DriveTrain DriveTrain;
   public static OI oi;
+  public static NavX NavX;
   public static VacuumSolenoid VacuumSolenoid;
   public static GroundEye GroundEye;
   public static ArduinoPixy ArduinoPixy;
@@ -49,11 +54,11 @@ public class Robot extends TimedRobot {
 
    // CameraServer.getInstance().startAutomaticCapture();
 
-
     DriveTrain = new DriveTrain();
     VacuumSolenoid = new VacuumSolenoid();
     GroundEye = new GroundEye();
     ArduinoPixy = new ArduinoPixy();
+    //NavX = new NavX();
     oi = new OI();
 
 

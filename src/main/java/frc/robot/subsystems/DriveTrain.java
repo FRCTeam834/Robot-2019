@@ -11,6 +11,7 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.commands.Drive;
 
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.revrobotics.CANSparkMax;
 
 //import edu.wpi.first.wpilibj.Spark;
@@ -67,6 +68,15 @@ public class DriveTrain extends Subsystem {
   CANSparkMax rightDrive1 = new CANSparkMax(4, CANSparkMax.MotorType.kBrushless);
   CANSparkMax rightDrive2 = new CANSparkMax(5, CANSparkMax.MotorType.kBrushless);
   CANSparkMax rightDrive3 = new CANSparkMax(6, CANSparkMax.MotorType.kBrushless);
+  //WPI_TalonSRX lefSrx = new WPI_TalonSRX(7);
+  //WPI_TalonSRX ballIntakeSrx = new WPI_TalonSRX(8);
+
+  /*
+  //Future motor assignments
+  WPI_TalonSRX name = new WPI_TalonSRX(10);
+  WPI_TalonSRX name = new WPI_TalonSRX(11);
+  WPI_TalonSRX name = new WPI_TalonSRX(12);
+  */
 
   SpeedControllerGroup leftDriveGroup = new SpeedControllerGroup(leftDrive1, leftDrive2, leftDrive3);
   SpeedControllerGroup rightDriveGroup = new SpeedControllerGroup(rightDrive1, rightDrive2, rightDrive3);

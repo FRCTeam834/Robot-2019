@@ -31,7 +31,7 @@ public class ScissorStop extends Command {
   @Override
   protected void execute() {
     
-
+    Robot.Scissor.setScissor(0);
 
   }
 

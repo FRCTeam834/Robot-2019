@@ -17,12 +17,12 @@ public class ScissorStop extends Command {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Robot.Scissor);
-    
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+
       Robot.Scissor.setScissor(0);
 
   }
@@ -40,7 +40,6 @@ public class ScissorStop extends Command {
   @Override
   protected boolean isFinished() {
     return false;
-
   }
 
   // Called once after isFinished returns true
@@ -54,6 +53,7 @@ public class ScissorStop extends Command {
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    Robot.Scissor.setScissor(0);
     System.out.println("ScissorUp interrupted");
   }
 }

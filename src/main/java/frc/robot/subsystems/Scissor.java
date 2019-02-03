@@ -13,8 +13,7 @@ import frc.robot.commands.ScissorStop;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 
-
-/**
+/*
  * Add your docs here.
  */
 public class Scissor extends Subsystem {

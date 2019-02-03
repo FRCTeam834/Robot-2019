@@ -58,7 +58,12 @@ public class OI {
   xboxB = new JoystickButton(xbox, 2),
   xboxA = new JoystickButton(xbox, 1),
   xboxY = new JoystickButton(xbox, 4),
-  xboxX = new JoystickButton(xbox, 3);
+  xboxX = new JoystickButton(xbox, 3),
+  joystick6 = new JoystickButton(leftJoystick, 6),
+  joystick7 = new JoystickButton(leftJoystick, 7),
+  joystick8 = new JoystickButton(leftJoystick, 8);
+  
+
 
   public OI() {
     xboxStart.whenPressed(new AutoDrive());
@@ -66,6 +71,9 @@ public class OI {
     xboxA.whileHeld(new Vacuum());
     xboxY.whileHeld(new ScissorUp());
     xboxX.whileHeld(new ScissorDown());
+    joystick7.whileHeld(new ElevatorUp());
+    joystick8.whileHeld(new ElevatorDown());
+
   }
 
 }

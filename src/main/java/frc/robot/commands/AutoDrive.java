@@ -43,9 +43,9 @@ public class AutoDrive extends Command {
 
         int[][] targetLocation = Robot.ArduinoPixy.returnValues();
         boolean alignment = Robot.GroundEye.findTape();
-        int numBlocks = 4; //Placeholder
+        int numBlocks = Robot.ArduinoPixy.returnTotalBlocks(); //Placeholder
         int avgX;
-        int centerPixy = 1; //Center of Pixy
+        int centerPixy = 160; //Center of Pixy
         
       if (!(targetLocation[0][0] == -1)) {
 
@@ -103,7 +103,7 @@ public class AutoDrive extends Command {
             System.out.println("Turning Left (1 Block No Alignment)");
           }
           else{
-            System.out.println("No Idea");
+            System.out.println("No Idea"); //Do Nothing
             Robot.oi.xbox.setRumble(RumbleType.kLeftRumble, 1);
             Robot.oi.xbox.setRumble(RumbleType.kRightRumble, 1);
           }
@@ -117,7 +117,7 @@ public class AutoDrive extends Command {
             System.out.println("Turning Left (2 Blocks No Alignment)");
           }
           else {
-            System.out.println("No Idea");
+            System.out.println("No Idea"); //Do Nothing
             Robot.oi.xbox.setRumble(RumbleType.kLeftRumble, 1);
             Robot.oi.xbox.setRumble(RumbleType.kRightRumble, 1);
           }

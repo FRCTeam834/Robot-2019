@@ -20,6 +20,7 @@ import frc.robot.subsystems.VacuumSolenoid;
 import frc.robot.subsystems.GroundEye;
 import frc.robot.subsystems.NavX;
 import frc.robot.subsystems.Scissor;
+import frc.robot.subsystems.Elevator;
 
 
 
@@ -41,6 +42,7 @@ public class Robot extends TimedRobot {
   public static GroundEye GroundEye;
   public static ArduinoPixy ArduinoPixy;
   public static Scissor Scissor;
+  public static Elevator Elevator;
   
   
   Command m_autonomousCommand;
@@ -61,6 +63,7 @@ public class Robot extends TimedRobot {
     GroundEye = new GroundEye();
     ArduinoPixy = new ArduinoPixy();
     Scissor = new Scissor();
+    Elevator = new Elevator();
     //NavX = new NavX();
     oi = new OI();
 

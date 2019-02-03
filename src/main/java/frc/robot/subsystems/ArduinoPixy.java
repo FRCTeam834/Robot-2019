@@ -24,7 +24,7 @@ public class ArduinoPixy extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
   int i;
-  SerialPort pixyPort = new SerialPort(9600, Port.kMXP);
+  SerialPort pixyPort = new SerialPort(115200, Port.kMXP);
 
   @Override
   public void initDefaultCommand() {
@@ -38,6 +38,7 @@ public class ArduinoPixy extends Subsystem {
 
   public int[][] returnValues() {
 
+    pixyPort.writeString("a");
     String data = pixyPort.readString();
    // ArrayList<String> targetLoc = new ArrayList<String>();
     int[][] targetLoc = new int[10][10];
@@ -73,4 +74,18 @@ public class ArduinoPixy extends Subsystem {
     return targetLoc;
   
   }
+
+  public int returnTotalBlocks() {
+
+    pixyPort.writeString("s");
+    String data = pixyPort.readString();
+   // ArrayList<String> targetLoc = new ArrayList<String>();
+    int totalBlocks = -1; //Total represents the total number of blocks
+
+    totalBlocks = Integer.parseInt(data.substring(1, 1));
+ 
+    return totalBlocks;
+  
+  }
+
 }

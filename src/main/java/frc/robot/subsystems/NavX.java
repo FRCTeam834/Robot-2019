@@ -7,16 +7,18 @@
 
 package frc.robot.subsystems;
 
-//import com.kauailabs.navx.frc.AHRS;
+
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.SPI;
+import com.kauailabs.navx.frc.AHRS;
+
 /**
  * Add your docs here.
  */
 public class NavX extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-  //AHRS NavX = new AHRS(SPI.Port.kMXP);
+  AHRS NavX = new AHRS(SPI.Port.kMXP);
 
   @Override
   public void initDefaultCommand() {

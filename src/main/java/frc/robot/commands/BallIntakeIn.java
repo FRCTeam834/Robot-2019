@@ -10,66 +10,48 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class Drive extends Command {
-
-
-  public Drive() {
+public class BallIntakeIn extends Command {
+  public BallIntakeIn() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.DriveTrain);
-    
+    requires(Robot.BallIntake);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    
+    Robot.BallIntake.ballIntakeIn();
 
-    
-    Robot.DriveTrain.setDrive(0, 0);
-    
-    
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
 
-    double leftSpeed = Robot.oi.leftJoystick.getY();
-    double rightSpeed = Robot.oi.rightJoystick.getY();
-
-    //Alex
-    //leftSpeed = (Math.abs(leftSpeed) < 0.15)? 0 : leftSpeed;
-    //rightSpeed = (Math.abs(rightSpeed)< 0.15)? 0 : rightSpeed;
-
-    //Christian
-    leftSpeed = (Math.abs(leftSpeed) < 0.15)? 0 : leftSpeed / 2;
-    rightSpeed = (Math.abs(rightSpeed)< 0.15)? 0 : rightSpeed / 2;
-
-    //Regular Tank Drive
-    Robot.DriveTrain.setDrive(leftSpeed, rightSpeed);
-
 
   }
-
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    
     return false;
-
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    
+
+    Robot.BallIntake.ballIntakeStop();;
+
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    System.out.println("DriveTrain interrupted a.k.a. Ryan deleted the autons");
+
+    Robot.BallIntake.ballIntakeStop();
+
   }
 }

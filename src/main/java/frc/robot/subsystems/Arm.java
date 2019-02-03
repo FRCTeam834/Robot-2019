@@ -10,54 +10,53 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
-import frc.robot.commands.ElevatorHold;
-import frc.robot.commands.ElevatorStop;
+import frc.robot.commands.ArmHold;
 
 /**
  * Add your docs here.
  */
 
-public class Elevator extends Subsystem {
+public class Arm extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
-  WPI_TalonSRX elevator = new WPI_TalonSRX(9);
+  WPI_TalonSRX arm = new WPI_TalonSRX(11);
 
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
-    setDefaultCommand(new ElevatorHold());
+    setDefaultCommand(new ArmHold());
   }
   
 
 
-  public void elevatorUp() {
+  public void armUp() {
 
-    elevator.set(.75);
-
-  }
-
-  public void elevatorDown() {
-
-    elevator.set(-.25);
+    arm.set(.5);
 
   }
 
-  public void elevatorStop() {
+  public void armDown() {
 
-    elevator.set(0);
+    arm.set(-.5);
 
   }
 
-  public void elevatorHold() {
+  public void armStop() {
 
-    elevator.set(.15);
+    arm.set(0);
+
   }
 
-  public void setElevator(double speed) {
+  public void armHold() {
 
-    elevator.set(speed);
+    arm.set(.05);
+  }
+
+  public void setArm(double speed) {
+
+    arm.set(speed);
 
   }
 

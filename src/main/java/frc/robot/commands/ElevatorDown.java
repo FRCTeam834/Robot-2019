@@ -21,7 +21,7 @@ public class ElevatorDown extends Command {
   @Override
   protected void initialize() {
     
-    Robot.Elevator.elevatorStop();
+    Robot.Elevator.elevatorDown();
 
   }
 
@@ -29,7 +29,6 @@ public class ElevatorDown extends Command {
   @Override
   protected void execute() {
 
-    Robot.Elevator.elevatorDown();
 
   }
 
@@ -43,7 +42,7 @@ public class ElevatorDown extends Command {
   @Override
   protected void end() {
 
-    Robot.Elevator.elevatorStop();;
+    Robot.Elevator.elevatorStop();
 
   }
 

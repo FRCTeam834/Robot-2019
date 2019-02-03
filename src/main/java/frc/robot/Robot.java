@@ -15,6 +15,8 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.ArduinoPixy;
+import frc.robot.subsystems.Arm;
+import frc.robot.subsystems.BallIntake;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.VacuumSolenoid;
 import frc.robot.subsystems.GroundEye;
@@ -43,7 +45,8 @@ public class Robot extends TimedRobot {
   public static ArduinoPixy ArduinoPixy;
   public static Scissor Scissor;
   public static Elevator Elevator;
-  
+  public static BallIntake BallIntake;
+  public static Arm Arm;
   
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -64,6 +67,8 @@ public class Robot extends TimedRobot {
     ArduinoPixy = new ArduinoPixy();
     Scissor = new Scissor();
     Elevator = new Elevator();
+    BallIntake = new BallIntake();
+    Arm = new Arm();
     //NavX = new NavX();
     oi = new OI();
 
@@ -71,12 +76,6 @@ public class Robot extends TimedRobot {
     //m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
-
-    
-    //PixyPacket = new PixyPacket();
-    
-  
-
 
   }
 

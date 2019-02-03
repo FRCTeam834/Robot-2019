@@ -22,7 +22,7 @@ public class ElevatorUp extends Command {
   @Override
   protected void initialize() {
 
-    Robot.Elevator.elevatorStop();
+    Robot.Elevator.elevatorUp();
   
   }
 
@@ -30,7 +30,6 @@ public class ElevatorUp extends Command {
   @Override
   protected void execute() {
 
-    Robot.Elevator.elevatorUp();
 
   }
 

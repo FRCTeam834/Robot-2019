@@ -49,6 +49,11 @@ public class Elevator extends Subsystem {
 
   }
 
+  public void elevatorHold() {
+
+    elevator.set(.05);
+  }
+
   public void setElevator(double speed) {
 
     elevator.set(speed);

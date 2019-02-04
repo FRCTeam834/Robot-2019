@@ -7,8 +7,6 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.SPI;
 import com.kauailabs.navx.frc.AHRS;
 
 /**
@@ -57,7 +55,9 @@ public class NavX extends Subsystem {
   }
 
   public void reset() {
-     NavX.reset;
+    NavX.enableBoardlevelYawReset(true);
+    NavX.reset;
+    NavX.enableBoardlevelYawReset(false);
    }
 
 }

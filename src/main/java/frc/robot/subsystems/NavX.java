@@ -7,7 +7,6 @@
 
 package frc.robot.subsystems;
 
-
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.SPI;
 import com.kauailabs.navx.frc.AHRS;
@@ -24,18 +23,41 @@ public class NavX extends Subsystem {
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
+  }
+
+  protected void initialize() {
+    NavX.enableBoardlevelYawReset(false);
+  }
+
+  @Override
+  public boolean lookupConnection() {
+
+    return NavX.isConnected();
 
   }
 
-  /*public boolean lookupConnection() {
+  public boolean isCalibrating() {
 
-    //return NavX.isConnected();
+    return NavX.isCalibrating();
+  }
 
-  } */
+  public int pitch() {
 
+    return NavX.getPitch();
+  }
 
+  public int yaw() {
 
+    return NavX.getYaw();
+  }
+
+  public int roll() {
+
+    return NavX.getRoll;
+  }
+
+  public void reset() {
+     NavX.reset;
+   }
 
 }
-
-

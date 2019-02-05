@@ -9,7 +9,6 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
-import frc.robot.subsystems.NavX;
 
 public class Drive extends Command {
 
@@ -35,21 +34,21 @@ public class Drive extends Command {
     double leftSpeed = Robot.oi.leftJoystick.getY();
     double rightSpeed = Robot.oi.rightJoystick.getY();
 
-    if (Math.abs(NavX.getYaw()) < 45) {
+   // if (Math.abs(Robot.NavX.roll()) < 45) {
       // Alex
       // leftSpeed = (Math.abs(leftSpeed) < 0.15)? 0 : leftSpeed;
       // rightSpeed = (Math.abs(rightSpeed)< 0.15)? 0 : rightSpeed;
 
       // Christian
-      leftSpeed = (Math.abs(leftSpeed) < 0.15) ? 0 : leftSpeed / 2;
-      rightSpeed = (Math.abs(rightSpeed) < 0.15) ? 0 : rightSpeed / 2;
+      leftSpeed = (Math.abs(leftSpeed) < 0.15) ? 0 : leftSpeed / 4;
+      rightSpeed = (Math.abs(rightSpeed) < 0.15) ? 0 : rightSpeed / 4;
 
       // Regular Tank Drive
       Robot.DriveTrain.setDrive(leftSpeed, rightSpeed);
 
-    } else {
-      Robot.DriveTrain.setDrive(0, 0);
-    }
+   // } else {
+  //    Robot.DriveTrain.stop();
+   // }
 
   }
 

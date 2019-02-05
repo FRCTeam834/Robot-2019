@@ -23,6 +23,7 @@ import frc.robot.subsystems.GroundEye;
 import frc.robot.subsystems.NavX;
 import frc.robot.subsystems.Scissor;
 import frc.robot.subsystems.Elevator;
+import frc.robot.subsystems.Compressor;
 
 
 
@@ -47,6 +48,7 @@ public class Robot extends TimedRobot {
   public static Elevator Elevator;
   public static BallIntake BallIntake;
   public static Arm Arm;
+  public static Compressor Compressor;
   
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -69,7 +71,8 @@ public class Robot extends TimedRobot {
     Elevator = new Elevator();
     BallIntake = new BallIntake();
     Arm = new Arm();
-    //NavX = new NavX();
+    NavX = new NavX();
+    Compressor = new Compressor();
     oi = new OI();
 
 
@@ -165,7 +168,7 @@ public class Robot extends TimedRobot {
     
     Scheduler.getInstance().run();
 
-    System.out.println(GroundEye.findTape());
+    //System.out.println(GroundEye.findTape());
 
   }
 

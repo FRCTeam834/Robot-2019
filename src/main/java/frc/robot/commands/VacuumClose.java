@@ -10,28 +10,23 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class Vacuum extends Command {
-  public Vacuum() {
+public class VacuumClose extends Command {
+  public VacuumClose() {
     // Use requires() here to declare subsystem dependencies
-    // eg. requires(chassis);'
+    // eg. requires(chassis);
     requires(Robot.VacuumSolenoid);
-
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    
-    Robot.VacuumSolenoid.vacOpen();
-
+    Robot.VacuumSolenoid.vacClose();
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-  
-    Robot.VacuumSolenoid.vacOpen();
-
+    Robot.VacuumSolenoid.vacClose();
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -52,6 +47,6 @@ public class Vacuum extends Command {
   protected void interrupted() {
 
     Robot.VacuumSolenoid.vacClose();
-
+    System.out.println("Vacuum Closed");
   }
 }

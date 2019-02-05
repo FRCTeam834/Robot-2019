@@ -4,9 +4,13 @@
 /* must be accompanied by the FIRST BSD license file in the root directory of */
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
-
 package frc.robot.subsystems;
 
+//import java.lang.Object;
+//import edu.wpi.first.wpilibj.SendableBase;
+
+import edu.wpi.first.wpilibj.SPI;
+import edu.wpi.first.wpilibj.command.Subsystem;
 import com.kauailabs.navx.frc.AHRS;
 
 /**
@@ -15,7 +19,8 @@ import com.kauailabs.navx.frc.AHRS;
 public class NavX extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-  AHRS NavX = new AHRS(SPI.Port.kMXP);
+  AHRS NavXMXP;
+  
 
   @Override
   public void initDefaultCommand() {
@@ -24,40 +29,42 @@ public class NavX extends Subsystem {
   }
 
   protected void initialize() {
-    NavX.enableBoardlevelYawReset(false);
+    NavXMXP = new AHRS(SPI.Port.kMXP);
+    //NavXMXP.enableBoardlevelYawReset(false);
   }
-
+  /*
   @Override
   public boolean lookupConnection() {
 
     return NavX.isConnected();
 
   }
+  */
 
   public boolean isCalibrating() {
 
-    return NavX.isCalibrating();
+    return NavXMXP.isCalibrating();
   }
 
-  public int pitch() {
+  public float pitch() {
 
-    return NavX.getPitch();
+    return NavXMXP.getPitch();
   }
 
-  public int yaw() {
+  public float yaw() {
 
-    return NavX.getYaw();
+    return NavXMXP.getYaw();
   }
 
-  public int roll() {
+  public float roll() {
 
-    return NavX.getRoll;
+    return NavXMXP.getRoll();
   }
 
   public void reset() {
-    NavX.enableBoardlevelYawReset(true);
-    NavX.reset;
-    NavX.enableBoardlevelYawReset(false);
+    //NavXMXP.enableBoardlevelYawReset(true);
+    NavXMXP.reset();
+    //NavXMXP.enableBoardlevelYawReset(false);
    }
 
 }

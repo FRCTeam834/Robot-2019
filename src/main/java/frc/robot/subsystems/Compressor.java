@@ -7,36 +7,40 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.Solenoid;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
  * Add your docs here.
  */
-public class VacuumSolenoid extends Subsystem {
+public class Compressor extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
-  Solenoid vacuumSol = new Solenoid(10, 0);
+  WPI_TalonSRX compressor = new WPI_TalonSRX(8);
+
 
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
-    //setDefaultCommand(new Vacuum());
-
+    
   }
 
-  public void vacClose() {
+    public void compressorStop() {
 
-    vacuumSol.set(true);
+      compressor.set(0);
 
-  }
+    }
 
-  public void vacOpen() {
+    public void compressorOn() {
 
-    vacuumSol.set(false);
+      compressor.set(1);
 
-  }
+    }
+
+    
+
 
 }

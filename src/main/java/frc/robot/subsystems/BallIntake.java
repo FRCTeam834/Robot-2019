@@ -20,7 +20,7 @@ public class BallIntake extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
-  WPI_TalonSRX ballIntake = new WPI_TalonSRX(8);
+  WPI_TalonSRX ballIntake = new WPI_TalonSRX(12);
 
   @Override
   public void initDefaultCommand() {
@@ -33,13 +33,13 @@ public class BallIntake extends Subsystem {
 
   public void ballIntakeIn() {
 
-    ballIntake.set(.50);
+    ballIntake.set(1);
 
   }
 
   public void ballIntakeOut() {
 
-    ballIntake.set(-.50);
+    ballIntake.set(-1);
 
   }
 

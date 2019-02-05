@@ -21,71 +21,66 @@ import edu.wpi.first.wpilibj.SerialPort.Port;
  * If no blocks are detected, then it will return "None"
  */
 public class ArduinoPixy extends Subsystem {
-  // Put methods for controlling this subsystem
-  // here. Call these from Commands.
-  int i;
-  SerialPort pixyPort = new SerialPort(115200, Port.kMXP);
 
   @Override
-  public void initDefaultCommand() {
-    // Set the default command for a subsystem here.
-    // setDefaultCommand(new MySpecialCommand());
+  protected void initDefaultCommand() {
 
-  }      
-
-
-
-
-  public int[][] returnValues() {
-
-    pixyPort.writeString("a");
-    String data = pixyPort.readString();
-   // ArrayList<String> targetLoc = new ArrayList<String>();
-    int[][] targetLoc = new int[10][10];
-
-    
-      targetLoc[0][0] = 0;
-      int totalBlocks = Integer.parseInt(data.substring(1, 1));
-      
-      for (int i = 0; i < totalBlocks; i++) {
-        
-        data = pixyPort.readString();
-
-        if (data.charAt(0) == 'x') {
-        
-          int blockNumber = Integer.parseInt(data.substring(2, 2));
-          int xPos = Integer.parseInt(data.substring(3, 5));
-          int yPos = Integer.parseInt(data.substring(6, 8));
-          int width = Integer.parseInt(data.substring(9, 11));
-          int height = Integer.parseInt(data.substring(12, 14));
-
-          targetLoc[blockNumber][0] = blockNumber;
-          targetLoc[blockNumber][1] = xPos;
-          targetLoc[blockNumber][2] = yPos;
-          targetLoc[blockNumber][3] = width;
-          targetLoc[blockNumber][4] = height;
-        }
-        
-        else {
-        targetLoc[0][0] = -1;
-        }
-      }
-
-    return targetLoc;
-  
   }
-
-  public int returnTotalBlocks() {
-
-    pixyPort.writeString("s");
-    String data = pixyPort.readString();
-   // ArrayList<String> targetLoc = new ArrayList<String>();
-    int totalBlocks = -1; //Total represents the total number of blocks
-
-    totalBlocks = Integer.parseInt(data.substring(1, 1));
- 
-    return totalBlocks;
-  
-  }
-
-}
+  /*
+   * // Put methods for controlling this subsystem // here. Call these from
+   * Commands. int i; SerialPort pixyPort = new SerialPort(115200, Port.kMXP,
+   * 104);
+   * 
+   * @Override public void initDefaultCommand() { // Set the default command for a
+   * subsystem here. // setDefaultCommand(new MySpecialCommand());
+   * 
+   * }
+   * 
+   * 
+   * 
+   * 
+   * public int[][] returnValues() {
+   * 
+   * pixyPort.writeString("a"); String data = pixyPort.readString(); //
+   * ArrayList<String> targetLoc = new ArrayList<String>(); int[][] targetLoc =
+   * new int[10][10];
+   * 
+   * 
+   * targetLoc[0][0] = 0; int totalBlocks = Integer.parseInt(data.substring(1,
+   * 1));
+   * 
+   * for (int i = 0; i < totalBlocks; i++) {
+   * 
+   * data = pixyPort.readString();
+   * 
+   * if (data.charAt(0) == 'x') {
+   * 
+   * int blockNumber = Integer.parseInt(data.substring(2, 2)); int xPos =
+   * Integer.parseInt(data.substring(3, 5)); int yPos =
+   * Integer.parseInt(data.substring(6, 8)); int width =
+   * Integer.parseInt(data.substring(9, 11)); int height =
+   * Integer.parseInt(data.substring(12, 14));
+   * 
+   * targetLoc[blockNumber][0] = blockNumber; targetLoc[blockNumber][1] = xPos;
+   * targetLoc[blockNumber][2] = yPos; targetLoc[blockNumber][3] = width;
+   * targetLoc[blockNumber][4] = height; }
+   * 
+   * else { targetLoc[0][0] = -1; } }
+   * 
+   * return targetLoc;
+   * 
+   * }
+   * 
+   * public int returnTotalBlocks() {
+   * 
+   * pixyPort.writeString("s"); String data = pixyPort.readString(); //
+   * ArrayList<String> targetLoc = new ArrayList<String>(); int totalBlocks = -1;
+   * //Total represents the total number of blocks
+   * 
+   * totalBlocks = Integer.parseInt(data.substring(1, 1));
+   * 
+   * return totalBlocks;
+   * 
+   * }
+   * 
+   */}

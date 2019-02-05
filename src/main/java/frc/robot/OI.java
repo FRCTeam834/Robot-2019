@@ -61,27 +61,58 @@ public class OI {
   xboxX = new JoystickButton(xbox, 3),
   xboxBLeft = new JoystickButton(xbox, 5),
   xboxBRight = new JoystickButton(xbox, 6),
-  joystick6 = new JoystickButton(leftJoystick, 6),
-  joystick7 = new JoystickButton(leftJoystick, 7),
-  joystick10 = new JoystickButton(rightJoystick, 10),
-  joystick11 = new JoystickButton(rightJoystick, 11);
+  ljoystick6 = new JoystickButton(leftJoystick, 6),
+  ljoystick7 = new JoystickButton(leftJoystick, 7),
+  ljoystick10 = new JoystickButton(leftJoystick, 10),
+  ljoystick11 = new JoystickButton(leftJoystick, 11),
+  ljoystick2 = new JoystickButton(leftJoystick, 2),
+  rjoystick2 = new JoystickButton(rightJoystick, 2),
+  rjoystick3 = new JoystickButton(rightJoystick, 3),
+  rjoystick4 = new JoystickButton(rightJoystick, 4),
+  rjoystick5 = new JoystickButton(rightJoystick, 5),
+  rjoystick6 = new JoystickButton(rightJoystick, 6),
+  rjoystick7 = new JoystickButton(rightJoystick, 7),
+  rjoystick8 = new JoystickButton(rightJoystick, 8);
   
 
 
   public OI() {
+
+    //DriveTrain
     xboxStart.whenPressed(new AutoDrive());
+
+    //Turning off xbox runble
     xboxB.whenPressed(new StopRumble());
-    xboxA.whileHeld(new Vacuum());
+
+    //Vacuum w/ Solenoid
+    //xboxA.whileHeld(new Vacuum());
+
+    //Scissor Lift
     xboxY.whileHeld(new ScissorUp());
     xboxX.whileHeld(new ScissorDown());
+
+    //Elevator
     xboxBLeft.whileHeld(new ElevatorUp());
     xboxBRight.whileHeld(new ElevatorDown());
-    joystick6.whileHeld(new BallIntakeIn());
-    joystick7.whileHeld(new BallIntakeOut());
-    joystick10.whileHeld(new ArmDown());
-    joystick11.whileHeld(new ArmUp());
 
-    
+    //Ball Intake
+    ljoystick6.whileHeld(new BallIntakeIn());
+    ljoystick7.whileHeld(new BallIntakeOut());
+
+    //Arm
+    ljoystick10.whileHeld(new ArmDown());
+    ljoystick11.whileHeld(new ArmUp());
+
+    //Compressor
+    ljoystick2.whenPressed(new BeginCompressor());
+    rjoystick2.whenPressed(new CompressorStop());
+
+    xboxA.whenPressed(new PlaceHatch());
+
+    rjoystick8.whenPressed(new Vacuum());
+
+    rjoystick6.whenPressed(new VacuumOpen());
+    rjoystick7.whenPressed(new VacuumClose());
   }
 
 }

@@ -25,6 +25,7 @@ public class Elevator extends Subsystem {
   WPI_TalonSRX elevator = new WPI_TalonSRX(9);
   Encoder elevEncoder = new Encoder(0, 1);
   float spoolCircumference = (PI * 4); // Fix with actual calculations
+  // elevEncoder.setDistancePerPulse(); //Might need to be set
 
   @Override
   public void initDefaultCommand() {

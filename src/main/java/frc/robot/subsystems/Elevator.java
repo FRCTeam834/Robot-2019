@@ -23,7 +23,8 @@ public class Elevator extends Subsystem {
   // here. Call these from Commands.
 
   WPI_TalonSRX elevator = new WPI_TalonSRX(9);
-  Encoder elevEncoder = new Encoder(1, 1);
+  Encoder elevEncoder = new Encoder(0, 1);
+  float spoolCircumference = (PI * 4); // Fix with actual calculations
 
   @Override
   public void initDefaultCommand() {
@@ -31,8 +32,6 @@ public class Elevator extends Subsystem {
     // setDefaultCommand(new MySpecialCommand());
     setDefaultCommand(new ElevatorHold());
   }
-  
-
 
   public void elevatorUp() {
 
@@ -63,5 +62,34 @@ public class Elevator extends Subsystem {
 
   }
 
+  public double elevatorHeight() {
+    double position = elevEncoder.getDistance();
+    // Math to find height
+    double currentHeight = position * spoolCircumference;
+    return currentHeight;
+  }
+
+  public void moveToLocation(double desiredHeight) {
+
+    double position = elevEncoder.getDistance();
+    // Math to find height
+    double currentHeight = position * spoolCircumference;
+    double maxElevatorSpeed = .75; // Maximum movement speed
+
+    if (currentHeight != desiredHeight) {
+      if (currentHeight < desiredHeight) {
+        // Set height is higher than current
+        elevator.set(maxElevatorSpeed); // Both of these statements neeed to be fixed because the motor will ony be set
+                                        // once
+      } else if (currentHeight > desiredHeight) {
+        // Set height is lower than current
+        elevator.set(-1 * maxElevatorSpeed);
+      } else {
+        elevatorHold();
+        System.out.println("Movement error, already at height");
+      }
+
+    }
+  }
 
 }

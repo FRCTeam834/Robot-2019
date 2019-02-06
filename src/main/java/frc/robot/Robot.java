@@ -18,7 +18,6 @@ import frc.robot.subsystems.ArduinoPixy;
 import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.BallIntake;
 import frc.robot.subsystems.DriveTrain;
-import frc.robot.subsystems.VacuumSolenoid;
 import frc.robot.subsystems.GroundEye;
 import frc.robot.subsystems.NavX;
 import frc.robot.subsystems.Scissor;
@@ -41,7 +40,6 @@ public class Robot extends TimedRobot {
   public static DriveTrain DriveTrain;
   public static OI oi;
   public static NavX NavX;
-  public static VacuumSolenoid VacuumSolenoid;
   public static GroundEye GroundEye;
   public static ArduinoPixy ArduinoPixy;
   public static Scissor Scissor;
@@ -64,7 +62,6 @@ public class Robot extends TimedRobot {
    // CameraServer.getInstance().startAutomaticCapture();
 
     DriveTrain = new DriveTrain();
-    VacuumSolenoid = new VacuumSolenoid();
     GroundEye = new GroundEye();
     ArduinoPixy = new ArduinoPixy();
     Scissor = new Scissor();

@@ -7,36 +7,20 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
- * Add your docs here.
+ * Quad encoder
+ * A is on DIO 0
+ * B in on DIO 1
  */
-public class VacuumSolenoid extends Subsystem {
+public class Encoder extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-
-  Solenoid vacuumSol = new Solenoid(10, 0);
 
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
-    //setDefaultCommand(new Vacuum());
-
   }
-
-  public void vacClose() {
-
-    vacuumSol.set(true);
-
-  }
-
-  public void vacOpen() {
-
-    vacuumSol.set(false);
-
-  }
-
 }

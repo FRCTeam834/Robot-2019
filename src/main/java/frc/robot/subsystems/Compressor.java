@@ -9,6 +9,7 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -19,6 +20,7 @@ public class Compressor extends Subsystem {
   // here. Call these from Commands.
 
   WPI_TalonSRX compressor = new WPI_TalonSRX(8);
+  Solenoid vacuumSol = new Solenoid(10, 0);
 
 
   @Override
@@ -30,12 +32,15 @@ public class Compressor extends Subsystem {
 
     public void compressorStop() {
 
+      vacuumSol.set(false);
       compressor.set(0);
+      
 
     }
 
     public void compressorOn() {
 
+      vacuumSol.set(true);
       compressor.set(1);
 
     }

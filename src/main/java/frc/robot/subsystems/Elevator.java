@@ -10,6 +10,7 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.Encoder;
 import frc.robot.commands.ElevatorHold;
 import frc.robot.commands.ElevatorStop;
 
@@ -22,6 +23,7 @@ public class Elevator extends Subsystem {
   // here. Call these from Commands.
 
   WPI_TalonSRX elevator = new WPI_TalonSRX(9);
+  Encoder elevEncoder = new Encoder(1, 1);
 
   @Override
   public void initDefaultCommand() {

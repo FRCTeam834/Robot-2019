@@ -61,11 +61,18 @@ public class OI {
   xboxX = new JoystickButton(xbox, 3),
   xboxBLeft = new JoystickButton(xbox, 5),
   xboxBRight = new JoystickButton(xbox, 6),
+
+  //Left Joystick
+  ljoystick2 = new JoystickButton(leftJoystick, 2),
   ljoystick6 = new JoystickButton(leftJoystick, 6),
   ljoystick7 = new JoystickButton(leftJoystick, 7),
   ljoystick10 = new JoystickButton(leftJoystick, 10),
   ljoystick11 = new JoystickButton(leftJoystick, 11),
-  ljoystick2 = new JoystickButton(leftJoystick, 2),
+  
+
+
+  //Right Joystick
+  rjoystick1 = new JoystickButton(rightJoystick, 1),
   rjoystick2 = new JoystickButton(rightJoystick, 2),
   rjoystick3 = new JoystickButton(rightJoystick, 3),
   rjoystick4 = new JoystickButton(rightJoystick, 4),
@@ -73,6 +80,7 @@ public class OI {
   rjoystick6 = new JoystickButton(rightJoystick, 6),
   rjoystick7 = new JoystickButton(rightJoystick, 7),
   rjoystick8 = new JoystickButton(rightJoystick, 8);
+
   
 
 
@@ -104,15 +112,10 @@ public class OI {
     ljoystick11.whileHeld(new ArmUp());
 
     //Compressor
-    ljoystick2.whenPressed(new BeginCompressor());
-    rjoystick2.whenPressed(new CompressorStop());
 
-    xboxA.whenPressed(new PlaceHatch());
+    rjoystick4.whenPressed(new CompressorOn());
+    rjoystick5.whenPressed(new CompressorStop());
 
-    rjoystick8.whenPressed(new Vacuum());
-
-    rjoystick6.whenPressed(new VacuumOpen());
-    rjoystick7.whenPressed(new VacuumClose());
   }
 
 }

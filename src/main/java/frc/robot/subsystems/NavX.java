@@ -21,44 +21,48 @@ public class NavX extends Subsystem {
   // here. Call these from Commands.
   AHRS NavXMXP;
   
-
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
   }
 
-  protected void initialize() {
-    NavXMXP = new AHRS(SPI.Port.kMXP);
+  public NavX() {
+    try {
+      NavXMXP = new AHRS(SPI.Port.kMXP);
+    }
+    catch( RuntimeException ex ) {
+      System.out.println("NavX start failed");
+    }
+    
     //NavXMXP.enableBoardlevelYawReset(false);
   }
-  /*
-  @Override
-  public boolean lookupConnection() {
-
-    return NavX.isConnected();
+  
+  public boolean isConnection() {
+    boolean isConnected = NavXMXP.isConnected();
+    return isConnected;
 
   }
-  */
-
+  
   public boolean isCalibrating() {
-
-    return NavXMXP.isCalibrating();
+    boolean isCalibrating = NavXMXP.isCalibrating();
+    return isCalibrating;
   }
 
   public float pitch() {
-
-    return NavXMXP.getPitch();
+    float pitch = NavXMXP.getPitch();
+    return pitch;
   }
 
-  public float yaw() {
 
-    return NavXMXP.getYaw();
+  public float yaw() {
+    float yaw = NavXMXP.getYaw();
+    return yaw;
   }
 
   public float roll() {
-
-    return NavXMXP.getRoll();
+    float roll = NavXMXP.getRoll();
+    return roll;
   }
 
   public void reset() {

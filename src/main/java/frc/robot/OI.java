@@ -63,23 +63,32 @@ public class OI {
   xboxBRight = new JoystickButton(xbox, 6),
 
   //Left Joystick
-  ljoystick2 = new JoystickButton(leftJoystick, 2),
-  ljoystick6 = new JoystickButton(leftJoystick, 6),
-  ljoystick7 = new JoystickButton(leftJoystick, 7),
-  ljoystick10 = new JoystickButton(leftJoystick, 10),
-  ljoystick11 = new JoystickButton(leftJoystick, 11),
+  lJoystick1 = new JoystickButton(leftJoystick, 1),
+  lJoystick2 = new JoystickButton(leftJoystick, 2),
+  lJoystick3 = new JoystickButton(leftJoystick, 3),
+  lJoystick4 = new JoystickButton(leftJoystick, 4),
+  lJoystick5 = new JoystickButton(leftJoystick, 5),
+  lJoystick6 = new JoystickButton(leftJoystick, 6),
+  lJoystick7 = new JoystickButton(leftJoystick, 7),
+  lJoystick8 = new JoystickButton(leftJoystick, 8),
+  lJoystick9 = new JoystickButton(leftJoystick, 9),
+  lJoystick10 = new JoystickButton(leftJoystick, 10),
+  lJoystick11 = new JoystickButton(leftJoystick, 11),
   
 
 
   //Right Joystick
-  rjoystick1 = new JoystickButton(rightJoystick, 1),
-  rjoystick2 = new JoystickButton(rightJoystick, 2),
-  rjoystick3 = new JoystickButton(rightJoystick, 3),
-  rjoystick4 = new JoystickButton(rightJoystick, 4),
-  rjoystick5 = new JoystickButton(rightJoystick, 5),
-  rjoystick6 = new JoystickButton(rightJoystick, 6),
-  rjoystick7 = new JoystickButton(rightJoystick, 7),
-  rjoystick8 = new JoystickButton(rightJoystick, 8);
+  rJoystick1 = new JoystickButton(rightJoystick, 1),
+  rJoystick2 = new JoystickButton(rightJoystick, 2),
+  rJoystick3 = new JoystickButton(rightJoystick, 3),
+  rJoystick4 = new JoystickButton(rightJoystick, 4),
+  rJoystick5 = new JoystickButton(rightJoystick, 5),
+  rJoystick6 = new JoystickButton(rightJoystick, 6),
+  rJoystick7 = new JoystickButton(rightJoystick, 7),
+  rJoystick8 = new JoystickButton(rightJoystick, 8),
+  rJoystick9 = new JoystickButton(rightJoystick, 9),
+  rJoystick10 = new JoystickButton(rightJoystick, 10),
+  rJoystick11 = new JoystickButton(rightJoystick, 11);
 
   
 
@@ -92,9 +101,6 @@ public class OI {
     //Turning off xbox runble
     xboxB.whenPressed(new StopRumble());
 
-    //Vacuum w/ Solenoid
-    //xboxA.whileHeld(new Vacuum());
-
     //Scissor Lift
     xboxY.whileHeld(new ScissorUp());
     xboxX.whileHeld(new ScissorDown());
@@ -102,19 +108,20 @@ public class OI {
     //Elevator
     xboxBLeft.whileHeld(new ElevatorUp());
     xboxBRight.whileHeld(new ElevatorDown());
+    lJoystick1.whenPressed(new ElevatorPreset1());
 
     //Ball Intake
-    ljoystick6.whileHeld(new BallIntakeIn());
-    ljoystick7.whileHeld(new BallIntakeOut());
+    lJoystick6.whileHeld(new BallIntakeIn());
+    lJoystick7.whileHeld(new BallIntakeOut());
 
     //Arm
-    ljoystick10.whileHeld(new ArmDown());
-    ljoystick11.whileHeld(new ArmUp());
+    lJoystick10.whileHeld(new ArmDown());
+    lJoystick11.whileHeld(new ArmUp());
 
     //Compressor
 
-    rjoystick4.whenPressed(new CompressorOn());
-    rjoystick5.whenPressed(new CompressorStop());
+    rJoystick4.whenPressed(new CompressorOn());
+    rJoystick5.whenPressed(new CompressorStop());
 
   }
 

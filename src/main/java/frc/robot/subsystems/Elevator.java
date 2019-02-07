@@ -12,7 +12,6 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.Encoder;
 import frc.robot.commands.ElevatorHold;
-import frc.robot.commands.ElevatorStop;
 
 /**
  * Add your docs here.
@@ -21,10 +20,11 @@ import frc.robot.commands.ElevatorStop;
 public class Elevator extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
+  double pi = 3.14159265358979323846264338327950288;
 
   WPI_TalonSRX elevator = new WPI_TalonSRX(9);
   Encoder elevEncoder = new Encoder(0, 1);
-  float spoolCircumference = (PI * 4); // Fix with actual calculations
+  //double spoolCircumference = (pi * 4); // Fix with actual calculations
   // elevEncoder.setDistancePerPulse(); //Might need to be set
 
   @Override
@@ -36,7 +36,7 @@ public class Elevator extends Subsystem {
 
   public void elevatorUp() {
 
-    elevator.set(.75);
+    elevator.set(1);
 
   }
 
@@ -54,7 +54,7 @@ public class Elevator extends Subsystem {
 
   public void elevatorHold() {
 
-    elevator.set(.15);
+    elevator.set(.1);
   }
 
   public void setElevator(double speed) {
@@ -63,14 +63,7 @@ public class Elevator extends Subsystem {
 
   }
 
-  public double elevatorHeight() {
-    double position = elevEncoder.getDistance();
-    // Math to find height
-    double currentHeight = position * spoolCircumference;
-    return currentHeight;
-  }
-
-  public void moveToLocation(double desiredHeight) {
+  /*public void moveToLocation(double desiredHeight) {
 
     double position = elevEncoder.getDistance();
     // Math to find height
@@ -91,6 +84,15 @@ public class Elevator extends Subsystem {
       }
 
     }
+  } */
+
+
+  public double getElevatorHeight() {
+
+    return elevEncoder.getDistance();
+
   }
+
+
 
 }

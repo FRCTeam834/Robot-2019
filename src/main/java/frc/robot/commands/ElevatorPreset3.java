@@ -13,7 +13,7 @@ import frc.robot.Robot;
 public class ElevatorPreset3 extends Command {
   
   boolean success = false;
-  final double TARGETHEIGHT = 15; //Change to desireed height
+  final double TARGETHEIGHT = 45; //Change to desireed height
 
   public ElevatorPreset3() {
     // Use requires() here to declare subsystem dependencies

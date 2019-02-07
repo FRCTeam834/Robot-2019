@@ -27,6 +27,10 @@ public class Elevator extends Subsystem {
   //double spoolCircumference = (pi * 4); // Fix with actual calculations
   // elevEncoder.setDistancePerPulse(); //Might need to be set
 
+  public Elevator() {
+    elevEncoder.reset();
+  }
+
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.

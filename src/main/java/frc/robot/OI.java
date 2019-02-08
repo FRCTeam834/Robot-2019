@@ -10,7 +10,6 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.Button;
-import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.*;
 
 /**
@@ -50,7 +49,7 @@ public class OI {
   public Joystick leftJoystick = new Joystick(0);
   public Joystick rightJoystick = new Joystick(1);
   public XboxController xbox = new XboxController(2);
-  public Joystick launchPad = new Joystick(3);
+  public GenericHID launchPad = new GenericHID(3);
 
   // Buttons
   public Button lb3 = new JoystickButton(leftJoystick, 3), xboxStart = new JoystickButton(xbox, 8),
@@ -83,7 +82,9 @@ public class OI {
 
   // Button Array on Driver's Station
   /*
-   * Row 1: 1 2 3 Row 2: 4 6 7 Row 3: 8 9 10
+   * Row 1: 1 2 3 
+   * Row 2: 4 6 7 
+   * Row 3: 8 9 10
    */
 
   public OI() {

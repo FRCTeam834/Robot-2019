@@ -32,7 +32,7 @@ public class Compressor extends Subsystem {
 
     public void compressorStop() {
 
-      vacuumSol.set(false);
+      vacuumSol.set(true);
       compressor.set(0);
       
 
@@ -40,7 +40,7 @@ public class Compressor extends Subsystem {
 
     public void compressorOn() {
 
-      vacuumSol.set(true);
+      vacuumSol.set(false);
       compressor.set(1);
 
     }

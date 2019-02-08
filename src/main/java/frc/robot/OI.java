@@ -53,75 +53,60 @@ public class OI {
   public Joystick arduinoThing = new Joystick(4);
 
   // Buttons
-  public Button lb3 = new JoystickButton(leftJoystick, 3), 
-  xboxStart = new JoystickButton(xbox, 8), 
-  xboxB = new JoystickButton(xbox, 2),
-  xboxA = new JoystickButton(xbox, 1),
-  xboxY = new JoystickButton(xbox, 4),
-  xboxX = new JoystickButton(xbox, 3),
-  xboxBLeft = new JoystickButton(xbox, 5),
-  xboxBRight = new JoystickButton(xbox, 6),
+  public Button lb3 = new JoystickButton(leftJoystick, 3), xboxStart = new JoystickButton(xbox, 8),
+      xboxBack = new JoystickButton(xbox, IDK), xboxB = new JoystickButton(xbox, 2),
+      xboxA = new JoystickButton(xbox, 1), xboxY = new JoystickButton(xbox, 4), xboxX = new JoystickButton(xbox, 3),
+      xboxLB = new JoystickButton(xbox, 5), xboxRB = new JoystickButton(xbox, 6),
 
-  //Left Joystick
-  lJoystick1 = new JoystickButton(leftJoystick, 1),
-  lJoystick2 = new JoystickButton(leftJoystick, 2),
-  lJoystick3 = new JoystickButton(leftJoystick, 3),
-  lJoystick4 = new JoystickButton(leftJoystick, 4),
-  lJoystick5 = new JoystickButton(leftJoystick, 5),
-  lJoystick6 = new JoystickButton(leftJoystick, 6),
-  lJoystick7 = new JoystickButton(leftJoystick, 7),
-  lJoystick8 = new JoystickButton(leftJoystick, 8),
-  lJoystick9 = new JoystickButton(leftJoystick, 9),
-  lJoystick10 = new JoystickButton(leftJoystick, 10),
-  lJoystick11 = new JoystickButton(leftJoystick, 11),
-  
+      // Left Joystick
+      lJoystick1 = new JoystickButton(leftJoystick, 1), lJoystick2 = new JoystickButton(leftJoystick, 2),
+      lJoystick3 = new JoystickButton(leftJoystick, 3), lJoystick4 = new JoystickButton(leftJoystick, 4),
+      lJoystick5 = new JoystickButton(leftJoystick, 5), lJoystick6 = new JoystickButton(leftJoystick, 6),
+      lJoystick7 = new JoystickButton(leftJoystick, 7), lJoystick8 = new JoystickButton(leftJoystick, 8),
+      lJoystick9 = new JoystickButton(leftJoystick, 9), lJoystick10 = new JoystickButton(leftJoystick, 10),
+      lJoystick11 = new JoystickButton(leftJoystick, 11),
 
+      // Right Joystick
+      rJoystick1 = new JoystickButton(rightJoystick, 1), rJoystick2 = new JoystickButton(rightJoystick, 2),
+      rJoystick3 = new JoystickButton(rightJoystick, 3), rJoystick4 = new JoystickButton(rightJoystick, 4),
+      rJoystick5 = new JoystickButton(rightJoystick, 5), rJoystick6 = new JoystickButton(rightJoystick, 6),
+      rJoystick7 = new JoystickButton(rightJoystick, 7), rJoystick8 = new JoystickButton(rightJoystick, 8),
+      rJoystick9 = new JoystickButton(rightJoystick, 9), rJoystick10 = new JoystickButton(rightJoystick, 10),
+      rJoystick11 = new JoystickButton(rightJoystick, 11);
 
-  //Right Joystick
-  rJoystick1 = new JoystickButton(rightJoystick, 1),
-  rJoystick2 = new JoystickButton(rightJoystick, 2),
-  rJoystick3 = new JoystickButton(rightJoystick, 3),
-  rJoystick4 = new JoystickButton(rightJoystick, 4),
-  rJoystick5 = new JoystickButton(rightJoystick, 5),
-  rJoystick6 = new JoystickButton(rightJoystick, 6),
-  rJoystick7 = new JoystickButton(rightJoystick, 7),
-  rJoystick8 = new JoystickButton(rightJoystick, 8),
-  rJoystick9 = new JoystickButton(rightJoystick, 9),
-  rJoystick10 = new JoystickButton(rightJoystick, 10),
-  rJoystick11 = new JoystickButton(rightJoystick, 11);
-
-  
-
+  // Button Array on Driver's Station
+  /*
+   * Row 1: 1 2 3 Row 2: 4 6 7 Row 3: 8 9 10
+   */
 
   public OI() {
 
-    //DriveTrain
-    xboxStart.whenPressed(new AutoDrive());
+    // DriveTrain
+    // xboxStart.whenPressed(new AutoDrive());
 
-    //Turning off xbox runble
-    xboxB.whenPressed(new StopRumble());
+    // Scissor Lift
+    xboxStart.whileHeld(new ScissorUp());
+    xboxBack.whileHeld(new ScissorDown());
 
-    //Scissor Lift
-    xboxY.whileHeld(new ScissorUp());
-    xboxX.whileHeld(new ScissorDown());
-
-    //Elevator
-    xboxBLeft.whileHeld(new ElevatorUp());
-    xboxBRight.whileHeld(new ElevatorDown());
+    // Elevator
+    xboxLB.whileHeld(new ElevatorUp());
+    xboxRB.whileHeld(new ElevatorDown());
     lJoystick1.whenPressed(new ElevatorPreset1());
 
-    //Ball Intake
-    lJoystick6.whileHeld(new BallIntakeIn());
-    lJoystick7.whileHeld(new BallIntakeOut());
+    // Ball Intake
+    xboxX.whileHeld(new BallIntakeIn());
+    xboxY.whileHeld(new BallIntakeOut());
 
-    //Arm
+    // Arm
     lJoystick10.whileHeld(new ArmDown());
     lJoystick11.whileHeld(new ArmUp());
 
-    //Compressor
+    // Compressor
+    xboxA.whenPressed(new CompressorOn());
+    xboxB.whenPressed(new CompressorStop());
 
-    rJoystick4.whenPressed(new CompressorOn());
-    rJoystick5.whenPressed(new CompressorStop());
+    // Turning off xbox rumble
+    xboxB.whenPressed(new StopRumble());
 
   }
 

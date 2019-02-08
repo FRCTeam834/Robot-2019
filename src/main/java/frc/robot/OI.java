@@ -50,7 +50,7 @@ public class OI {
   public Joystick leftJoystick = new Joystick(0);
   public Joystick rightJoystick = new Joystick(1);
   public XboxController xbox = new XboxController(2);
-  public Joystick arduinoThing = new Joystick(4);
+  public Joystick launchPad = new Joystick(3);
 
   // Buttons
   public Button lb3 = new JoystickButton(leftJoystick, 3), xboxStart = new JoystickButton(xbox, 8),
@@ -72,7 +72,14 @@ public class OI {
       rJoystick5 = new JoystickButton(rightJoystick, 5), rJoystick6 = new JoystickButton(rightJoystick, 6),
       rJoystick7 = new JoystickButton(rightJoystick, 7), rJoystick8 = new JoystickButton(rightJoystick, 8),
       rJoystick9 = new JoystickButton(rightJoystick, 9), rJoystick10 = new JoystickButton(rightJoystick, 10),
-      rJoystick11 = new JoystickButton(rightJoystick, 11);
+      rJoystick11 = new JoystickButton(rightJoystick, 11),
+
+      // Button Array
+      BGTL = new JoystickButton(launchPad, 1), BGTM = new JoystickButton(launchPad, 2),
+      BGTR = new JoystickButton(launchPad, 3), BGML = new JoystickButton(launchPad, 4),
+      BGMM = new JoystickButton(launchPad, 6), BGMR = new JoystickButton(launchPad, 7),
+      BGBL = new JoystickButton(launchPad, 8), BGBM = new JoystickButton(launchPad, 9),
+      BGBR = new JoystickButton(launchPad, 10);
 
   // Button Array on Driver's Station
   /*
@@ -85,21 +92,23 @@ public class OI {
     // xboxStart.whenPressed(new AutoDrive());
 
     // Scissor Lift
-    xboxStart.whileHeld(new ScissorUp());
-    xboxBack.whileHeld(new ScissorDown());
+    BGMM.whileHeld(new ScissorUp());
+    BGBM.whileHeld(new ScissorDown());
 
     // Elevator
     xboxLB.whileHeld(new ElevatorUp());
     xboxRB.whileHeld(new ElevatorDown());
-    lJoystick1.whenPressed(new ElevatorPreset1());
+    BGTL.whenPressed(new ElevatorPreset1());
+    BGTM.whenPressed(new ElevatorPreset2());
+    BGTR.whenPressed(new ElevatorPreset3());
 
     // Ball Intake
     xboxX.whileHeld(new BallIntakeIn());
     xboxY.whileHeld(new BallIntakeOut());
 
     // Arm
-    lJoystick10.whileHeld(new ArmDown());
-    lJoystick11.whileHeld(new ArmUp());
+    BGMR.whileHeld(new ArmDown());
+    BGBR.whileHeld(new ArmUp());
 
     // Compressor
     xboxA.whenPressed(new CompressorOn());

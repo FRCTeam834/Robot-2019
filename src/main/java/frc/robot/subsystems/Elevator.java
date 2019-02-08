@@ -10,6 +10,7 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.Encoder;
 import frc.robot.commands.ElevatorHold;
 
@@ -23,12 +24,14 @@ public class Elevator extends Subsystem {
   double pi = 3.14159265358979323846264338327950288;
 
   WPI_TalonSRX elevator = new WPI_TalonSRX(9);
-  Encoder elevEncoder = new Encoder(0, 1);
+  Encoder elevEncoder = new Encoder(8, 9);
+  
   //double spoolCircumference = (pi * 4); // Fix with actual calculations
-  // elevEncoder.setDistancePerPulse(); //Might need to be set
+  
 
   public Elevator() {
     elevEncoder.reset();
+    elevEncoder.setDistancePerPulse(1); //Might need to be set
   }
 
   @Override
@@ -67,35 +70,21 @@ public class Elevator extends Subsystem {
 
   }
 
-  /*public void moveToLocation(double desiredHeight) {
-
-    double position = elevEncoder.getDistance();
-    // Math to find height
-    double currentHeight = position * spoolCircumference;
-    double maxElevatorSpeed = .75; // Maximum movement speed
-
-    if (currentHeight != desiredHeight) {
-      if (currentHeight < desiredHeight) {
-        // Set height is higher than current
-        elevator.set(maxElevatorSpeed); // Both of these statements neeed to be fixed because the motor will ony be set
-                                        // once
-      } else if (currentHeight > desiredHeight) {
-        // Set height is lower than current
-        elevator.set(-1 * maxElevatorSpeed);
-      } else {
-        elevatorHold();
-        System.out.println("Movement error, already at height");
-      }
-
-    }
-  } */
-
-
   public double getElevatorHeight() {
 
-    return elevEncoder.getDistance();
+    double value = elevEncoder.getDistance(); //Encoder value is flipped to positive
+
+    value = value * -1;
+
+    return value;
 
   }
+
+  /*public void encoderReset() {
+
+    elevEncoder.reset();
+
+  }*/
 
 
 

@@ -8,6 +8,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 
 public class ElevatorHold extends Command {
@@ -22,6 +23,7 @@ public class ElevatorHold extends Command {
   protected void initialize() {
     
     Robot.Elevator.elevatorHold();
+    System.out.println("Elevator Hold Command Initialized");
 
   }
 
@@ -29,6 +31,10 @@ public class ElevatorHold extends Command {
   @Override
   protected void execute() {
 
+    System.out.println("Executing ElevatorHold.java");
+    SmartDashboard.putString("DB/String 2", "Left:" + Double.toString(Robot.Elevator.getElevatorHeight()));
+    System.out.println(Robot.Elevator.getElevatorHeight());
+    
 
   }
 
@@ -42,7 +48,8 @@ public class ElevatorHold extends Command {
   @Override
   protected void end() {
 
-    Robot.Elevator.elevatorStop();;
+    System.out.println("The encoder value for the elevator is..." + Robot.Elevator.getElevatorHeight());
+    Robot.Elevator.elevatorHold();;
 
   }
 

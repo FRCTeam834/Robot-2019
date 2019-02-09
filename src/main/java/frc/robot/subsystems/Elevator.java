@@ -43,13 +43,13 @@ public class Elevator extends Subsystem {
 
   public void elevatorUp() {
 
-    elevator.set(1);
+    elevator.set(.8);
 
   }
 
   public void elevatorDown() {
 
-    elevator.set(-.25);
+    elevator.set(-.20);
 
   }
 
@@ -80,11 +80,11 @@ public class Elevator extends Subsystem {
 
   }
 
-  /*public void encoderReset() {
+  public void encoderReset() {
 
     elevEncoder.reset();
 
-  }*/
+  }
 
 
 

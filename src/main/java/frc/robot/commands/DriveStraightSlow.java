@@ -8,25 +8,22 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 
-public class ElevatorPreset3 extends Command {
-  
-  boolean success = false;
-  final double TARGETHEIGHT = 4870; //Change to wanted height
+public class DriveStraightSlow extends Command {
 
-  public ElevatorPreset3() {
+  public DriveStraightSlow() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.Elevator);
+    requires(Robot.DriveTrain);
+
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
 
-    Robot.Elevator.elevatorStop();
+    Robot.DriveTrain.setDrive(0, 0);
 
   }
 
@@ -34,56 +31,34 @@ public class ElevatorPreset3 extends Command {
   @Override
   protected void execute() {
 
-    SmartDashboard.putString("DB/String 1", "Elev:" + Double.toString(Robot.Elevator.getElevatorHeight()));
-    
-    if (((Robot.Elevator.getElevatorHeight()) > TARGETHEIGHT - 2 ) && ((Robot.Elevator.getElevatorHeight()) < TARGETHEIGHT + 2)) {
+    double leftSpeed = Robot.oi.leftJoystick.getY();
+    double rightSpeed = Robot.oi.rightJoystick.getY();
 
-      success = true;
-      isFinished();
+   // if (Math.abs(Robot.NavX.roll()) < 45) {
+      // Alex
+      // leftSpeed = (Math.abs(leftSpeed) < 0.15)? 0 : leftSpeed;
+      // rightSpeed = (Math.abs(rightSpeed)< 0.15)?  : rightSpeed;
 
-    } else if ((Robot.Elevator.getElevatorHeight()) > (TARGETHEIGHT - 15) ) {
+      // Christian
+      leftSpeed = (Math.abs(leftSpeed) < 0.15) ? 0 : leftSpeed;
+      rightSpeed = (Math.abs(rightSpeed) < 0.15) ? 0 : rightSpeed;
 
-      Robot.Elevator.elevatorDown();
-      success = false;
-
-    } else if ((Robot.Elevator.getElevatorHeight() < TARGETHEIGHT)) {
-
-      Robot.Elevator.elevatorUp();
-
-
-
-
-
-
-
-
-
-
-      success = false;
-
-    }
-
-    
+      //Experimental
+        Robot.DriveTrain.setDrive((rightSpeed * .25), (rightSpeed * .25));
+      
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
 
-    if (success) {
-
-      return true;
-
-    }
-
     return false;
+
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-
-    Robot.Elevator.elevatorHold();
 
   }
 
@@ -91,9 +66,6 @@ public class ElevatorPreset3 extends Command {
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-
-    Robot.Elevator.elevatorHold();
-
+    System.out.println("DriveTrain interrupted a.k.a. Ryan deleted the autons");
   }
-
 }

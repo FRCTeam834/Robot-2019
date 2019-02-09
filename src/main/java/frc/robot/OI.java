@@ -51,14 +51,19 @@ public class OI {
   public Joystick leftJoystick = new Joystick(0);
   public Joystick rightJoystick = new Joystick(1);
   public XboxController xbox = new XboxController(2);
-  public GenericHID launchPad = new GenericHID(3);
+  public Joystick launchpad = new Joystick(3);
   //public Joystick launchpad = new Joystick(3);
 
   // Buttons
-  public Button lb3 = new JoystickButton(leftJoystick, 3), xboxStart = new JoystickButton(xbox, 8),
-      xboxBack = new JoystickButton(xbox, /*change this */0), xboxB = new JoystickButton(xbox, 2),
-      xboxA = new JoystickButton(xbox, 1), xboxY = new JoystickButton(xbox, 4), xboxX = new JoystickButton(xbox, 3),
-      xboxLB = new JoystickButton(xbox, 5), xboxRB = new JoystickButton(xbox, 6),
+  public Button lb3 = new JoystickButton(leftJoystick, 3),
+  xboxStart = new JoystickButton(xbox, 8),
+  xboxBack = new JoystickButton(xbox, 7), 
+  xboxB = new JoystickButton(xbox, 2),
+  xboxA = new JoystickButton(xbox, 1), 
+  xboxY = new JoystickButton(xbox, 4), 
+  xboxX = new JoystickButton(xbox, 3),
+  xboxLB = new JoystickButton(xbox, 5), 
+  xboxRB = new JoystickButton(xbox, 6),
 
       // Left Joystick
       lJoystick1 = new JoystickButton(leftJoystick, 1), 
@@ -86,14 +91,22 @@ public class OI {
       rJoystick10 = new JoystickButton(rightJoystick, 10),
       rJoystick11 = new JoystickButton(rightJoystick, 11),
 
-
+      //Triggers
+      //xbox.getBumperPressed(GenericHID.Hand.kLeft);
+      //xbox.getBumperPressed(GenericHID.Hand.kRight);
       
       //Arcade Buttons
-      BGTL = new JoystickButton(launchPad, 1), BGTM = new JoystickButton(launchPad, 2),
-      BGTR = new JoystickButton(launchPad, 3), BGML = new JoystickButton(launchPad, 4),
-      BGMM = new JoystickButton(launchPad, 6), BGMR = new JoystickButton(launchPad, 7),
-      BGBL = new JoystickButton(launchPad, 8), BGBM = new JoystickButton(launchPad, 9),
-      BGBR = new JoystickButton(launchPad, 10);
+      //Syntax: BG = Button Group 
+      //Ex. BGTL = Button Group Top Left
+      BGTL = new JoystickButton(launchpad, 10), 
+      BGTM = new JoystickButton(launchpad, 9),
+      BGTR = new JoystickButton(launchpad, 8), 
+      BGML = new JoystickButton(launchpad, 7),
+      BGMM = new JoystickButton(launchpad, 6), 
+      BGMR = new JoystickButton(launchpad, 4),
+      BGBL = new JoystickButton(launchpad, 3), 
+      BGBM = new JoystickButton(launchpad, 2),
+      BGBR = new JoystickButton(launchpad, 1);
 
   // Button Array on Driver's Station
   /*
@@ -105,34 +118,45 @@ public class OI {
   public OI() {
 
     // DriveTrain
-    // xboxStart.whenPressed(new AutoDrive());
+    lJoystick1.whenPressed(new Drive());
+    rJoystick1.whenPressed(new DriveSlow());
+    lJoystick3.whenPressed(new DriveStraightFast());
+    rJoystick3.whenPressed(new DriveStraightSlow());
 
     // Scissor Lift
-    BGMM.whileHeld(new ScissorUp());
+    BGTM.whileHeld(new ScissorUp());
     BGBM.whileHeld(new ScissorDown());
 
     // Elevator
-    xboxLB.whileHeld(new ElevatorUp());
-    xboxRB.whileHeld(new ElevatorDown());
-    BGTL.whenPressed(new ElevatorPreset1());
-    BGTM.whenPressed(new ElevatorPreset2());
-    BGTR.whenPressed(new ElevatorPreset3());
+    xboxY.whileHeld(new ElevatorUp());
+    xboxX.whileHeld(new ElevatorDown());
+    BGBL.whenPressed(new ElevatorPreset1());
+    BGML.whenPressed(new ElevatorPreset2());
+    BGTL.whenPressed(new ElevatorPreset3());
+    BGBR.whenPressed(new ElevatorPreset4());
+    BGMR.whenPressed(new ElevatorPreset5());
+    BGTR.whenPressed(new ElevatorPreset6());
+    BGMM.whenPressed(new ResetElevEncoder());
 
     // Ball Intake
-    xboxX.whileHeld(new BallIntakeIn());
-    xboxY.whileHeld(new BallIntakeOut());
+    xboxStart.whileHeld(new BallIntakeIn());
+    xboxBack.whileHeld(new BallIntakeOut());
 
     // Arm
-    BGMR.whileHeld(new ArmDown());
-    BGBR.whileHeld(new ArmUp());
+    xboxA.whileHeld(new ArmDown());
+    xboxB.whileHeld(new ArmUp());
 
     // Compressor
-    xboxA.whenPressed(new CompressorOn());
-    xboxB.whenPressed(new CompressorStop());
+    xboxLB.whenPressed(new CompressorOn());
+    xboxRB.whenPressed(new CompressorStop());
 
     // Turning off xbox rumble
-    xboxB.whenPressed(new StopRumble());
+    lJoystick1.whenPressed(new StopRumble());
 
+    //Climbing Arms
+    
+
+    
   }
 
 }

@@ -7,6 +7,8 @@
 
 package frc.robot;
 
+import edu.wpi.first.cameraserver.CameraServer;
+
 //import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -73,6 +75,7 @@ public class Robot extends TimedRobot {
     oi = new OI();
 
 
+    CameraServer.getInstance().startAutomaticCapture();
     //m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);

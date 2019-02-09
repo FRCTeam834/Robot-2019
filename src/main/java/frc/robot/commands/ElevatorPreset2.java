@@ -8,12 +8,13 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 
 public class ElevatorPreset2 extends Command {
   
   boolean success = false;
-  final double TARGETHEIGHT = 30; //Change to wanted height
+  final double TARGETHEIGHT = 2915; //Change to wanted height
 
   public ElevatorPreset2() {
     // Use requires() here to declare subsystem dependencies
@@ -33,12 +34,14 @@ public class ElevatorPreset2 extends Command {
   @Override
   protected void execute() {
 
-    if (((Robot.Elevator.getElevatorHeight()) > TARGETHEIGHT - 5 ) && ((Robot.Elevator.getElevatorHeight()) < TARGETHEIGHT + 5)) {
+    SmartDashboard.putString("DB/String 1", "Elev:" + Double.toString(Robot.Elevator.getElevatorHeight()));
+    
+    if (((Robot.Elevator.getElevatorHeight()) > TARGETHEIGHT - 2 ) && ((Robot.Elevator.getElevatorHeight()) < TARGETHEIGHT + 2)) {
 
       success = true;
       isFinished();
 
-    } else if ((Robot.Elevator.getElevatorHeight()) > TARGETHEIGHT ) {
+    } else if ((Robot.Elevator.getElevatorHeight()) > (TARGETHEIGHT - 15) ) {
 
       Robot.Elevator.elevatorDown();
       success = false;
@@ -46,10 +49,21 @@ public class ElevatorPreset2 extends Command {
     } else if ((Robot.Elevator.getElevatorHeight() < TARGETHEIGHT)) {
 
       Robot.Elevator.elevatorUp();
+
+
+
+
+
+
+
+
+
+
       success = false;
 
     }
 
+    
   }
 
   // Make this return true when this Command no longer needs to run execute()

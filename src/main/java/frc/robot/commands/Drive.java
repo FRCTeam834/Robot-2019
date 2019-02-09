@@ -37,32 +37,21 @@ public class Drive extends Command {
    // if (Math.abs(Robot.NavX.roll()) < 45) {
       // Alex
       // leftSpeed = (Math.abs(leftSpeed) < 0.15)? 0 : leftSpeed;
-      // rightSpeed = (Math.abs(rightSpeed)< 0.15)? 0 : rightSpeed;
+      // rightSpeed = (Math.abs(rightSpeed)< 0.15)?  : rightSpeed;
 
       // Christian
       leftSpeed = (Math.abs(leftSpeed) < 0.15) ? 0 : leftSpeed;
       rightSpeed = (Math.abs(rightSpeed) < 0.15) ? 0 : rightSpeed;
-        /*
-        if (leftSpeed >= 0) {
-          leftSpeed = (Math.abs(leftSpeed) < 0.15) ? 0 : ((20/17) * leftSpeed) - (3/17) / 4;
-        }
-        else {
-          leftSpeed = (Math.abs(leftSpeed) < 0.15) ? 0 : ((20/17) * leftSpeed) + (3/17) / 4;
-        }
-        if (rightSpeed >= 0) {
-          rightSpeed = (Math.abs(rightSpeed) < 0.15) ? 0 : ((20/17) * rightSpeed) - (3/17) / 4;
-        }
-        else {
-          rightSpeed = (Math.abs(rightSpeed) < 0.15) ? 0 : ((20/17) * rightSpeed) + (3/17) / 4;
-        }
-        */
+
       //Experimental
-      if (Math.abs(Robot.NavX.pitch()) <= 25) {
+      /*if (Math.abs(Robot.NavX.pitch()) <= 25) {
         Robot.DriveTrain.setDrive(leftSpeed, rightSpeed);
       }
       else {
-        Robot.DriveTrain.setDrive((leftSpeed * -1), (rightSpeed * -1));
-      }
+        Robot.DriveTrain.setDrive((leftSpeed * -.75), (rightSpeed * -.75));
+      }*/
+      Robot.DriveTrain.setDrive((leftSpeed * .75), (rightSpeed * .75));
+
   }
 
   // Make this return true when this Command no longer needs to run execute()

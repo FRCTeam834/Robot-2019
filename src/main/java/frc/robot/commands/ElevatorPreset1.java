@@ -14,7 +14,7 @@ import frc.robot.Robot;
 public class ElevatorPreset1 extends Command {
   
   boolean success = false;
-  final double TARGETHEIGHT = 150; //Change to wanted height
+  final double TARGETHEIGHT = 540.75; //Change to wanted height
 
   public ElevatorPreset1() {
     // Use requires() here to declare subsystem dependencies
@@ -36,12 +36,12 @@ public class ElevatorPreset1 extends Command {
 
     SmartDashboard.putString("DB/String 1", "Elev:" + Double.toString(Robot.Elevator.getElevatorHeight()));
     
-    if (((Robot.Elevator.getElevatorHeight()) > TARGETHEIGHT - 10 ) && ((Robot.Elevator.getElevatorHeight()) < TARGETHEIGHT + 10)) {
+    if (((Robot.Elevator.getElevatorHeight()) > TARGETHEIGHT - 2 ) && ((Robot.Elevator.getElevatorHeight()) < TARGETHEIGHT + 2)) {
 
       success = true;
       isFinished();
 
-    } else if ((Robot.Elevator.getElevatorHeight()) > TARGETHEIGHT ) {
+    } else if ((Robot.Elevator.getElevatorHeight()) > (TARGETHEIGHT - 15) ) {
 
       Robot.Elevator.elevatorDown();
       success = false;

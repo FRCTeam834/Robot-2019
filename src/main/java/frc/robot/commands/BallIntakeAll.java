@@ -8,74 +8,44 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 
-public class ElevatorPreset3 extends Command {
-  
-  boolean success = false;
-  final double TARGETHEIGHT = 4870; //Change to wanted height
-
-  public ElevatorPreset3() {
+public class BallIntakeAll extends Command {
+  public BallIntakeAll() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.Elevator);
+    requires(Robot.BallIntake);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-
-    Robot.Elevator.elevatorStop();
-
+    Robot.BallIntake.ballIntakeStop();
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
 
-    SmartDashboard.putString("DB/String 1", "Elev:" + Double.toString(Robot.Elevator.getElevatorHeight()));
-    
-    if (((Robot.Elevator.getElevatorHeight()) > TARGETHEIGHT - 2 ) && ((Robot.Elevator.getElevatorHeight()) < TARGETHEIGHT + 2)) {
+    if ((Robot.oi.xbox.getRawAxis(2)) > 75) {
 
-      success = true;
-      isFinished();
+      Robot.BallIntake.ballIntakeIn();
 
-    } else if ((Robot.Elevator.getElevatorHeight()) > (TARGETHEIGHT - 15) ) {
+    } else if ((Robot.oi.xbox.getRawAxis(3)) > 75) {
 
-      Robot.Elevator.elevatorDown();
-      success = false;
-
-    } else if ((Robot.Elevator.getElevatorHeight() < TARGETHEIGHT)) {
-
-      Robot.Elevator.elevatorUp();
-
-
-
-
-
-
-
-
-
-
-      success = false;
+      Robot.BallIntake.ballIntakeOut();
 
     }
 
-    
+
+
+
+
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-
-    if (success) {
-
-      return true;
-
-    }
-
     return false;
   }
 
@@ -83,7 +53,7 @@ public class ElevatorPreset3 extends Command {
   @Override
   protected void end() {
 
-    Robot.Elevator.elevatorHold();
+    Robot.BallIntake.ballIntakeStop();
 
   }
 
@@ -91,9 +61,5 @@ public class ElevatorPreset3 extends Command {
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-
-    Robot.Elevator.elevatorHold();
-
   }
-
 }

@@ -11,12 +11,12 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 
-public class ElevatorPreset1 extends Command {
+public class ElevatorPreset6 extends Command {
   
   boolean success = false;
   final double TARGETHEIGHT = 150; //Change to wanted height
 
-  public ElevatorPreset1() {
+  public ElevatorPreset6() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Robot.Elevator);

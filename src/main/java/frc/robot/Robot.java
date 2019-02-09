@@ -7,8 +7,6 @@
 
 package frc.robot;
 
-import edu.wpi.first.cameraserver.CameraServer;
-
 //import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -16,7 +14,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.subsystems.ArduinoPixy;
+import edu.wpi.first.wpilibj.I2C;
 import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.BallIntake;
 import frc.robot.subsystems.DriveTrain;
@@ -25,6 +23,8 @@ import frc.robot.subsystems.NavX;
 import frc.robot.subsystems.Scissor;
 import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.Compressor;
+import frc.robot.subsystems.FormatValues;
+import frc.robot.subsystems.PixyPull;
 
 
 
@@ -43,12 +43,14 @@ public class Robot extends TimedRobot {
   public static OI oi;
   public static NavX NavX;
   public static GroundEye GroundEye;
-  public static ArduinoPixy ArduinoPixy;
   public static Scissor Scissor;
   public static Elevator Elevator;
   public static BallIntake BallIntake;
   public static Arm Arm;
   public static Compressor Compressor;
+  public static I2C pixyI2C;
+  public static FormatValues FormatValues;
+  public static PixyPull PixyPull;
   
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -65,7 +67,6 @@ public class Robot extends TimedRobot {
 
     DriveTrain = new DriveTrain();
     GroundEye = new GroundEye();
-    ArduinoPixy = new ArduinoPixy();
     Scissor = new Scissor();
     Elevator = new Elevator();
     BallIntake = new BallIntake();
@@ -73,9 +74,11 @@ public class Robot extends TimedRobot {
     NavX = new NavX();
     Compressor = new Compressor();
     oi = new OI();
+    pixyI2C = new I2C(I2C.Port.kOnboard, 0x54);
+    FormatValues = new FormatValues();
+    PixyPull = new PixyPull();
 
 
-    CameraServer.getInstance().startAutomaticCapture();
     //m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);

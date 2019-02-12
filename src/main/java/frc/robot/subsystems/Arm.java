@@ -33,13 +33,13 @@ public class Arm extends Subsystem {
 
   public void armUp() {
 
-    arm.set(.5);
+    arm.set(.8);
 
   }
 
   public void armDown() {
 
-    arm.set(-.5);
+    arm.set(-.8);
 
   }
 

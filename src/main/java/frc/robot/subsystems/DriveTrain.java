@@ -54,11 +54,6 @@ public class DriveTrain extends Subsystem {
   SpeedControllerGroup leftDriveGroup = new SpeedControllerGroup(leftDrive1, leftDrive2, leftDrive3);
   SpeedControllerGroup rightDriveGroup = new SpeedControllerGroup(rightDrive1, rightDrive2, rightDrive3);
 
-  
-  WPI_TalonSRX leftDrive1 = new WPI_TalonSRX(0);
-  WPI_TalonSRX leftDrive2 = new WPI_TalonSRX(1);
-  WPI_TalonSRX rightDrive1 = new WPI_TalonSRX(2);
-  WPI_TalonSRX rightDrive2 = new WPI_TalonSRX(3); 
 
 */
 
@@ -68,15 +63,6 @@ public class DriveTrain extends Subsystem {
   CANSparkMax rightDrive1 = new CANSparkMax(4, CANSparkMax.MotorType.kBrushless);
   CANSparkMax rightDrive2 = new CANSparkMax(5, CANSparkMax.MotorType.kBrushless);
   CANSparkMax rightDrive3 = new CANSparkMax(6, CANSparkMax.MotorType.kBrushless);
-  //WPI_TalonSRX lefSrx = new WPI_TalonSRX(7);
-  //WPI_TalonSRX ballIntakeSrx = new WPI_TalonSRX(8);
-
-  /*
-  //Future motor assignments
-  WPI_TalonSRX name = new WPI_TalonSRX(10);
-  WPI_TalonSRX name = new WPI_TalonSRX(11);
-  WPI_TalonSRX name = new WPI_TalonSRX(12);
-  */
 
   SpeedControllerGroup leftDriveGroup = new SpeedControllerGroup(leftDrive1, leftDrive2, leftDrive3);
   SpeedControllerGroup rightDriveGroup = new SpeedControllerGroup(rightDrive1, rightDrive2, rightDrive3);
@@ -89,6 +75,7 @@ public class DriveTrain extends Subsystem {
   }
 
   public void leftDrive(double speed) {
+
     leftDriveGroup.set(speed);
 
   }
@@ -102,15 +89,16 @@ public class DriveTrain extends Subsystem {
 
   public void setDrive(double leftSpeed, double rightSpeed) {
     
-    leftDrive(leftSpeed);
-    rightDrive(rightSpeed);
+    rightDriveGroup.setInverted(true);
+    leftDriveGroup.set(leftSpeed);
+    rightDriveGroup.set(rightSpeed);
 
   }
 
   public void stop() {
 
-    leftDrive(0);
-    rightDrive(0);
+    leftDriveGroup.set(0);
+    rightDriveGroup.set(0);
 
   }
 

@@ -27,13 +27,17 @@ public class BallIntakeAll extends Command {
   @Override
   protected void execute() {
 
-    if ((Robot.oi.xbox.getRawAxis(2)) > 75) {
+    if ((Robot.oi.xbox.getRawAxis(3)) > .75) {
 
       Robot.BallIntake.ballIntakeIn();
 
-    } else if ((Robot.oi.xbox.getRawAxis(3)) > 75) {
+    } else if ((Robot.oi.xbox.getRawAxis(2)) > .75) {
 
       Robot.BallIntake.ballIntakeOut();
+
+    } else {
+
+      Robot.BallIntake.ballIntakeStop();
 
     }
 

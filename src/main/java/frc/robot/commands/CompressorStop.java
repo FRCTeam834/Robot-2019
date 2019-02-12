@@ -8,6 +8,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 
 public class CompressorStop extends Command {
@@ -21,6 +22,7 @@ public class CompressorStop extends Command {
   @Override
   protected void initialize() {
     Robot.Compressor.compressorStop();
+    Robot.Compressor.vacuumRelease();
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -28,6 +30,9 @@ public class CompressorStop extends Command {
   protected void execute() {
 
     Robot.Compressor.compressorStop();
+    Robot.Compressor.vacuumRelease();
+    System.out.println(Robot.Compressor.getPressure());
+    SmartDashboard.putString("DB/String 3", "CompOff:" + Double.toString(Robot.Compressor.getPressure()));
 
   }
 
@@ -42,6 +47,7 @@ public class CompressorStop extends Command {
   protected void end() {
 
     Robot.Compressor.compressorStop();
+    Robot.Compressor.vacuumRelease();
 
   }
 
@@ -51,6 +57,7 @@ public class CompressorStop extends Command {
   protected void interrupted() {
 
     Robot.Compressor.compressorStop();
+    Robot.Compressor.vacuumRelease();
     
   }
 }

@@ -9,6 +9,7 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
+import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -21,6 +22,7 @@ public class Compressor extends Subsystem {
 
   WPI_TalonSRX compressor = new WPI_TalonSRX(8);
   Solenoid vacuumSol = new Solenoid(10, 0);
+  AnalogInput pressureSensor = new AnalogInput(0);
 
 
   @Override
@@ -32,20 +34,36 @@ public class Compressor extends Subsystem {
 
     public void compressorStop() {
 
-      vacuumSol.set(true);
+      
       compressor.set(0);
       
 
     }
 
+    public void vacuumRelease() {
+
+      vacuumSol.set(true);
+
+    }
+
     public void compressorOn() {
 
-      vacuumSol.set(false);
+      
       compressor.set(1);
 
     }
 
+    public void vacuumSucc() {
+
+      vacuumSol.set(false);
+
+    }
+
+    public double getPressure() {
+
+      pressureSensor.setAverageBits(50);
+      return pressureSensor.getVoltage();
+
+    }
     
-
-
 }

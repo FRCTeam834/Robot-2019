@@ -110,9 +110,9 @@ public class OI {
 
   // Button Array on Driver's Station
   /*
-   * Row 1: 1 2 3 
-   * Row 2: 4 6 7 
-   * Row 3: 8 9 10
+   * Row 1: 10 9  8 
+   * Row 2: 7  6  4 
+   * Row 3: 3  2  1
    */
 
   public OI() {
@@ -124,8 +124,8 @@ public class OI {
     rJoystick3.whenPressed(new DriveStraightSlow());
 
     // Scissor Lift
-    BGTM.whileHeld(new ScissorUp());
-    BGBM.whileHeld(new ScissorDown());
+    BGBM.whileHeld(new ScissorUp());
+    BGTM.whileHeld(new ScissorDown());
 
     // Elevator
     xboxY.whileHeld(new ElevatorUp());

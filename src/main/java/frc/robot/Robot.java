@@ -28,7 +28,7 @@ import frc.robot.subsystems.PixyPull;
 
 
 
-//import edu.wpi.first.cameraserver.CameraServer; //Not used
+import edu.wpi.first.cameraserver.CameraServer; //Not used
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -63,8 +63,8 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
 
-   // CameraServer.getInstance().startAutomaticCapture();
-
+   CameraServer.getInstance().startAutomaticCapture();
+    
     DriveTrain = new DriveTrain();
     GroundEye = new GroundEye();
     Scissor = new Scissor();

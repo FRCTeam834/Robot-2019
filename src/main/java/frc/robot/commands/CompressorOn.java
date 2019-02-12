@@ -8,6 +8,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 
 public class CompressorOn extends Command {
@@ -22,6 +23,7 @@ public class CompressorOn extends Command {
   protected void initialize() {
 
     Robot.Compressor.compressorOn();
+    Robot.Compressor.vacuumSucc();
 
   }
 
@@ -30,6 +32,9 @@ public class CompressorOn extends Command {
   protected void execute() {
 
     Robot.Compressor.compressorOn();
+    Robot.Compressor.vacuumSucc();
+    System.out.println(Robot.Compressor.getPressure());
+    SmartDashboard.putString("DB/String 4", "CompOn:" + Double.toString(Robot.Compressor.getPressure()));
 
   }
 
@@ -44,6 +49,7 @@ public class CompressorOn extends Command {
   protected void end() {
 
     Robot.Compressor.compressorOn();
+    Robot.Compressor.vacuumSucc();
 
   }
 
@@ -53,6 +59,7 @@ public class CompressorOn extends Command {
   protected void interrupted() {
 
     Robot.Compressor.compressorOn();
+    Robot.Compressor.vacuumSucc();
 
   }
 }

@@ -23,7 +23,6 @@ import frc.robot.subsystems.NavX;
 import frc.robot.subsystems.Scissor;
 import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.Compressor;
-import frc.robot.subsystems.FormatValues;
 import frc.robot.subsystems.PixyPull;
 
 
@@ -49,8 +48,8 @@ public class Robot extends TimedRobot {
   public static Arm Arm;
   public static Compressor Compressor;
   public static I2C pixyI2C;
-  public static FormatValues FormatValues;
   public static PixyPull PixyPull;
+  public static boolean autoDriveOn = false;
   
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -73,11 +72,9 @@ public class Robot extends TimedRobot {
     Arm = new Arm();
     NavX = new NavX();
     Compressor = new Compressor();
-    oi = new OI();
     pixyI2C = new I2C(I2C.Port.kOnboard, 0x54);
-    FormatValues = new FormatValues();
     PixyPull = new PixyPull();
-
+    oi = new OI();
 
     //m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());

@@ -25,6 +25,7 @@ public class PixyPull extends Subsystem {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
   }
+
   public byte[] pullData(int length) {
     pullPixy = Robot.pixyI2C;
     rawData = new byte[length];
@@ -43,7 +44,7 @@ public class PixyPull extends Subsystem {
 		return (((int) upper & 0xff) << 8) | ((int) lower & 0xff);
 	}
   public PixyWrapper read(int check){
-    byte[] data = pullData(12);
+    byte[] data = pullData(14);
     PixyWrapper block = new PixyWrapper();
     if(findStart()){
       block.Signature = cvt(data[5], data[4]);
@@ -81,5 +82,21 @@ public class PixyPull extends Subsystem {
       }
 		}
 		return blocks;
+  }
+  public int[][] format(PixyWrapper[] blocks){
+    int[][] targetLocation = new int[blocks.length + 1][4];
+    if(blocks.length == 0){
+      targetLocation[0][0] = -1;
+    }
+    else{
+      targetLocation[0][0] = 1;
+    }
+    for(int i = 1; i < blocks.length + 1; i++){
+      targetLocation[i][0] = blocks[i].X;
+      targetLocation[i][1] = blocks[i].Y;
+      targetLocation[i][2] = blocks[i].Height;
+      targetLocation[i][3] = blocks[i].Width;
+    }
+    return targetLocation;
   }
 }

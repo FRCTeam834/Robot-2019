@@ -17,7 +17,7 @@ public class AutoDrive extends Command {
     
   public AutoDrive() { // Use requires() here to declare subsystem dependencies
    // eg. requires(chassis); requires(Robot.DriveTrain);
-    requires(Robot.FormatValues);
+    requires(Robot.PixyPull);
    
   }
     
@@ -26,7 +26,15 @@ public class AutoDrive extends Command {
   @Override protected void initialize() {
     
     Robot.DriveTrain.setDrive(0, 0); // may need to comment this line out
-    
+    if (Robot.autoDriveOn) {
+
+      Robot.autoDriveOn = false;
+
+    } else if (!Robot.autoDriveOn) {
+
+      Robot.autoDriveOn = true;
+
+    }
     
   }
     
@@ -37,27 +45,27 @@ public class AutoDrive extends Command {
     //Sets the joystick //Movement Algorithms
   
     System.out.println("AimAssist Activated"); 
-    int[][] targetLocation = Robot.FormatValues.format(Robot.PixyPull.placeBlockData()); 
+    int[][] targetLocation = Robot.PixyPull.format(Robot.PixyPull.placeBlockData());
     boolean alignment = Robot.GroundEye.findTape(); 
     int numBlocks = Robot.PixyPull.placeBlockData().length;
-    int avgX; 
+    int avgX;
     int centerPixy = 160; //Center of Pixy
     
-    if (!(targetLocation[0][0] == -1)) {
-      System.out.println("x: " + (targetLocation[0][1])); 
-      System.out.println("y: " + (targetLocation[0][2])); 
-      System.out.println("width: " + (targetLocation[0][3])); System.out.println("height: " + (targetLocation[0][4]));  
+    if (!(targetLocation[1][0] == -1)) {
+      System.out.println("x: " + (targetLocation[1][1])); 
+      System.out.println("y: " + (targetLocation[1][2])); 
+      System.out.println("width: " + (targetLocation[1][3])); System.out.println("height: " + (targetLocation[0][4]));  
     } 
     else {
       Robot.oi.xbox.setRumble(RumbleType.kLeftRumble, 1);
       Robot.oi.xbox.setRumble(RumbleType.kRightRumble, 1); 
     }
-    if(alignment){ 
+    if(alignment && targetLocation[0][0] == 1){ 
       if(numBlocks == 1){ 
-        if(targetLocation[0][1] > centerPixy){
+        if(targetLocation[1][1] > centerPixy){
         System.out.println("Turning Right (1 Block w/ Alignment)"); 
         } 
-        else if(targetLocation[0][1] < centerPixy){
+        else if(targetLocation[1][1] < centerPixy){
           System.out.println("Turning Left (1 Block w/ Alignment)"); } 
         else {
           System.out.println("No Idea");
@@ -66,7 +74,7 @@ public class AutoDrive extends Command {
         } 
       } 
       else if(numBlocks == 2){
-        avgX = (targetLocation[0][1] + targetLocation[1][1])/ 2; 
+        avgX = (targetLocation[1][1] + targetLocation[2][1])/ 2; 
         if(avgX < centerPixy){ 
           System.out.println("Turning Right (2 Blocks w/ Alignment)"); 
         }
@@ -83,12 +91,12 @@ public class AutoDrive extends Command {
         System.out.println("Too Many Blocks");
         Robot.oi.xbox.setRumble(RumbleType.kLeftRumble, 1);
         Robot.oi.xbox.setRumble(RumbleType.kRightRumble, 1); } } 
-    else if(!alignment){
+    else if(!alignment && targetLocation[0][0] == 1){
       if(numBlocks == 1){ 
-        if(targetLocation[0][1] > centerPixy){
+        if(targetLocation[1][1] > centerPixy){
           System.out.println("Turning Right (1 Block No Alignment)"); 
         } 
-        else if(targetLocation[0][1] < centerPixy){
+        else if(targetLocation[1][1] < centerPixy){
           System.out.println("Turning Left (1 Block No Alignment)"); 
         } 
         else{
@@ -98,7 +106,7 @@ public class AutoDrive extends Command {
         } 
       } 
       else if(numBlocks == 2){
-        avgX = (targetLocation[0][1] + targetLocation[1][1])/ 2; 
+        avgX = (targetLocation[1][1] + targetLocation[2][1])/ 2; 
         if(avgX < centerPixy){ 
           System.out.println("Turning Right (2 Blocks No Alignment)"); 
         }
@@ -114,8 +122,10 @@ public class AutoDrive extends Command {
       else{
         System.out.println("Too Many Blocks");
         Robot.oi.xbox.setRumble(RumbleType.kLeftRumble, 1);
-        Robot.oi.xbox.setRumble(RumbleType.kRightRumble, 1); }  
-    }  
+        Robot.oi.xbox.setRumble(RumbleType.kRightRumble, 1); 
+      }  
+    }
+ 
   }
     
     
@@ -123,6 +133,22 @@ public class AutoDrive extends Command {
    
   @Override protected boolean isFinished() {
    
+    //if (Robot.autoDriveOn) {
+
+      //return true;
+
+    //4}
+
+    if (Math.abs(Robot.oi.leftJoystick.getY()) > .15) {
+
+      return true;
+
+    } else if (Math.abs(Robot.oi.rightJoystick.getY()) > .15) {
+
+      return true;
+
+    }
+
     return false;
    
   }

@@ -64,6 +64,7 @@ public class OI {
   xboxX = new JoystickButton(xbox, 3),
   xboxLB = new JoystickButton(xbox, 5), 
   xboxRB = new JoystickButton(xbox, 6),
+  xboxLJB = new JoystickButton(xbox, 9),
 
       // Left Joystick
       lJoystick1 = new JoystickButton(leftJoystick, 1), 
@@ -156,6 +157,8 @@ public class OI {
     //Climbing Arms
     
 
+    //AutoDrive
+    xboxLJB.whenPressed(new AutoDrive());
     
   }
 

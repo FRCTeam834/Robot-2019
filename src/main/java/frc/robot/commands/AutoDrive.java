@@ -125,7 +125,9 @@ public class AutoDrive extends Command {
         Robot.oi.xbox.setRumble(RumbleType.kRightRumble, 1); 
       }  
     }
- 
+    else if(targetLocation[0][0] != 1){
+      System.out.println(targetLocation[0][0]);
+    }
   }
     
     

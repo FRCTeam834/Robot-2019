@@ -61,6 +61,7 @@ public class Compressor extends Subsystem {
 
     public double getPressure() {
 
+      pressureSensor.setOversampleBits(50);
       pressureSensor.setAverageBits(50);
       return pressureSensor.getVoltage();
 

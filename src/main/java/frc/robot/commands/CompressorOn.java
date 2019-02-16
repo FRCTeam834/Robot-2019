@@ -30,8 +30,17 @@ public class CompressorOn extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    if (Robot.Compressor.getPressure() >= 4.1) {
 
-    Robot.Compressor.compressorOn();
+      Robot.Compressor.compressorOn();
+
+    }
+    else {
+
+      Robot.Compressor.compressorStop();
+
+    }
+
     Robot.Compressor.vacuumSucc();
     System.out.println(Robot.Compressor.getPressure());
     SmartDashboard.putString("DB/String 4", "CompOn:" + Double.toString(Robot.Compressor.getPressure()));

@@ -14,7 +14,6 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj.I2C;
 import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.BallIntake;
 import frc.robot.subsystems.DriveTrain;
@@ -23,7 +22,6 @@ import frc.robot.subsystems.NavX;
 import frc.robot.subsystems.Scissor;
 import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.Compressor;
-import frc.robot.subsystems.PixyPull;
 
 
 
@@ -47,8 +45,6 @@ public class Robot extends TimedRobot {
   public static BallIntake BallIntake;
   public static Arm Arm;
   public static Compressor Compressor;
-  public static I2C pixyI2C;
-  public static PixyPull PixyPull;
   public static boolean autoDriveOn = false;
   
   Command m_autonomousCommand;
@@ -62,7 +58,7 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
 
-   CameraServer.getInstance().startAutomaticCapture();
+    CameraServer.getInstance().startAutomaticCapture();
     
     DriveTrain = new DriveTrain();
     GroundEye = new GroundEye();
@@ -72,8 +68,6 @@ public class Robot extends TimedRobot {
     Arm = new Arm();
     NavX = new NavX();
     Compressor = new Compressor();
-    pixyI2C = new I2C(I2C.Port.kOnboard, 0x54);
-    PixyPull = new PixyPull();
     oi = new OI();
 
     //m_chooser.setDefaultOption("Default Auto", new ExampleCommand());

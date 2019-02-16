@@ -18,14 +18,19 @@ import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.BallIntake;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.GroundEye;
+import frc.robot.subsystems.MyVisionPipeline;
 import frc.robot.subsystems.NavX;
 import frc.robot.subsystems.Scissor;
 import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.Compressor;
 
+import org.opencv.core.Rect;
+import org.opencv.imgproc.Imgproc;
 
-
+import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.cameraserver.CameraServer; //Not used
+
+import edu.wpi.first.vision.VisionThread;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -46,6 +51,13 @@ public class Robot extends TimedRobot {
   public static Arm Arm;
   public static Compressor Compressor;
   public static boolean autoDriveOn = false;
+  private static final int IMG_WIDTH = 320;
+	private static final int IMG_HEIGHT = 240;
+	public VisionThread visionThread;
+  public double centerX = 0.0;
+  
+	
+	private final Object imgLock = new Object();
   
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -58,8 +70,20 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
 
-    CameraServer.getInstance().startAutomaticCapture();
+    UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
+    camera.setResolution(IMG_WIDTH, IMG_HEIGHT);
     
+    visionThread = new VisionThread(camera, new MyVisionPipeline(), pipeline -> {
+        if (!(pipeline.findBlobsOutput() == null)) {
+            Rect r = Imgproc.boundingRect(pipeline.findBlobsOutput());
+            synchronized (imgLock) {
+                centerX = r.x + (r.width / 2);
+            }
+        }
+    });
+    visionThread.start();
+
+
     DriveTrain = new DriveTrain();
     GroundEye = new GroundEye();
     Scissor = new Scissor();
@@ -161,10 +185,15 @@ public class Robot extends TimedRobot {
   public void teleopPeriodic() {
     
     //Robot.oi.arduinoThing.setOutput(72, true);
+    synchronized (imgLock) {
+      centerX = this.centerX;
+    }
     
-    Scheduler.getInstance().run();
+    double blockPos = centerX - (IMG_WIDTH / 2);
+    SmartDashboard.putString("DB/String 7", "BlockPos:" + Double.toString(centerX));
 
     //System.out.println(GroundEye.findTape());
+    Scheduler.getInstance().run();
 
   }
 

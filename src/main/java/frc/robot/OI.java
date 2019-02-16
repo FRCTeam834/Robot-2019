@@ -158,7 +158,7 @@ public class OI {
     
 
     //AutoDrive
-    xboxLJB.whenPressed(new AutoDrive());
+    //xboxLJB.whenPressed(new AutoDrive());
     
   }
 

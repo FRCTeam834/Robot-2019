@@ -56,7 +56,6 @@ public class DriveTrain extends Subsystem {
 
 
 */
-
   CANSparkMax leftDrive1 = new CANSparkMax(1, CANSparkMax.MotorType.kBrushless);
   CANSparkMax leftDrive2 = new CANSparkMax(2, CANSparkMax.MotorType.kBrushless);
   CANSparkMax leftDrive3 = new CANSparkMax(3, CANSparkMax.MotorType.kBrushless);
@@ -109,11 +108,16 @@ public class DriveTrain extends Subsystem {
   }
 
   public double getRightEncoder() {
-
-     return (rightDrive1.getEncoder().getPosition() + rightDrive2.getEncoder().getPosition() + rightDrive3.getEncoder().getPosition()) / 3;
+  
+    return (rightDrive1.getEncoder().getPosition() + rightDrive2.getEncoder().getPosition() + rightDrive3.getEncoder().getPosition()) / 3;
 
   }
 
+  public void resetEncoders() {
+
+    
+
+  }
 
 
 

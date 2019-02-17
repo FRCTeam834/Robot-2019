@@ -28,7 +28,7 @@ import org.opencv.core.Rect;
 import org.opencv.imgproc.Imgproc;
 
 import edu.wpi.cscore.UsbCamera;
-import edu.wpi.first.cameraserver.CameraServer; //Not used
+import edu.wpi.first.cameraserver.CameraServer;
 
 import edu.wpi.first.vision.VisionThread;
 
@@ -50,6 +50,7 @@ public class Robot extends TimedRobot {
   public static BallIntake BallIntake;
   public static Arm Arm;
   public static Compressor Compressor;
+  public static MyVisionPipeline MyVisionPipeline;
   public static boolean autoDriveOn = false;
   private static final int IMG_WIDTH = 320;
 	private static final int IMG_HEIGHT = 240;
@@ -70,6 +71,7 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
 
+    //Vision stuff
     UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
     camera.setResolution(IMG_WIDTH, IMG_HEIGHT);
     
@@ -83,6 +85,9 @@ public class Robot extends TimedRobot {
     });
     visionThread.start();
 
+    //m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
+    // chooser.addOption("My Auto", new MyAutoCommand());
+    SmartDashboard.putData("Auto mode", m_chooser);
 
     DriveTrain = new DriveTrain();
     GroundEye = new GroundEye();
@@ -92,12 +97,13 @@ public class Robot extends TimedRobot {
     Arm = new Arm();
     NavX = new NavX();
     Compressor = new Compressor();
+    MyVisionPipeline = new MyVisionPipeline();
+    
+
+
+    
+    //OI MUST BE CREATED LAST!!!!!!!!!!
     oi = new OI();
-
-    //m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
-    // chooser.addOption("My Auto", new MyAutoCommand());
-    SmartDashboard.putData("Auto mode", m_chooser);
-
   }
 
   /**

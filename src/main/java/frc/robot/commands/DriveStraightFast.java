@@ -32,21 +32,14 @@ public class DriveStraightFast extends Command {
   protected void execute() {
 
     double leftSpeed = Robot.oi.leftJoystick.getY();
-    double rightSpeed = Robot.oi.rightJoystick.getY();
+    double rightSpeed = leftSpeed;
 
    // if (Math.abs(Robot.NavX.roll()) < 45) {
-      // Alex
-      // leftSpeed = (Math.abs(leftSpeed) < 0.15)? 0 : leftSpeed;
-      // rightSpeed = (Math.abs(rightSpeed)< 0.15)?  : rightSpeed;
 
-      // Christian
       leftSpeed = (Math.abs(leftSpeed) < 0.15) ? 0 : leftSpeed;
       rightSpeed = (Math.abs(rightSpeed) < 0.15) ? 0 : rightSpeed;
 
-      //Experimental
-      
-     
-        Robot.DriveTrain.setDrive((leftSpeed * .75), (leftSpeed * .75));
+        Robot.DriveTrain.setDrive((leftSpeed * .75), (rightSpeed * .75));
       
   }
 

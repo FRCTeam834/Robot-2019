@@ -30,12 +30,15 @@ public class CompressorOn extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if (Robot.Compressor.getPressure() >= 4.1) {
+    
+    double pressureReading = Robot.Compressor.getPressure();
+
+    if (pressureReading >= 4.1) {
 
       Robot.Compressor.compressorOn();
 
     }
-    else {
+    else if (pressureReading < 4.1) {
 
       Robot.Compressor.compressorStop();
 

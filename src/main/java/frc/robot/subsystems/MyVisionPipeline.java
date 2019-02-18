@@ -25,7 +25,7 @@ import org.opencv.objdetect.*;
 *
 * @author GRIP
 */
-public class MyVisionPipeline implements VisionPipeline{
+public class MyVisionPipeline implements edu.wpi.first.vision.VisionPipeline{
 
 	//Outputs
 	private Mat resizeImageOutput = new Mat();
@@ -34,6 +34,7 @@ public class MyVisionPipeline implements VisionPipeline{
 	private Mat maskOutput = new Mat();
 	private Mat hsvThresholdOutput = new Mat();
 	private Mat cvErode1Output = new Mat();
+	private Mat blurOutput = new Mat();
 	private MatOfKeyPoint findBlobsOutput = new MatOfKeyPoint();
 
 	static {
@@ -43,8 +44,9 @@ public class MyVisionPipeline implements VisionPipeline{
 	/**
 	 * This is the primary method that runs the entire pipeline and updates the outputs.
 	 */
-	@Override	public void process(Mat source0) {
-		// Step Resize_Image0:
+	@Override	
+	public void process(Mat source0) {
+		//Step Resize_Image0:
 		Mat resizeImageInput = source0;
 		double resizeImageWidth = 640.0;
 		double resizeImageHeight = 480.0;
@@ -55,14 +57,14 @@ public class MyVisionPipeline implements VisionPipeline{
 		Mat hslThresholdInput = resizeImageOutput;
 		double[] hslThresholdHue = {0.0, 180.0};
 		double[] hslThresholdSaturation = {0.0, 255.0};
-		double[] hslThresholdLuminance = {235.31073446327682, 255.0};
+		double[] hslThresholdLuminance = {246.35593220338978, 255.0};
 		hslThreshold(hslThresholdInput, hslThresholdHue, hslThresholdSaturation, hslThresholdLuminance, hslThresholdOutput);
 
 		// Step CV_erode0:
 		Mat cvErode0Src = hslThresholdOutput;
 		Mat cvErode0Kernel = new Mat();
 		Point cvErode0Anchor = new Point(-1, -1);
-		double cvErode0Iterations = 1.0;
+		double cvErode0Iterations = 4.0;
 		int cvErode0Bordertype = Core.BORDER_CONSTANT;
 		Scalar cvErode0Bordervalue = new Scalar(-1);
 		cvErode(cvErode0Src, cvErode0Kernel, cvErode0Anchor, cvErode0Iterations, cvErode0Bordertype, cvErode0Bordervalue, cvErode0Output);
@@ -83,14 +85,20 @@ public class MyVisionPipeline implements VisionPipeline{
 		Mat cvErode1Src = hsvThresholdOutput;
 		Mat cvErode1Kernel = new Mat();
 		Point cvErode1Anchor = new Point(-1, -1);
-		double cvErode1Iterations = 2.0;
+		double cvErode1Iterations = 3.0;
 		int cvErode1Bordertype = Core.BORDER_CONSTANT;
 		Scalar cvErode1Bordervalue = new Scalar(-1);
 		cvErode(cvErode1Src, cvErode1Kernel, cvErode1Anchor, cvErode1Iterations, cvErode1Bordertype, cvErode1Bordervalue, cvErode1Output);
 
+		// Step Blur0:
+		Mat blurInput = cvErode1Output;
+		BlurType blurType = BlurType.get("Box Blur");
+		double blurRadius = 14.150943396226415;
+		blur(blurInput, blurType, blurRadius, blurOutput);
+
 		// Step Find_Blobs0:
-		Mat findBlobsInput = cvErode1Output;
-		double findBlobsMinArea = 16.0;
+		Mat findBlobsInput = blurOutput;
+		double findBlobsMinArea = 2.0;
 		double[] findBlobsCircularity = {0.0, 1.0};
 		boolean findBlobsDarkBlobs = false;
 		findBlobs(findBlobsInput, findBlobsMinArea, findBlobsCircularity, findBlobsDarkBlobs, findBlobsOutput);
@@ -143,6 +151,14 @@ public class MyVisionPipeline implements VisionPipeline{
 	 */
 	public Mat cvErode1Output() {
 		return cvErode1Output;
+	}
+
+	/**
+	 * This method is a generated getter for the output of a Blur.
+	 * @return Mat output from Blur.
+	 */
+	public Mat blurOutput() {
+		return blurOutput;
 	}
 
 	/**
@@ -233,6 +249,71 @@ public class MyVisionPipeline implements VisionPipeline{
 			borderValue = new Scalar(-1);
 		}
 		Imgproc.erode(src, dst, kernel, anchor, (int)iterations, borderType, borderValue);
+	}
+
+	/**
+	 * An indication of which type of filter to use for a blur.
+	 * Choices are BOX, GAUSSIAN, MEDIAN, and BILATERAL
+	 */
+	enum BlurType{
+		BOX("Box Blur"), GAUSSIAN("Gaussian Blur"), MEDIAN("Median Filter"),
+			BILATERAL("Bilateral Filter");
+
+		private final String label;
+
+		BlurType(String label) {
+			this.label = label;
+		}
+
+		public static BlurType get(String type) {
+			if (BILATERAL.label.equals(type)) {
+				return BILATERAL;
+			}
+			else if (GAUSSIAN.label.equals(type)) {
+			return GAUSSIAN;
+			}
+			else if (MEDIAN.label.equals(type)) {
+				return MEDIAN;
+			}
+			else {
+				return BOX;
+			}
+		}
+
+		@Override
+		public String toString() {
+			return this.label;
+		}
+	}
+
+	/**
+	 * Softens an image using one of several filters.
+	 * @param input The image on which to perform the blur.
+	 * @param type The blurType to perform.
+	 * @param doubleRadius The radius for the blur.
+	 * @param output The image in which to store the output.
+	 */
+	private void blur(Mat input, BlurType type, double doubleRadius,
+		Mat output) {
+		int radius = (int)(doubleRadius + 0.5);
+		int kernelSize;
+		switch(type){
+			case BOX:
+				kernelSize = 2 * radius + 1;
+				Imgproc.blur(input, output, new Size(kernelSize, kernelSize));
+				break;
+			case GAUSSIAN:
+				kernelSize = 6 * radius + 1;
+				Imgproc.GaussianBlur(input,output, new Size(kernelSize, kernelSize), radius);
+				break;
+			case MEDIAN:
+				kernelSize = 2 * radius + 1;
+				Imgproc.medianBlur(input, output, kernelSize);
+				break;
+			case BILATERAL:
+				Imgproc.bilateralFilter(input, output, -1, radius, radius);
+				break;
+		}
 	}
 
 	/**

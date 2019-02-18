@@ -31,7 +31,7 @@ public class CompressorStop extends Command {
 
     Robot.Compressor.compressorStop();
     Robot.Compressor.vacuumRelease();
-    System.out.println(Robot.Compressor.getPressure());
+    //System.out.println(Robot.Compressor.getPressure());
     SmartDashboard.putString("DB/String 3", "CompOff:" + Double.toString(Robot.Compressor.getPressure()));
 
   }

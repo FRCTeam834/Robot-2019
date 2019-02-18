@@ -36,22 +36,28 @@ public class Drive extends Command {
     
     float roll = Robot.NavX.roll();
 
-    if (Math.abs(roll) >= 25) {
+    //if (roll >= 45) {
        //Alex
        //leftSpeed = (Math.abs(leftSpeed) < 0.15)? 0 : leftSpeed;
        //rightSpeed = (Math.abs(rightSpeed)< 0.15)? 0  : rightSpeed;
 
-      leftSpeed = -.6;
-      rightSpeed = -.6;
+     // leftSpeed = -.6;
+      //rightSpeed = -.6;
+    
+   // }
+    //else if (roll <= -45) {
 
-    } else {
+     // leftSpeed = .6;
+     // rightSpeed = .6;
+
+   // } else {
       
       Robot.DriveTrain.setDrive((leftSpeed * .75), (rightSpeed * .75));
 
-    }    
+   // }    
 
     
-    System.out.println(roll);
+    //System.out.println(roll);
 
   }
 

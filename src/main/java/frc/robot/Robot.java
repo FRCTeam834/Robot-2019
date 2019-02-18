@@ -24,9 +24,13 @@ import frc.robot.subsystems.Scissor;
 import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.Compressor;
 
+import org.opencv.core.KeyPoint;
+import org.opencv.core.Mat;
 import org.opencv.core.Rect;
 import org.opencv.imgproc.Imgproc;
 
+import edu.wpi.cscore.CvSink;
+import edu.wpi.cscore.CvSource;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.cameraserver.CameraServer;
 
@@ -56,6 +60,12 @@ public class Robot extends TimedRobot {
 	private static final int IMG_HEIGHT = 240;
 	public VisionThread visionThread;
   public double centerX = 0.0;
+  public UsbCamera camera;
+  CvSink cvSink;
+  CvSource outputStream;
+  Mat source;
+  Mat output;
+  KeyPoint[] mat;
   
 	
 	private final Object imgLock = new Object();
@@ -72,18 +82,27 @@ public class Robot extends TimedRobot {
   public void robotInit() {
 
     //Vision stuff
-    UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
+    camera = CameraServer.getInstance().startAutomaticCapture();
     camera.setResolution(IMG_WIDTH, IMG_HEIGHT);
     
+
     visionThread = new VisionThread(camera, new MyVisionPipeline(), pipeline -> {
-        if (!(pipeline.findBlobsOutput() == null)) {
+        //if (!(pipeline.findBlobsOutput() == null)) {
             Rect r = Imgproc.boundingRect(pipeline.findBlobsOutput());
             synchronized (imgLock) {
                 centerX = r.x + (r.width / 2);
-            }
+            //}
         }
     });
     visionThread.start();
+
+    cvSink = CameraServer.getInstance().getVideo();
+    //outputStream = CameraServer.getInstance().putVideo("Blur", 640, 480);
+    source = new Mat();
+    output = new Mat();
+
+
+
 
     //m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
@@ -191,13 +210,43 @@ public class Robot extends TimedRobot {
   public void teleopPeriodic() {
     
     //Robot.oi.arduinoThing.setOutput(72, true);
-    synchronized (imgLock) {
-      centerX = this.centerX;
-    }
-    
-    double blockPos = centerX - (IMG_WIDTH / 2);
-    SmartDashboard.putString("DB/String 7", "BlockPos:" + Double.toString(centerX));
+  
+    //double blockPos = centerX - (IMG_WIDTH / 2);
 
+
+    cvSink.grabFrame(source);
+    //outputStream.putFrame(source);
+    
+
+
+
+
+    MyVisionPipeline = new MyVisionPipeline();
+    //MyVisionPipeline.process(source);
+    //SmartDashboard.putString("DB/String 7", "BlockPos:" + Integer.toString(MyVisionPipeline.findBlobsOutput().toArray().length));
+    //SmartDashboard.putString("DB/String 8", Double.toString(centerX));
+
+    //if (MyVisionPipeline.findBlobsOutput().toArray() == null) {
+
+        //System.out.println("Ahh it's null!");
+
+    //} else {  
+
+      //mat = MyVisionPipeline.findBlobsOutput().toArray();
+      //System.out.println(mat.length);
+      /*
+      if(mat.length != 0) {
+        
+        //System.out.println(mat[0]);
+      }
+      else {
+        System.out.println("Caracoles! Something didn't work :(");
+      }
+      //System.out.println("It's not null...");
+      //System.out.println(MyVisionPipeline.findBlobsOutput().toArray().toString());
+      */
+
+    //}
     //System.out.println(GroundEye.findTape());
     Scheduler.getInstance().run();
 

@@ -23,7 +23,7 @@ public class ElevatorHold extends Command {
   protected void initialize() {
     
     Robot.Elevator.elevatorHold();
-    System.out.println("Elevator Hold Command Initialized");
+    //System.out.println("Elevator Hold Command Initialized");
 
   }
 
@@ -31,9 +31,9 @@ public class ElevatorHold extends Command {
   @Override
   protected void execute() {
 
-    System.out.println("Executing ElevatorHold.java");
+    //System.out.println("Executing ElevatorHold.java");
     SmartDashboard.putString("DB/String 2", "Left:" + Double.toString(Robot.Elevator.getElevatorHeight()));
-    System.out.println(Robot.Elevator.getElevatorHeight());
+    //System.out.println(Robot.Elevator.getElevatorHeight());
     
 
   }
@@ -48,7 +48,7 @@ public class ElevatorHold extends Command {
   @Override
   protected void end() {
 
-    System.out.println("The encoder value for the elevator is..." + Robot.Elevator.getElevatorHeight());
+    //System.out.println("The encoder value for the elevator is..." + Robot.Elevator.getElevatorHeight());
     Robot.Elevator.elevatorHold();;
 
   }

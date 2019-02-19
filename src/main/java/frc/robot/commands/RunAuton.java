@@ -48,8 +48,11 @@ public class RunAuton extends Command{
     }
     @Override
     protected void execute(){
+<<<<<<< HEAD
 
         System.out.println("Autoning");
+=======
+>>>>>>> 9e05aba57c22fc18bb264fec66e93f7094e5ce49
         Robot.DriveTrain.setDrive(driveTrainSpeed[0][cycleCount], driveTrainSpeed[1][cycleCount]);
         //Elevator
         if(motorValues[0][cycleCount]){
@@ -89,7 +92,10 @@ public class RunAuton extends Command{
             new CompressorStop();
         }
         //Maybe Add Elevator Presets in the Future
+<<<<<<< HEAD
         cycleCount++;
+=======
+>>>>>>> 9e05aba57c22fc18bb264fec66e93f7094e5ce49
 	}
     @Override
     protected boolean isFinished(){
@@ -106,4 +112,8 @@ public class RunAuton extends Command{
     protected void interrupted(){
         System.out.println("Auton Interrupted");
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 9e05aba57c22fc18bb264fec66e93f7094e5ce49

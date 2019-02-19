@@ -36,6 +36,17 @@ import java.io.ObjectOutputStream;
 import java.net.URL;
 import java.net.URLConnection;
 
+//Driver Input Imports
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.URL;
+import java.net.URLConnection;
+
 import org.opencv.core.KeyPoint;
 import org.opencv.core.Mat;
 import org.opencv.core.Rect;
@@ -73,6 +84,10 @@ public class Robot extends TimedRobot {
 	private static final int IMG_HEIGHT = 240;
 	public VisionThread visionThread;
   public double centerX = 0.0;
+  private boolean recordStatus = false;
+  private int cycleCount;
+  private boolean[][] motorValues = new boolean[8][1500];
+  private double[][] driveTrainSpeed = new double[2][1500];
   public UsbCamera camera;
   CvSink cvSink;
   CvSource outputStream;
@@ -289,9 +304,44 @@ public class Robot extends TimedRobot {
 			conn.getOutputStream().close();
 			inputStream.close();
 
+<<<<<<< HEAD
 			file.delete();
 		} catch (Exception e1) {
 			e1.printStackTrace();
+=======
+    //}
+    //System.out.println(GroundEye.findTape());
+    Scheduler.getInstance().run();
+	  
+    // Record Systems: Start Recording
+		if (SmartDashboard.getString("DB/String 1", "").equalsIgnoreCase("Record") && !recordStatus) {
+			recordStatus = true;
+			systemTimeStart = System.currentTimeMillis() / 1000;
+		}
+		// Record Systems: Record
+		double systemTimeCurrent = System.currentTimeMillis() / 1000;
+		if (recordStatus && systemTimeStart + 15 >= systemTimeCurrent) {
+      driveTrainSpeed[0][cycleCount] = Robot.oi.leftJoystick.getY();
+      driveTrainSpeed[1][cycleCount] = Robot.oi.rightJoystick.getY();
+			motorValues[0][cycleCount] = Robot.oi.xbox.getRawButton(4); //Elevator Up
+			motorValues[1][cycleCount] = Robot.oi.xbox.getRawButton(3); //Elevator Down
+      motorValues[2][cycleCount] = Robot.oi.xbox.getRawButton(8); //Intake In
+      motorValues[3][cycleCount] = Robot.oi.xbox.getRawButton(7); //Intake Out
+      motorValues[4][cycleCount] = Robot.oi.xbox.getRawButton(2); //Arm Up
+      motorValues[5][cycleCount] = Robot.oi.xbox.getRawButton(1); //Arm Down
+      motorValues[6][cycleCount] = Robot.oi.xbox.getRawButton(5); //Compressor On
+      motorValues[7][cycleCount] = Robot.oi.xbox.getRawButton(6); //Compressor Off
+      cycleCount++;
+      //Maybe Add Elevator Presets in the Future
+		}
+		// Record System: End Recording
+		if (recordStatus && systemTimeStart + 15 <= systemTimeCurrent) {
+			cycleCount = 0;
+			save(new File(SmartDashboard.getString("DB/String 0", "")));
+			recordStatus = false;
+			SmartDashboard.putString("DB/String 1", "");
+		}
+>>>>>>> 9e05aba57c22fc18bb264fec66e93f7094e5ce49
 
 		}
 	}

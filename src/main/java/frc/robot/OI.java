@@ -158,6 +158,9 @@ public class OI {
 
     //AutoDrive
     //xboxLJB.whenPressed(new AutoDrive());
+
+    //Vision
+    rJoystick2.whenPressed(new UpdateVision());
     
   }
 

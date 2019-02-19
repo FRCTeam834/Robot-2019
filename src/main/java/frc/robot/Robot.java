@@ -23,6 +23,18 @@ import frc.robot.subsystems.NavX;
 import frc.robot.subsystems.Scissor;
 import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.Compressor;
+import frc.robot.commands.RunAuton;
+
+//Driver Input Imports
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.URL;
+import java.net.URLConnection;
 
 import org.opencv.core.KeyPoint;
 import org.opencv.core.Mat;
@@ -55,6 +67,7 @@ public class Robot extends TimedRobot {
   public static Arm Arm;
   public static Compressor Compressor;
   public static MyVisionPipeline MyVisionPipeline;
+  public static RunAuton RunAuton;
   public static boolean autoDriveOn = false;
   private static final int IMG_WIDTH = 320;
 	private static final int IMG_HEIGHT = 240;
@@ -66,7 +79,11 @@ public class Robot extends TimedRobot {
   Mat source;
   Mat output;
   KeyPoint[] mat;
-  
+  private boolean recordStatus = false;
+  private int cycleCount;
+  private boolean[][] motorValues = new boolean[8][1500];
+  private double[][] driveTrainSpeed = new double[2][1500];
+  private double systemTimeStart = 0;
 	
 	private final Object imgLock = new Object();
   
@@ -80,26 +97,19 @@ public class Robot extends TimedRobot {
   
   @Override
   public void robotInit() {
-
-    //Vision stuff
     camera = CameraServer.getInstance().startAutomaticCapture();
     camera.setResolution(IMG_WIDTH, IMG_HEIGHT);
-    
 
     visionThread = new VisionThread(camera, new MyVisionPipeline(), pipeline -> {
-        //if (!(pipeline.findBlobsOutput() == null)) {
-            Rect r = Imgproc.boundingRect(pipeline.findBlobsOutput());
-            synchronized (imgLock) {
-                centerX = r.x + (r.width / 2);
-            //}
-        }
-    });
-    visionThread.start();
+      //if (!(pipeline.findBlobsOutput() == null)) {
+          Rect r = Imgproc.boundingRect(pipeline.findBlobsOutput());
+          synchronized (imgLock) {
+              centerX = r.x + (r.width / 2);
+          //}
+      }
+  });
+  visionThread.start();
 
-    cvSink = CameraServer.getInstance().getVideo();
-    //outputStream = CameraServer.getInstance().putVideo("Blur", 640, 480);
-    source = new Mat();
-    output = new Mat();
 
 
 
@@ -117,6 +127,7 @@ public class Robot extends TimedRobot {
     NavX = new NavX();
     Compressor = new Compressor();
     MyVisionPipeline = new MyVisionPipeline();
+    RunAuton = new RunAuton();
     
 
 
@@ -178,6 +189,10 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.start();
     }
+    
+    RunAuton.start();
+
+
   }
 
   /**
@@ -198,8 +213,10 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
+    //MyVisionPipeline = new MyVisionPipeline();
 
-    
+    recordStatus = false;
+    systemTimeStart = 0;
     
   }
 
@@ -208,49 +225,76 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
+    System.out.println(recordStatus);
+    System.out.println(SmartDashboard.getString("DB/String 1", ""));
     
     //Robot.oi.arduinoThing.setOutput(72, true);
   
     //double blockPos = centerX - (IMG_WIDTH / 2);
 
 
-    cvSink.grabFrame(source);
+    //cvSink.grabFrame(source);
     //outputStream.putFrame(source);
-    
 
-
-
-
-    MyVisionPipeline = new MyVisionPipeline();
-    //MyVisionPipeline.process(source);
-    //SmartDashboard.putString("DB/String 7", "BlockPos:" + Integer.toString(MyVisionPipeline.findBlobsOutput().toArray().length));
-    //SmartDashboard.putString("DB/String 8", Double.toString(centerX));
-
-    //if (MyVisionPipeline.findBlobsOutput().toArray() == null) {
-
-        //System.out.println("Ahh it's null!");
-
-    //} else {  
-
-      //mat = MyVisionPipeline.findBlobsOutput().toArray();
-      //System.out.println(mat.length);
-      /*
-      if(mat.length != 0) {
-        
-        //System.out.println(mat[0]);
-      }
-      else {
-        System.out.println("Caracoles! Something didn't work :(");
-      }
-      //System.out.println("It's not null...");
-      //System.out.println(MyVisionPipeline.findBlobsOutput().toArray().toString());
-      */
-
-    //}
-    //System.out.println(GroundEye.findTape());
     Scheduler.getInstance().run();
 
+    // Record Systems: Start Recording
+		if (SmartDashboard.getString("DB/String 1", "").equalsIgnoreCase("Record") && !recordStatus) {
+			recordStatus = true;
+      systemTimeStart = System.currentTimeMillis() / 1000;
+      System.out.println("Recording");
+		}
+		// Record Systems: Record
+		double systemTimeCurrent = System.currentTimeMillis() / 1000;
+		if (recordStatus && systemTimeStart + 15 >= systemTimeCurrent) {
+      driveTrainSpeed[0][cycleCount] = Robot.oi.leftJoystick.getY();
+      driveTrainSpeed[1][cycleCount] = Robot.oi.rightJoystick.getY();
+			motorValues[0][cycleCount] = Robot.oi.xbox.getRawButton(4); //Elevator Up
+			motorValues[1][cycleCount] = Robot.oi.xbox.getRawButton(3); //Elevator Down
+      motorValues[2][cycleCount] = Robot.oi.xbox.getRawButton(8); //Intake In
+      motorValues[3][cycleCount] = Robot.oi.xbox.getRawButton(7); //Intake Out
+      motorValues[4][cycleCount] = Robot.oi.xbox.getRawButton(2); //Arm Up
+      motorValues[5][cycleCount] = Robot.oi.xbox.getRawButton(1); //Arm Down
+      motorValues[6][cycleCount] = Robot.oi.xbox.getRawButton(5); //Compressor On
+      motorValues[7][cycleCount] = Robot.oi.xbox.getRawButton(6); //Compressor Off
+      cycleCount++;
+      //Maybe Add Elevator Presets in the Future
+		}
+		// Record System: End Recording
+		if (recordStatus && systemTimeStart + 15 <= systemTimeCurrent) {
+			cycleCount = 0;
+      save(new File(SmartDashboard.getString("DB/String 0", "")));
+			recordStatus = false;
+			SmartDashboard.putString("DB/String 1", "");
+		}
+
   }
+
+  public void save(File file) {
+		try {
+			ObjectOutputStream oos = new ObjectOutputStream(
+					new BufferedOutputStream(new FileOutputStream("/home/lvuser/" + file)));
+      oos.writeObject(motorValues);
+      oos.writeObject(driveTrainSpeed);
+			oos.close();
+			FileInputStream inputStream = new FileInputStream(file);
+
+			byte[] buffer = new byte[(int) file.length()];
+			inputStream.read(buffer);
+
+			URL url = new URL("ftp://anonymous@roborio-" + 834 + "-frc.local/home/lvuser/" + file);
+			URLConnection conn = url.openConnection();
+
+			conn.getOutputStream().write(buffer);
+			conn.getOutputStream().close();
+			inputStream.close();
+
+			file.delete();
+		} catch (Exception e1) {
+			e1.printStackTrace();
+
+		}
+	}
 
   /**
    * This function is called periodically during test mode.

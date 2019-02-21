@@ -10,11 +10,11 @@ package frc.robot.auton;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class Auton2Step2 extends Command {
+public class Baseline extends Command {
 
-  final double DISTANCE_TURN = 100;
+  final double DISTANCEFORWARD = 100;
 
-  public Auton2Step2() {
+  public Baseline() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Robot.DriveTrain);
@@ -31,16 +31,16 @@ public class Auton2Step2 extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-  
-  Robot.DriveTrain.setDrive(.75, -.75);
-  
+
+    Robot.DriveTrain.setDrive(1, 1);
+
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
 
-    if (Robot.DriveTrain.getLeftEncoder() > DISTANCE_TURN) {
+    if ((Robot.DriveTrain.getLeftEncoder() > DISTANCEFORWARD) && (Robot.DriveTrain.getRightEncoder() > DISTANCEFORWARD)) {
 
       return true;
 
@@ -53,18 +53,18 @@ public class Auton2Step2 extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-  
+
     Robot.DriveTrain.stop();
-  
+
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-  
-    Robot.DriveTrain.stop();
-  
-  }
 
+    Robot.DriveTrain.stop();
+
+  }
+  
 }

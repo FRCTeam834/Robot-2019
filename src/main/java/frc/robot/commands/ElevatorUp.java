@@ -23,6 +23,21 @@ public class ElevatorUp extends Command {
   protected void initialize() {
 
     Robot.Elevator.elevatorUp();
+
+    if (Robot.Elevator.getLimitTop()) {
+
+      Robot.elevTop = true;
+
+    } else if (Robot.Elevator.getLimitBottom()) {
+
+      Robot.elevBottom = true;
+
+    } else {
+
+      Robot.elevBottom = false;
+      Robot.elevTop = false;
+
+    }
   
   }
 
@@ -42,7 +57,9 @@ public class ElevatorUp extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
+
     Robot.Elevator.elevatorStop();
+
   }
 
   // Called when another command which requires one or more of the same

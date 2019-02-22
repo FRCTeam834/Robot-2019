@@ -29,6 +29,17 @@ public class ArmDown extends Command {
   @Override
   protected void execute() {
 
+    Robot.Arm.armDown();
+
+    if (Robot.Arm.isArmDown()) {
+
+      Robot.armDown = true;
+
+    } else {
+
+      Robot.armDown = false;
+
+    }
 
   }
 

@@ -12,7 +12,7 @@ import frc.robot.Robot;
 
 public class Baseline extends Command {
 
-  final double DISTANCEFORWARD = 100;
+  final double DISTANCEFORWARD = 200;
 
   public Baseline() {
     // Use requires() here to declare subsystem dependencies
@@ -32,7 +32,7 @@ public class Baseline extends Command {
   @Override
   protected void execute() {
 
-    Robot.DriveTrain.setDrive(1, 1);
+    Robot.DriveTrain.setDrive(.5, .5);
 
   }
 
@@ -66,5 +66,5 @@ public class Baseline extends Command {
     Robot.DriveTrain.stop();
 
   }
-  
+
 }

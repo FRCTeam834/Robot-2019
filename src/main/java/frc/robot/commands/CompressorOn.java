@@ -36,17 +36,18 @@ public class CompressorOn extends Command {
     if (pressureReading >= 3.7) {
 
       Robot.Compressor.compressorOn();
+      Robot.isSucced = false;
 
-    }
-    else if (pressureReading < 3.7) {
+    } else if (pressureReading < 3.7) {
 
       Robot.Compressor.compressorStop();
+      Robot.isSucced = true;
 
     }
 
     Robot.Compressor.vacuumSucc();
     //System.out.println(Robot.Compressor.getPressure());
-    SmartDashboard.putString("DB/String 4", "CompOn:" + Double.toString(Robot.Compressor.getPressure()));
+    //SmartDashboard.putString("DB/String 4", "CompOn:" + Double.toString(Robot.Compressor.getPressure()));
 
   }
 

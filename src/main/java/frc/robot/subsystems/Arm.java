@@ -60,5 +60,11 @@ public class Arm extends Subsystem {
 
   }
 
+  public boolean isArmDown() {
+
+    return false;
+
+  }
+
 
 }

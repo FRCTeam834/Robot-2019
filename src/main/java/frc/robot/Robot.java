@@ -23,6 +23,7 @@ import frc.robot.subsystems.NavX;
 import frc.robot.subsystems.Scissor;
 import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.Compressor;
+import frc.robot.auton.Baseline;
 import frc.robot.commands.RunAuton;
 
 //Driver Input Imports
@@ -55,6 +56,8 @@ import edu.wpi.first.vision.VisionThread;
  */
 public class Robot extends TimedRobot {
 
+
+  //Subsystems and Commands
   public static DriveTrain DriveTrain;
   public static OI oi;
   public static NavX NavX;
@@ -66,7 +69,10 @@ public class Robot extends TimedRobot {
   public static Compressor Compressor;
   public static MyVisionPipeline MyVisionPipeline;
   public static RunAuton RunAuton;
-  public static boolean autoDriveOn = false;
+  public static Baseline Baseline;
+
+
+  //Camera Things
   private static final int IMG_WIDTH = 320;
 	private static final int IMG_HEIGHT = 240;
 	public VisionThread visionThread;
@@ -81,12 +87,31 @@ public class Robot extends TimedRobot {
   Mat source;
   Mat output;
   KeyPoint[] mat;
+
+
+  //DriverInput things
   private double systemTimeStart = 0;
-	
+  public static boolean autoDriveOn = false;
 	private final Object imgLock = new Object();
-  
+
+
+  //Other Stuff
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
+
+
+  //Variables for Arduino
+  public static boolean isSucced = false;
+  public static boolean firstIsSucc = false;
+  public static boolean elevTop = false;
+  public static boolean firstElevTop = false;
+  public static boolean elevBottom = false;
+  public static boolean firstElevBottom = false;
+  public static boolean haveBall = false;
+  public static boolean firstHaveBall = false;
+  public static boolean armDown = false;
+  public static boolean firstArmDown = false;
+
 
   /**
    * This function is run when the robot is first started up and should be
@@ -174,12 +199,13 @@ public class Robot extends TimedRobot {
 
   @Override
   public void autonomousInit() {
+
     m_autonomousCommand = m_chooser.getSelected();
 
     /*
      * String autoSelected = SmartDashboard.getString("Auto Selector",
      * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
-     * = new MyAutoCommand(); break; case "Default Auto": default:
+     * = new MyAutoCommand123(); break; case "Default Auto": default:
      * autonomousCommand = new ExampleCommand(); break; }
      */
 
@@ -188,7 +214,18 @@ public class Robot extends TimedRobot {
       m_autonomousCommand.start();
     }
     
+
+
     RunAuton.start();
+
+    String auton = SmartDashboard.getString("DB/String 0", "baseline");
+
+    if (auton.equalsIgnoreCase("baseline")) {
+
+      Baseline.start();
+
+    }
+
 
 
   }
@@ -264,7 +301,52 @@ public class Robot extends TimedRobot {
       save(new File(SmartDashboard.getString("DB/String 0", "")));
 			recordStatus = false;
 			SmartDashboard.putString("DB/String 1", "");
-		}
+    }
+    
+
+    //Arduino Code
+
+    else if (elevTop) {
+      SmartDashboard.putString("DB/String 8", "u");
+    }
+    else if (elevBottom && !haveBall) {
+      SmartDashboard.putString("DB/String 8", "d");
+    }
+    else if (haveBall) {
+      SmartDashboard.putString("DB/String 8", "b");
+    }
+    if (isSucced) {
+      SmartDashboard.putString("DB/String 8", "c");
+    }
+    else if (armDown) {
+      SmartDashboard.putString("DB/String 8", "a");
+    }
+    else {
+      SmartDashboard.putString("DB/String 8", "n");
+    }
+    
+    /*
+  public static boolean isSucced = false;
+  public static boolean elevTop = false;
+  public static boolean elevBottom = false;
+  public static boolean haveBall = false;
+  public static boolean armDown = false;
+  */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   }
 

@@ -85,6 +85,18 @@ public class Elevator extends Subsystem {
 
   }
 
+  public boolean getLimitTop() {
+
+    return false;
+
+  }
+
+  public boolean getLimitBottom() {
+
+    return false;
+
+  }
+
 
 
 }

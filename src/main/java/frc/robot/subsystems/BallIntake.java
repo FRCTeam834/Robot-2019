@@ -54,5 +54,11 @@ public class BallIntake extends Subsystem {
 
   }
 
+  public boolean haveBall() {
+
+    return false;
+
+  }
+
 
 }

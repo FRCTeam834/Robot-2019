@@ -15,6 +15,7 @@ public class ArmHold extends Command {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Robot.Arm);
+
   }
 
   // Called just before this Command runs the first time
@@ -29,8 +30,17 @@ public class ArmHold extends Command {
   @Override
   protected void execute() {
 
-    
+    Robot.Arm.armHold();
 
+    if (Robot.Arm.isArmDown()) {
+
+      Robot.armDown = true;
+
+    } else {
+
+      Robot.armDown = false;
+
+    }
 
   }
 

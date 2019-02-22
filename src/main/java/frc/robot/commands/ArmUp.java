@@ -30,6 +30,17 @@ public class ArmUp extends Command {
   @Override
   protected void execute() {
 
+    Robot.Arm.armUp();
+
+    if (Robot.Arm.isArmDown()) {
+
+      Robot.armDown = true;
+
+    } else {
+
+      Robot.armDown = false;
+
+    }
 
   }
 

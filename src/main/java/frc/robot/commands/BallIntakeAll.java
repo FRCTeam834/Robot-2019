@@ -11,16 +11,20 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
 public class BallIntakeAll extends Command {
+
   public BallIntakeAll() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Robot.BallIntake);
+
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+
     Robot.BallIntake.ballIntakeStop();
+
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -31,13 +35,44 @@ public class BallIntakeAll extends Command {
 
       Robot.BallIntake.ballIntakeIn();
 
+      if (Robot.BallIntake.haveBall()) {
+
+        Robot.haveBall = true;
+
+      } else {
+
+        Robot.haveBall = false;
+
+      }
+
+
     } else if ((Robot.oi.xbox.getRawAxis(2)) > .75) {
 
       Robot.BallIntake.ballIntakeOut();
 
+      if (Robot.BallIntake.haveBall()) {
+
+        Robot.haveBall = true;
+
+      } else {
+
+        Robot.haveBall = false;
+
+      }
+
     } else {
 
       Robot.BallIntake.ballIntakeStop();
+
+      if (Robot.BallIntake.haveBall()) {
+
+        Robot.haveBall = true;
+
+      } else {
+
+        Robot.haveBall = false;
+
+      }
 
     }
 
@@ -65,5 +100,7 @@ public class BallIntakeAll extends Command {
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+
+    
   }
 }

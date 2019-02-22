@@ -31,10 +31,22 @@ public class ElevatorHold extends Command {
   @Override
   protected void execute() {
 
-    //System.out.println("Executing ElevatorHold.java");
     SmartDashboard.putString("DB/String 2", "Left:" + Double.toString(Robot.Elevator.getElevatorHeight()));
-    //System.out.println(Robot.Elevator.getElevatorHeight());
     
+    if (Robot.Elevator.getLimitTop()) {
+
+      Robot.elevTop = true;
+
+    } else if (Robot.Elevator.getLimitBottom()) {
+
+      Robot.elevBottom = true;
+
+    } else {
+
+      Robot.elevBottom = false;
+      Robot.elevTop = false;
+
+    }
 
   }
 

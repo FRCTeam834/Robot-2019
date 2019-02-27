@@ -42,6 +42,7 @@ public class BallIntakeAll extends Command {
       } else {
 
         Robot.haveBall = false;
+        Robot.firstHaveBall = false;
 
       }
 

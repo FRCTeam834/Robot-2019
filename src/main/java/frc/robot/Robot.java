@@ -24,6 +24,7 @@ import frc.robot.subsystems.Scissor;
 import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.Compressor;
 import frc.robot.auton.Baseline;
+import frc.robot.commands.Drive;
 import frc.robot.commands.RunAuton;
 
 //Driver Input Imports
@@ -70,6 +71,8 @@ public class Robot extends TimedRobot {
   public static MyVisionPipeline MyVisionPipeline;
   public static RunAuton RunAuton;
   public static Baseline Baseline;
+  public static Drive Drive;
+
 
 
   //Camera Things
@@ -131,7 +134,7 @@ public class Robot extends TimedRobot {
           //}
       }
   });
-  visionThread.start();
+  //visionThread.start();
 
 
 
@@ -210,19 +213,27 @@ public class Robot extends TimedRobot {
      */
 
     // schedule the autonomous command (example)
-    if (m_autonomousCommand != null) {
+    /*if (m_autonomousCommand != null) {
       m_autonomousCommand.start();
-    }
+    }*/
     
 
 
-    RunAuton.start();
-
     String auton = SmartDashboard.getString("DB/String 0", "baseline");
+    String autonType = SmartDashboard.getString("DB/String 1", "baseline");
 
     if (auton.equalsIgnoreCase("baseline")) {
 
       Baseline.start();
+
+    } else if (autonType.equalsIgnoreCase("driverInput")) {
+
+      RunAuton.start();
+    
+    } else {
+
+      //Scheduler.getInstance().run();
+
 
     }
 
@@ -306,19 +317,19 @@ public class Robot extends TimedRobot {
 
     //Arduino Code
 
-    else if (elevTop) {
+    else if (elevTop && firstElevTop) {
       SmartDashboard.putString("DB/String 8", "u");
     }
-    else if (elevBottom && !haveBall) {
+    else if (elevBottom && firstElevBottom) {
       SmartDashboard.putString("DB/String 8", "d");
     }
-    else if (haveBall) {
+    else if (haveBall && firstHaveBall) {
       SmartDashboard.putString("DB/String 8", "b");
     }
-    if (isSucced) {
+    if (isSucced && firstIsSucc) {
       SmartDashboard.putString("DB/String 8", "c");
     }
-    else if (armDown) {
+    else if (armDown && firstArmDown) {
       SmartDashboard.putString("DB/String 8", "a");
     }
     else {
@@ -332,19 +343,6 @@ public class Robot extends TimedRobot {
   public static boolean haveBall = false;
   public static boolean armDown = false;
   */
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

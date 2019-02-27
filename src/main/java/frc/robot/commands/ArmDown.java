@@ -34,11 +34,12 @@ public class ArmDown extends Command {
     if (Robot.Arm.isArmDown()) {
 
       Robot.armDown = true;
-
+      
     } else {
 
       Robot.armDown = false;
-
+      Robot.firstArmDown = false;
+      
     }
 
   }

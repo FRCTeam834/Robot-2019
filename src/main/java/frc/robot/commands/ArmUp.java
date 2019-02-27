@@ -39,6 +39,7 @@ public class ArmUp extends Command {
     } else {
 
       Robot.armDown = false;
+      Robot.firstArmDown = false;
 
     }
 

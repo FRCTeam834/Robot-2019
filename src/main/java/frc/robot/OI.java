@@ -50,7 +50,6 @@ public class OI {
   public Joystick leftJoystick = new Joystick(0);
   public Joystick rightJoystick = new Joystick(1);
   public XboxController xbox = new XboxController(2);
-  public Joystick launchpad = new Joystick(3);
   //public Joystick launchpad = new Joystick(3);
 
   // Buttons
@@ -89,7 +88,7 @@ public class OI {
       rJoystick8 = new JoystickButton(rightJoystick, 8),
       rJoystick9 = new JoystickButton(rightJoystick, 9), 
       rJoystick10 = new JoystickButton(rightJoystick, 10),
-      rJoystick11 = new JoystickButton(rightJoystick, 11),
+      rJoystick11 = new JoystickButton(rightJoystick, 11);
 
       //Triggers
       //xbox.getBumperPressed(GenericHID.Hand.kLeft);
@@ -98,7 +97,7 @@ public class OI {
       //Arcade Buttons
       //Syntax: BG = Button Group 
       //Ex. BGTL = Button Group Top Left
-      BGTL = new JoystickButton(launchpad, 10), 
+      /*BGTL = new JoystickButton(launchpad, 10), 
       BGTM = new JoystickButton(launchpad, 9),
       BGTR = new JoystickButton(launchpad, 8), 
       BGML = new JoystickButton(launchpad, 7),
@@ -124,23 +123,23 @@ public class OI {
     rJoystick3.whenPressed(new DriveStraightSlow());
 
     // Scissor Lift
-    BGBM.whileHeld(new ScissorUp());
-    BGTM.whileHeld(new ScissorDown());
+    xboxStart.whileHeld(new ScissorUp());
+    xboxBack.whileHeld(new ScissorDown());
 
     // Elevator
     xboxY.whileHeld(new ElevatorUp());
     xboxX.whileHeld(new ElevatorDown());
-    BGBL.whenPressed(new ElevatorPreset1());
+    /*BGBL.whenPressed(new ElevatorPreset1());
     BGML.whenPressed(new ElevatorPreset2());
     BGTL.whenPressed(new ElevatorPreset3());
     BGBR.whenPressed(new ElevatorPreset4());
     BGMR.whenPressed(new ElevatorPreset5());
     BGTR.whenPressed(new ElevatorPreset6());
-    BGMM.whenPressed(new ResetElevEncoder());
+    BGMM.whenPressed(new ResetElevEncoder());*/
 
     // Ball Intake
-    xboxStart.whileHeld(new BallIntakeIn());
-    xboxBack.whileHeld(new BallIntakeOut());
+    /*xboxStart.whileHeld(new BallIntakeIn());
+    xboxBack.whileHeld(new BallIntakeOut());*/
 
     // Arm
     xboxA.whileHeld(new ArmDown());

@@ -44,9 +44,8 @@ public class MyVisionPipeline implements edu.wpi.first.vision.VisionPipeline{
 	/**
 	 * This is the primary method that runs the entire pipeline and updates the outputs.
 	 */
-	@Override	
-	public void process(Mat source0) {
-		//Step Resize_Image0:
+	@Override	public void process(Mat source0) {
+		// Step Resize_Image0:
 		Mat resizeImageInput = source0;
 		double resizeImageWidth = 640.0;
 		double resizeImageHeight = 480.0;
@@ -93,7 +92,7 @@ public class MyVisionPipeline implements edu.wpi.first.vision.VisionPipeline{
 		// Step Blur0:
 		Mat blurInput = cvErode1Output;
 		BlurType blurType = BlurType.get("Box Blur");
-		double blurRadius = 14.150943396226415;
+		double blurRadius = 16.50943396226415;
 		blur(blurInput, blurType, blurRadius, blurOutput);
 
 		// Step Find_Blobs0:

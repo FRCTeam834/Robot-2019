@@ -30,7 +30,15 @@ public class ScissorUp extends Command {
   @Override
   protected void execute() {
     
+    if (Robot.Scissor.scissorsClosed()) {
+
+      Robot.Scissor.stop();
+
+    } else {
+
     Robot.Scissor.setScissor(-1);
+
+    }
 
   }
 

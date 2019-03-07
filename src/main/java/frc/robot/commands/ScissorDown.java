@@ -22,7 +22,8 @@ public class ScissorDown extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.Scissor.setScissor(0);
+
+    
     
   }
 
@@ -30,6 +31,16 @@ public class ScissorDown extends Command {
   @Override
   protected void execute() {
     Robot.Scissor.setScissor(1);
+
+    if (Robot.Scissor.scissorsClosed()) {
+
+      Robot.Scissor.stop();
+
+    } else {
+
+    Robot.Scissor.setScissor(0);
+
+    }
 
   }
 

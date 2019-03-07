@@ -7,6 +7,7 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.commands.ScissorStop;
 
@@ -21,6 +22,9 @@ public class Scissor extends Subsystem {
 
   //WPI_TalonSRX scissor = new WPI_TalonSRX(7);
   WPI_VictorSPX scissor = new WPI_VictorSPX(5);
+  DigitalInput scissorBottom = new DigitalInput(0); //NEEDS TO BE FIXED
+
+
 
     @Override
   public void initDefaultCommand() {
@@ -43,7 +47,7 @@ public class Scissor extends Subsystem {
 
   public boolean scissorsClosed() {
 
-    return false;
+    return scissorBottom.get()
 
   }
 

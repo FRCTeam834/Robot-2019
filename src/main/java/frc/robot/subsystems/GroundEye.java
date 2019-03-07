@@ -17,7 +17,7 @@ public class GroundEye extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
-  DigitalInput groundEye = new DigitalInput(0);
+  DigitalInput groundEye = new DigitalInput(2);
 
   
   @Override

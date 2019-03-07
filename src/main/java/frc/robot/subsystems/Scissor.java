@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.commands.ScissorStop;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 
 /*
@@ -18,7 +19,8 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
  */
 public class Scissor extends Subsystem {
 
- WPI_TalonSRX scissor = new WPI_TalonSRX(7);
+  //WPI_TalonSRX scissor = new WPI_TalonSRX(7);
+  WPI_VictorSPX scissor = new WPI_VictorSPX(5);
 
     @Override
   public void initDefaultCommand() {
@@ -39,6 +41,11 @@ public class Scissor extends Subsystem {
 
   }
 
+  public boolean scissorsClosed() {
+
+    return false;
+
+  }
 
 
 }

@@ -8,8 +8,10 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
 import frc.robot.commands.ElevatorHold;
 
@@ -22,8 +24,11 @@ public class Elevator extends Subsystem {
   // here. Call these from Commands.
   double pi = 3.14159265358979323846264338327950288;
 
-  WPI_TalonSRX elevator = new WPI_TalonSRX(9);
-  Encoder elevEncoder = new Encoder(8, 9);
+  //WPI_TalonSRX elevator = new WPI_TalonSRX(9);
+  WPI_VictorSPX elevator = new WPI_VictorSPX(1);
+  Encoder elevEncoder = new Encoder(0, 1);
+  DigitalInput photoEye = new DigitalInput(2);
+  DigitalInput limitBottom = new DigitalInput(3);
   
   //double spoolCircumference = (pi * 4); // Fix with actual calculations
   
@@ -93,7 +98,7 @@ public class Elevator extends Subsystem {
 
   public boolean getLimitBottom() {
 
-    return false;
+    return limitBottom.get();
 
   }
 

@@ -8,6 +8,7 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.Solenoid;
@@ -20,7 +21,8 @@ public class Compressor extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
-  WPI_TalonSRX compressor = new WPI_TalonSRX(8);
+  //WPI_TalonSRX compressor = new WPI_TalonSRX(8);
+  WPI_VictorSPX compressor = new WPI_VictorSPX(4);
   Solenoid vacuumSol = new Solenoid(10, 0);
   Solenoid vacuumSensor = new Solenoid(10, 3);
   AnalogInput pressureSensor = new AnalogInput(0);

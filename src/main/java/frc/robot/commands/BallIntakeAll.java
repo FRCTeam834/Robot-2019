@@ -38,6 +38,7 @@ public class BallIntakeAll extends Command {
       if (Robot.BallIntake.haveBall()) {
 
         Robot.haveBall = true;
+        Robot.BallIntake.ballIntakeStop();
 
       } else {
 

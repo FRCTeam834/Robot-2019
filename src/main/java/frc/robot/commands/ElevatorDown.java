@@ -38,6 +38,7 @@ public class ElevatorDown extends Command {
     } else if (Robot.Elevator.getLimitBottom()) {
 
       Robot.elevBottom = true;
+      Robot.Elevator.elevatorStop();
 
     } else {
 

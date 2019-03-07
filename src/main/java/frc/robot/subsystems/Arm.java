@@ -7,7 +7,9 @@
 
 package frc.robot.subsystems;
 
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+//import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.commands.ArmHold;
@@ -20,7 +22,8 @@ public class Arm extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
-  WPI_TalonSRX arm = new WPI_TalonSRX(11);
+  //WPI_TalonSRX arm = new WPI_TalonSRX(11);
+  WPI_VictorSPX arm = new WPI_VictorSPX(8);
 
   @Override
   public void initDefaultCommand() {
@@ -34,6 +37,7 @@ public class Arm extends Subsystem {
   public void armUp() {
 
     arm.set(.8);
+    
 
   }
 

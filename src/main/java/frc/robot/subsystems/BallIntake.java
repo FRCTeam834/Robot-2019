@@ -8,7 +8,9 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.commands.BallIntakeAll;
 
@@ -20,7 +22,9 @@ public class BallIntake extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
-  WPI_TalonSRX ballIntake = new WPI_TalonSRX(12);
+  //WPI_TalonSRX ballIntake = new WPI_TalonSRX(12);
+  WPI_VictorSPX ballIntake = new WPI_VictorSPX(3);
+  DigitalInput photoEye = new DigitalInput(4);
 
   @Override
   public void initDefaultCommand() {
@@ -56,7 +60,13 @@ public class BallIntake extends Subsystem {
 
   public boolean haveBall() {
 
-    return false;
+    if (photoEye.get()) {
+
+      return true;
+
+  }
+
+  return false;
 
   }
 

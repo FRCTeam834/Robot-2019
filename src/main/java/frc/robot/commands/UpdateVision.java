@@ -62,7 +62,7 @@ public class UpdateVision extends Command {
  
     MyVisionPipeline.process(source);
 
-    SmartDashboard.putString("DB/String 8", "BlocksTotal:" + Long.toString(MyVisionPipeline.findBlobsOutput().total()));
+    SmartDashboard.putString("DB/String 8", "BlobsTotal:" + Long.toString(MyVisionPipeline.findBlobsOutput().total()));
 
     //SmartDashboard.putString("DB/String 7", "BlockPos:" + Integer.toString(MyVisionPipeline.findBlobsOutput().toArray().length));
     //SmartDashboard.putString("DB/String 8", Double.toString(centerX));

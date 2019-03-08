@@ -56,12 +56,12 @@ public class DriveTrain extends Subsystem {
 
 
 */
-  CANSparkMax leftDrive1 = new CANSparkMax(1, CANSparkMax.MotorType.kBrushless);
-  CANSparkMax leftDrive2 = new CANSparkMax(2, CANSparkMax.MotorType.kBrushless);
-  CANSparkMax leftDrive3 = new CANSparkMax(3, CANSparkMax.MotorType.kBrushless);
-  CANSparkMax rightDrive1 = new CANSparkMax(4, CANSparkMax.MotorType.kBrushless);
-  CANSparkMax rightDrive2 = new CANSparkMax(5, CANSparkMax.MotorType.kBrushless);
-  CANSparkMax rightDrive3 = new CANSparkMax(6, CANSparkMax.MotorType.kBrushless);
+  CANSparkMax leftDrive1 = new CANSparkMax(4, CANSparkMax.MotorType.kBrushless);
+  CANSparkMax leftDrive2 = new CANSparkMax(5, CANSparkMax.MotorType.kBrushless);
+  CANSparkMax leftDrive3 = new CANSparkMax(6, CANSparkMax.MotorType.kBrushless);
+  CANSparkMax rightDrive1 = new CANSparkMax(1, CANSparkMax.MotorType.kBrushless);
+  CANSparkMax rightDrive2 = new CANSparkMax(2, CANSparkMax.MotorType.kBrushless);
+  CANSparkMax rightDrive3 = new CANSparkMax(3, CANSparkMax.MotorType.kBrushless);
 
   SpeedControllerGroup leftDriveGroup = new SpeedControllerGroup(leftDrive1, leftDrive2, leftDrive3);
   SpeedControllerGroup rightDriveGroup = new SpeedControllerGroup(rightDrive1, rightDrive2, rightDrive3);

@@ -69,7 +69,7 @@ public class Arm extends Subsystem {
 
   public boolean isArmDown() {
 
-    return armLimit.get();
+    return !(armLimit.get());
 
   }
 

@@ -25,9 +25,9 @@ public class Elevator extends Subsystem {
   double pi = 3.14159265358979323846264338327950288;
 
   //WPI_TalonSRX elevator = new WPI_TalonSRX(9);
-  WPI_VictorSPX elevator = new WPI_VictorSPX(1);
+  WPI_VictorSPX elevator = new WPI_VictorSPX(7);
   Encoder elevEncoder = new Encoder(0, 1);
-  DigitalInput photoEye = new DigitalInput(2);
+  //DigitalInput photoEye = new DigitalInput(2);
   DigitalInput limitBottom = new DigitalInput(3);
   
   //double spoolCircumference = (pi * 4); // Fix with actual calculations

@@ -34,7 +34,7 @@ public class Drive extends Command {
     double leftSpeed = Robot.oi.leftJoystick.getY();
     double rightSpeed = Robot.oi.rightJoystick.getY();
     
-    float roll = Robot.NavX.roll();
+    //float roll = Robot.NavX.roll();
 
     //if (roll >= 45) {
        //Alex

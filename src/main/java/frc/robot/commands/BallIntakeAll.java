@@ -33,8 +33,6 @@ public class BallIntakeAll extends Command {
 
     if ((Robot.oi.xbox.getRawAxis(3)) > .75) {
 
-      Robot.BallIntake.ballIntakeIn();
-
       if (Robot.BallIntake.haveBall()) {
 
         Robot.haveBall = true;
@@ -44,6 +42,7 @@ public class BallIntakeAll extends Command {
 
         Robot.haveBall = false;
         Robot.firstHaveBall = false;
+        Robot.BallIntake.ballIntakeIn();
 
       }
 

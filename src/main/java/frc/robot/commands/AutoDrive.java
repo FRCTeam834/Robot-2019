@@ -59,8 +59,7 @@ public class AutoDrive extends Command {
     for(int i = 0; i < aMat.length; i++){
         targetLocation[i][0] = aMat[i].pt.x;
         targetLocation[i][1] = aMat[i].pt.y;
-    }
-    boolean alignment = Robot.GroundEye.findTape(); 
+    } 
     int numBlocks = aMat.length;
     double avgX;
     final int centerScreen = 0; //Center of Screen
@@ -75,7 +74,7 @@ public class AutoDrive extends Command {
       Robot.oi.xbox.setRumble(RumbleType.kLeftRumble, 1);
       Robot.oi.xbox.setRumble(RumbleType.kRightRumble, 1); 
     }
-    if(alignment && targetLocation[0][0] == 1){ 
+    if(targetLocation[0][0] == 1){ 
       if(numBlocks == 1){ 
         if(targetLocation[0][0] > centerScreen){
         System.out.println("Turning Right (1 Block w/ Alignment)"); 
@@ -105,42 +104,9 @@ public class AutoDrive extends Command {
      else{ 
         System.out.println("Too Many Blocks");
         Robot.oi.xbox.setRumble(RumbleType.kLeftRumble, 1);
-        Robot.oi.xbox.setRumble(RumbleType.kRightRumble, 1); } } 
-    else if(!alignment && targetLocation[0][0] == 1){
-      if(numBlocks == 1){ 
-        if(targetLocation[0][0] > centerScreen){
-          System.out.println("Turning Right (1 Block No Alignment)"); 
-        } 
-        else if(targetLocation[0][0] < centerScreen){
-          System.out.println("Turning Left (1 Block No Alignment)"); 
-        } 
-        else{
-          System.out.println("No Idea"); //Do Nothing
-          Robot.oi.xbox.setRumble(RumbleType.kLeftRumble, 1);
-          Robot.oi.xbox.setRumble(RumbleType.kRightRumble, 1); 
-        } 
-      } 
-      else if(numBlocks == 2){
-        avgX = (targetLocation[0][0] + targetLocation[1][0])/ 2; 
-        if(avgX < centerScreen){ 
-          System.out.println("Turning Right (2 Blocks No Alignment)"); 
-        }
-        else if(avgX > centerScreen){
-          System.out.println("Turning Left (2 Blocks No Alignment)"); 
-        } 
-        else {
-          System.out.println("No Idea"); //Do Nothing
-          Robot.oi.xbox.setRumble(RumbleType.kLeftRumble, 1);
-         Robot.oi.xbox.setRumble(RumbleType.kRightRumble, 1); 
-        } 
-      } 
-      else{
-        System.out.println("Too Many Blocks");
-        Robot.oi.xbox.setRumble(RumbleType.kLeftRumble, 1);
         Robot.oi.xbox.setRumble(RumbleType.kRightRumble, 1); 
-      }  
-    }
- 
+      } 
+    }  
   }
     
     

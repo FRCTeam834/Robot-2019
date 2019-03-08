@@ -19,9 +19,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.BallIntake;
 import frc.robot.subsystems.DriveTrain;
-import frc.robot.subsystems.GroundEye;
 import frc.robot.subsystems.MyVisionPipeline;
-import frc.robot.subsystems.NavX;
+//import frc.robot.subsystems.NavX;
 import frc.robot.subsystems.Scissor;
 import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.Compressor;
@@ -63,8 +62,7 @@ public class Robot extends TimedRobot {
   //Subsystems and Commands
   public static DriveTrain DriveTrain;
   public static OI oi;
-  public static NavX NavX;
-  public static GroundEye GroundEye;
+  //public static NavX NavX;
   public static Scissor Scissor;
   public static Elevator Elevator;
   public static BallIntake BallIntake;
@@ -119,7 +117,7 @@ public class Robot extends TimedRobot {
 
   //LED's
   public static double lights = 0;
-  Spark led;
+  //Spark led;
 
 
   /**
@@ -151,16 +149,15 @@ public class Robot extends TimedRobot {
     SmartDashboard.putData("Auto mode", m_chooser);
 
     DriveTrain = new DriveTrain();
-    GroundEye = new GroundEye();
     Scissor = new Scissor();
     Elevator = new Elevator();
     BallIntake = new BallIntake();
     Arm = new Arm();
-    NavX = new NavX();
+    //NavX = new NavX();
     Compressor = new Compressor();
     MyVisionPipeline = new MyVisionPipeline();
     RunAuton = new RunAuton();
-    led = new Spark(9);
+    //led = new Spark(9);
     
 
 
@@ -280,7 +277,7 @@ public class Robot extends TimedRobot {
   public void teleopPeriodic() {
 
 
-    led.set(lights);
+    //led.set(lights);
 
 
     System.out.println(recordStatus);

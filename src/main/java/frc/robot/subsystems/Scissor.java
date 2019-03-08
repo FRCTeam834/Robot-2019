@@ -48,7 +48,7 @@ public class Scissor extends Subsystem {
 
   public boolean scissorsClosed() {
 
-    return scissorBottom.get();
+    return !(scissorBottom.get());
 
   }
 

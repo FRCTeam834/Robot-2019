@@ -22,12 +22,13 @@ public class Scissor extends Subsystem {
 
   //WPI_TalonSRX scissor = new WPI_TalonSRX(7);
   WPI_VictorSPX scissor = new WPI_VictorSPX(5);
-  DigitalInput scissorBottom = new DigitalInput(0); //NEEDS TO BE FIXED
+  DigitalInput scissorBottom = new DigitalInput(5);
 
 
 
     @Override
   public void initDefaultCommand() {
+    
     setDefaultCommand(new ScissorStop());
     // Set the default command for a subsystem here.
   }
@@ -47,7 +48,7 @@ public class Scissor extends Subsystem {
 
   public boolean scissorsClosed() {
 
-    return scissorBottom.get()
+    return scissorBottom.get();
 
   }
 

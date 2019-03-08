@@ -7,6 +7,8 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.Spark;
+
 //import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -115,6 +117,10 @@ public class Robot extends TimedRobot {
   public static boolean armDown = false;
   public static boolean firstArmDown = false;
 
+  //LED's
+  public static double lights = 0;
+  Spark led;
+
 
   /**
    * This function is run when the robot is first started up and should be
@@ -154,6 +160,7 @@ public class Robot extends TimedRobot {
     Compressor = new Compressor();
     MyVisionPipeline = new MyVisionPipeline();
     RunAuton = new RunAuton();
+    led = new Spark(9);
     
 
 
@@ -271,6 +278,11 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
+
+
+    led.set(lights);
+
+
     System.out.println(recordStatus);
     System.out.println(SmartDashboard.getString("DB/String 1", ""));
     

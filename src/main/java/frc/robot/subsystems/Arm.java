@@ -11,6 +11,7 @@ import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 //import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.commands.ArmHold;
 
@@ -24,6 +25,8 @@ public class Arm extends Subsystem {
 
   //WPI_TalonSRX arm = new WPI_TalonSRX(11);
   WPI_VictorSPX arm = new WPI_VictorSPX(8);
+  DigitalInput armLimit = new DigitalInput(6);
+
 
   @Override
   public void initDefaultCommand() {
@@ -66,7 +69,7 @@ public class Arm extends Subsystem {
 
   public boolean isArmDown() {
 
-    return false;
+    return armLimit.get();
 
   }
 

@@ -34,6 +34,7 @@ public class ArmDown extends Command {
     if (Robot.Arm.isArmDown()) {
 
       Robot.armDown = true;
+      Robot.Arm.armStop();
       
     } else {
 

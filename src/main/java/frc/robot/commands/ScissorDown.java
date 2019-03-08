@@ -30,7 +30,6 @@ public class ScissorDown extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.Scissor.setScissor(1);
 
     if (Robot.Scissor.scissorsClosed()) {
 
@@ -38,7 +37,7 @@ public class ScissorDown extends Command {
 
     } else {
 
-    Robot.Scissor.setScissor(0);
+    Robot.Scissor.setScissor(1);
 
     }
 

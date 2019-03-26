@@ -36,9 +36,11 @@ public class ScissorUp extends Command {
 
     } else {
 
-    Robot.Scissor.setScissor(-1);
+    Robot.Scissor.setScissor(1);
 
     }
+
+    //Robot.Scissor.setScissor(-1);
 
   }
 

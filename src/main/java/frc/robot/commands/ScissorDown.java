@@ -31,7 +31,7 @@ public class ScissorDown extends Command {
   @Override
   protected void execute() {
 
-    if (Robot.Scissor.scissorsClosed()) {
+    /*if (Robot.Scissor.scissorsClosed()) {
 
       Robot.Scissor.stop();
 
@@ -39,7 +39,9 @@ public class ScissorDown extends Command {
 
     Robot.Scissor.setScissor(1);
 
-    }
+    } */
+
+    Robot.Scissor.setScissor(-1);
 
   }
 
@@ -54,6 +56,7 @@ public class ScissorDown extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    
     Robot.Scissor.setScissor(0);
 
   }

@@ -25,7 +25,7 @@ public class Arm extends Subsystem {
 
   //WPI_TalonSRX arm = new WPI_TalonSRX(11);
   WPI_VictorSPX arm = new WPI_VictorSPX(8);
-  DigitalInput armLimit = new DigitalInput(6);
+  DigitalInput armLimit = new DigitalInput(4);
 
 
   @Override
@@ -39,14 +39,14 @@ public class Arm extends Subsystem {
 
   public void armUp() {
 
-    arm.set(.8);
+    arm.set(-.8);
     
 
   }
 
   public void armDown() {
 
-    arm.set(-.8);
+    arm.set(.8);
 
   }
 
@@ -58,7 +58,7 @@ public class Arm extends Subsystem {
 
   public void armHold() {
 
-    arm.set(.05);
+    arm.set(0);
   }
 
   public void setArm(double speed) {

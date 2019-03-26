@@ -39,7 +39,7 @@ public class ArmHold extends Command {
     } else {
 
       Robot.armDown = false;
-      Robot.firstArmDown = false;
+      Robot.firstArmDown = true;
 
     }
 

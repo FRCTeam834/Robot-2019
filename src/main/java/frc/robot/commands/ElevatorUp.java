@@ -22,20 +22,28 @@ public class ElevatorUp extends Command {
   @Override
   protected void initialize() {
 
-    Robot.Elevator.elevatorUp();
+    
 
     if (Robot.Elevator.getLimitTop()) {
 
       Robot.elevTop = true;
+      Robot.firstElevBottom = true;
 
-    } else if (Robot.Elevator.getLimitBottom()) {
+      Robot.Elevator.elevatorHold();
 
+    } /*else if (Robot.Elevator.getLimitBottom()) {
+
+      Robot.Elevator.elevatorUp();
       Robot.elevBottom = true;
+      Robot.firstElevTop = true;
+      
+    } */ else {
 
-    } else {
-
+      Robot.Elevator.elevatorUp();
       Robot.elevBottom = false;
       Robot.elevTop = false;
+      Robot.firstElevTop = true;
+      Robot.firstElevBottom = true;
 
     }
   

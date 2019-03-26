@@ -29,19 +29,21 @@ public class ElevatorDown extends Command {
   @Override
   protected void execute() {
 
-    Robot.Elevator.elevatorDown();
+    //Robot.Elevator.elevatorDown();
 
-    if (Robot.Elevator.getLimitTop()) {
+   /* if (Robot.Elevator.getLimitTop()) {
 
       Robot.elevTop = true;
 
-    } else if (Robot.Elevator.getLimitBottom()) {
+    } else */ if (Robot.Elevator.getLimitBottom()) {
 
       Robot.elevBottom = true;
-      Robot.Elevator.elevatorStop();
+      Robot.Elevator.elevatorHold();
+      Robot.Elevator.encoderReset();
 
     } else {
 
+      Robot.Elevator.elevatorDown();
       Robot.elevBottom = false;
       Robot.elevTop = false;
 

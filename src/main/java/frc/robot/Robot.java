@@ -7,6 +7,7 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Spark;
 
 //import com.kauailabs.navx.frc.AHRS;
@@ -22,7 +23,9 @@ import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.MyVisionPipeline;
 //import frc.robot.subsystems.NavX;
 import frc.robot.subsystems.Scissor;
+import frc.robot.subsystems.ScrewWheels;
 import frc.robot.subsystems.Elevator;
+import frc.robot.subsystems.LeadScrew;
 import frc.robot.subsystems.Compressor;
 import frc.robot.auton.Baseline;
 import frc.robot.commands.Drive;
@@ -68,10 +71,13 @@ public class Robot extends TimedRobot {
   public static BallIntake BallIntake;
   public static Arm Arm;
   public static Compressor Compressor;
+  public static LeadScrew LeadScrew;
+  public static ScrewWheels ScrewWheels;
   public static MyVisionPipeline MyVisionPipeline;
   public static RunAuton RunAuton;
   public static Baseline Baseline;
   public static Drive Drive;
+  
 
 
 
@@ -101,6 +107,7 @@ public class Robot extends TimedRobot {
   //Other Stuff
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
+  Solenoid vacuumSensor;
 
 
   //Variables for Arduino
@@ -116,8 +123,8 @@ public class Robot extends TimedRobot {
   public static boolean firstArmDown = false;
 
   //LED's
-  public static double lights = 0;
-  //Spark led;
+  public static double lights = -.45;
+  Spark led;
 
 
   /**
@@ -127,9 +134,18 @@ public class Robot extends TimedRobot {
   
   @Override
   public void robotInit() {
-    camera = CameraServer.getInstance().startAutomaticCapture();
-    camera.setResolution(IMG_WIDTH, IMG_HEIGHT);
 
+    vacuumSensor = new Solenoid(11, 6);
+    vacuumSensor.set(true);
+
+    camera = CameraServer.getInstance().startAutomaticCapture();
+
+
+    
+    //camera.setResolution(IMG_WIDTH, IMG_HEIGHT);
+
+    
+/*
     visionThread = new VisionThread(camera, new MyVisionPipeline(), pipeline -> {
       //if (!(pipeline.findBlobsOutput() == null)) {
           Rect r = Imgproc.boundingRect(pipeline.findBlobsOutput());
@@ -138,11 +154,9 @@ public class Robot extends TimedRobot {
           //}
       }
   });
-  //visionThread.start();
+  visionThread.start();
 
-
-
-
+*/
 
     //m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
@@ -157,7 +171,10 @@ public class Robot extends TimedRobot {
     Compressor = new Compressor();
     MyVisionPipeline = new MyVisionPipeline();
     RunAuton = new RunAuton();
-    //led = new Spark(9);
+    led = new Spark(9);
+    ScrewWheels = new ScrewWheels();
+    LeadScrew = new LeadScrew();
+
     
 
 
@@ -176,6 +193,9 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
+
+
+    
   }
 
   /**
@@ -185,11 +205,15 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void disabledInit() {
+
+    
+
   }
 
   @Override
   public void disabledPeriodic() {
     Scheduler.getInstance().run();
+
   }
 
   /**
@@ -207,8 +231,8 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousInit() {
 
-    m_autonomousCommand = m_chooser.getSelected();
 
+    teleopPeriodic();
     /*
      * String autoSelected = SmartDashboard.getString("Auto Selector",
      * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
@@ -223,7 +247,7 @@ public class Robot extends TimedRobot {
     
 
 
-    String auton = SmartDashboard.getString("DB/String 0", "baseline");
+    /*String auton = SmartDashboard.getString("DB/String 0", "baseline");
     String autonType = SmartDashboard.getString("DB/String 1", "baseline");
 
     if (auton.equalsIgnoreCase("baseline")) {
@@ -240,7 +264,7 @@ public class Robot extends TimedRobot {
 
 
     }
-
+*/
 
 
   }
@@ -251,6 +275,7 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousPeriodic() {
     Scheduler.getInstance().run();
+    teleopPeriodic();
   }
 
   @Override
@@ -270,23 +295,82 @@ public class Robot extends TimedRobot {
     
   }
 
+  //led.set(lights);
   /**
    * This function is called periodically during operator control.
    */
   @Override
   public void teleopPeriodic() {
 
+    vacuumSensor.set(true);
+    led.set(lights);
 
-    //led.set(lights);
 
 
-    System.out.println(recordStatus);
-    System.out.println(SmartDashboard.getString("DB/String 1", ""));
+    if (Robot.oi.BGTL.get()) {
+
+      lights = -.93; //Rainbow, Lava Palette
+
+    }
+
+    if (Robot.oi.BGTR.get()) {
+
+      lights = -.11; //ABORT ABORT (Strobe Red) WE GOIN MAX SPEED BOIS
+
+    }
+
+    if (Robot.oi.BGMM.get()) {
+
+      lights = -.43; //We climbing, so lets partyyyyy
+
+    }
+
+    if (Robot.oi.BGBR.get()) {
+
+      lights = .57; //Wheels going back makes robot hot pink
+
+    }
+
+    if (Robot.oi.BGTM.get()) {
+
+      lights = -.59; //Sinelon Rainbow
+
+    }
+
+    if (Robot.oi.xboxY.get()) {
+
+      lights = -.95; //Ocean Palette
+
+    }
+
+    if (Robot.oi.xboxX.get()) {
+
+      lights = .25; //Color 1 pattern - heartbeat (white)
+
+    }
+
+    if (Robot.oi.xboxA.get()) {
+
+      lights = .89; //Blue Violet
+
+    }
+
+    if (Robot.oi.xboxB.get()) {
+
+      lights = .83; //Sky Blue 
+
+    }
+
+    
+
+    //System.out.println(recordStatus);
+    //System.out.println(SmartDashboard.getString("DB/String 1", ""));
     
     //Robot.oi.arduinoThing.setOutput(72, true);
   
     //double blockPos = centerX - (IMG_WIDTH / 2);
 
+    
 
     //cvSink.grabFrame(source);
     //outputStream.putFrame(source);
@@ -332,10 +416,7 @@ public class Robot extends TimedRobot {
     else if (elevBottom && firstElevBottom) {
       SmartDashboard.putString("DB/String 8", "d");
     }
-    else if (haveBall && firstHaveBall) {
-      SmartDashboard.putString("DB/String 8", "b");
-    }
-    if (isSucced && firstIsSucc) {
+    else if (isSucced && firstIsSucc) {
       SmartDashboard.putString("DB/String 8", "c");
     }
     else if (armDown && firstArmDown) {

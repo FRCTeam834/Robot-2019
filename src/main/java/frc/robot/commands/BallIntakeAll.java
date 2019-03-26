@@ -33,7 +33,7 @@ public class BallIntakeAll extends Command {
 
     if ((Robot.oi.xbox.getRawAxis(3)) > .75) {
 
-      if (Robot.BallIntake.haveBall()) {
+      /*if (Robot.BallIntake.haveBall()) {
 
         Robot.haveBall = true;
         Robot.BallIntake.ballIntakeStop();
@@ -44,14 +44,15 @@ public class BallIntakeAll extends Command {
         Robot.firstHaveBall = false;
         Robot.BallIntake.ballIntakeIn();
 
-      }
+      } */
 
+      Robot.BallIntake.ballIntakeIn();
 
     } else if ((Robot.oi.xbox.getRawAxis(2)) > .75) {
 
       Robot.BallIntake.ballIntakeOut();
 
-      if (Robot.BallIntake.haveBall()) {
+      /*if (Robot.BallIntake.haveBall()) {
 
         Robot.haveBall = true;
 
@@ -59,13 +60,13 @@ public class BallIntakeAll extends Command {
 
         Robot.haveBall = false;
 
-      }
+      } */
 
     } else {
 
       Robot.BallIntake.ballIntakeStop();
 
-      if (Robot.BallIntake.haveBall()) {
+       /* if (Robot.BallIntake.haveBall()) {
 
         Robot.haveBall = true;
 
@@ -73,7 +74,7 @@ public class BallIntakeAll extends Command {
 
         Robot.haveBall = false;
 
-      }
+      }  */
 
     }
 

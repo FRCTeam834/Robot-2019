@@ -24,7 +24,7 @@ public class BallIntake extends Subsystem {
 
   //WPI_TalonSRX ballIntake = new WPI_TalonSRX(12);
   WPI_VictorSPX ballIntake = new WPI_VictorSPX(9);
-  DigitalInput photoEye = new DigitalInput(4);
+  //DigitalInput photoEye = new DigitalInput(4);
 
   @Override
   public void initDefaultCommand() {
@@ -58,11 +58,11 @@ public class BallIntake extends Subsystem {
 
   }
 
-  public boolean haveBall() {
+  //public boolean haveBall() {
 
-    return !(photoEye.get());
+    //return !(photoEye.get());
 
-  }
+  //}
   
 
 

@@ -23,8 +23,8 @@ public class Compressor extends Subsystem {
 
   //WPI_TalonSRX compressor = new WPI_TalonSRX(8);
   WPI_VictorSPX compressor = new WPI_VictorSPX(10);
-  Solenoid vacuumSol = new Solenoid(10, 0);
-  Solenoid vacuumSensor = new Solenoid(10, 3);
+  Solenoid vacuumSol = new Solenoid(11, 0);
+  //Solenoid vacuumSensor = new Solenoid(10, 6);
   AnalogInput pressureSensor = new AnalogInput(0);
 
 
@@ -53,7 +53,7 @@ public class Compressor extends Subsystem {
 
       
       compressor.set(1);
-      vacuumSensor.set(true);
+      vacuumSol.set(false);
 
     }
 

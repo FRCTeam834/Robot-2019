@@ -22,7 +22,7 @@ public class Scissor extends Subsystem {
 
   //WPI_TalonSRX scissor = new WPI_TalonSRX(7);
   WPI_VictorSPX scissor = new WPI_VictorSPX(12);
-  DigitalInput scissorBottom = new DigitalInput(5);
+  DigitalInput scissorBottom = new DigitalInput(6);
 
 
 

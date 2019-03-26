@@ -30,8 +30,8 @@ public class ArmUp extends Command {
   @Override
   protected void execute() {
 
-    Robot.Arm.armUp();
-
+  Robot.Arm.armUp();
+/*
     if (Robot.Arm.isArmDown()) {
 
       Robot.armDown = true;
@@ -39,9 +39,10 @@ public class ArmUp extends Command {
     } else {
 
       Robot.armDown = false;
-      Robot.firstArmDown = false;
+      Robot.firstArmDown = true;
 
     }
+    */
 
   }
 

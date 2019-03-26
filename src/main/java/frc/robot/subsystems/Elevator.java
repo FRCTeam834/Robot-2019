@@ -22,13 +22,12 @@ import frc.robot.commands.ElevatorHold;
 public class Elevator extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-  double pi = 3.14159265358979323846264338327950288;
-
   //WPI_TalonSRX elevator = new WPI_TalonSRX(9);
   WPI_VictorSPX elevator = new WPI_VictorSPX(7);
   Encoder elevEncoder = new Encoder(0, 1);
   //DigitalInput photoEye = new DigitalInput(2);
   DigitalInput limitBottom = new DigitalInput(3);
+  DigitalInput limitTop = new DigitalInput(2);
   
   //double spoolCircumference = (pi * 4); // Fix with actual calculations
   
@@ -53,7 +52,7 @@ public class Elevator extends Subsystem {
 
   public void elevatorDown() {
 
-    elevator.set(-1.0);
+    elevator.set(-0.75);
 
   }
 
@@ -65,7 +64,7 @@ public class Elevator extends Subsystem {
 
   public void elevatorHold() {
 
-    elevator.set(.1);
+    elevator.set(.15);
   }
 
   public void setElevator(double speed) {
@@ -90,16 +89,16 @@ public class Elevator extends Subsystem {
 
   }
 
-  public boolean getLimitTop() {
+  public boolean getLimitBottom() {
 
-    return false;
+    return !(limitBottom.get());
 
   }
 
-  public boolean getLimitBottom() {
+  public boolean getLimitTop() {
 
-    return limitBottom.get();
-
+    return (limitTop.get());
+   
   }
 
 

@@ -31,18 +31,24 @@ public class CompressorOn extends Command {
   @Override
   protected void execute() {
     
+    //Robot.lights = .85;
+
     double pressureReading = Robot.Compressor.getPressure();
 
-    if (pressureReading >= 3.7) {
+    if (pressureReading >= 3.9) {
 
       Robot.Compressor.compressorOn();
       Robot.isSucced = false;
+      Robot.firstIsSucc = true;
+      SmartDashboard.putString("DB/String 5", "Sucking");
+      Robot.lights = 0.69;
 
-    } else if (pressureReading < 3.7) {
+    } else if (pressureReading < 3.9) {
 
-      Robot.Compressor.compressorStop();
+      //Robot.Compressor.compressorStop();
       Robot.isSucced = true;
-
+      SmartDashboard.putString("DB/String 5", "Hatch Acquired");
+      Robot.lights = 0.87;
     }
 
     Robot.Compressor.vacuumSucc();

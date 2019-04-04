@@ -33,26 +33,60 @@ public class Drive extends Command {
 
     double leftSpeed = Robot.oi.leftJoystick.getY();
     double rightSpeed = Robot.oi.rightJoystick.getY();
-    
-    //float roll = Robot.NavX.roll();
 
-    //if (roll >= 45) {
-       //Alex
-       //leftSpeed = (Math.abs(leftSpeed) < 0.15)? 0 : leftSpeed;
-       //rightSpeed = (Math.abs(rightSpeed)< 0.15)? 0  : rightSpeed;
+    //Pushing code
+    /*
+    double lMorePower = leftSpeed * 1; //Factor to increase by
+    double rMorePower = rightSpeed * 1; //Factor to increase by
 
-     // leftSpeed = -.6;
-      //rightSpeed = -.6;
-    
-   // }
-    //else if (roll <= -45) {
+    int speedThreshold = 1; //Needs testing to find perfect value
 
-     // leftSpeed = .6;
-     // rightSpeed = .6;
+    if (Math.abs(leftSpeed) > 0.05 || Math.abs(rightSpeed) > 0.05) {
 
-   // } else {
-      
+      double lSpeed = 1; //Do some stuff to figure out encoder changes
+      double rSpeed = 1;
+
+      if (leftSpeed > 0.05 && lSpeed < leftSpeed * speedThreshold) { //If set speed is on and motor has resistance
+        //increase value
+        leftSpeed = leftSpeed + lMorePower;
+
+        if (leftSpeed < 1){ //Makes sure the set speed doesn't go past 1
+          leftSpeed = 1;
+        }
+      }
+      else if (leftSpeed < 0.05 && lSpeed * -1 > leftSpeed * speedThreshold) { //If set speed is on and motor has resistance
+        //decrease value
+        leftSpeed = leftSpeed - lMorePower;
+
+        if (leftSpeed < -1){  //Makes sure the set speed doesn't go past -1
+          leftSpeed = -1;
+        }
+      }
+
+      if (rightSpeed > 0.05 && rSpeed < rightSpeed * speedThreshold) { //If set speed is on and motor has resistance
+        //increase value
+        rightSpeed = rightSpeed + rMorePower;
+
+        if (rightSpeed > 1){  //Makes sure the set speed doesn't go past 1
+          rightSpeed = 1;
+        }
+      }
+      else if (rightSpeed < 0.05 && rSpeed * -1 > rightSpeed * speedThreshold){ //If set speed is on and motor has resistance
+        //decrease value
+        rightSpeed = rightSpeed - rMorePower;
+
+        if (rightSpeed < -1){  //Makes sure the set speed doesn't go past -1
+          rightSpeed = -1;
+        }
+      }
+
+
       Robot.DriveTrain.setDrive((leftSpeed * .75), (rightSpeed * .75));
+
+    }
+    */
+
+    Robot.DriveTrain.setDrive((leftSpeed * .75), (rightSpeed * .75));
 
    // }    
 

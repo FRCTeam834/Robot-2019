@@ -96,7 +96,7 @@ public class OI {
       
       //Arcade Buttons
       //Syntax: BG = Button Group 
-      //Ex. BGTL = Button Group Top Left //I DID TEST THE BUTTON VALUES SO DO NOT CHANGE NOW
+      //Ex. BGTL = Button Group Top Left. I DID TEST THE BUTTON VALUES SO DO NOT CHANGE NOW!!! >:(
       BGTL = new JoystickButton(launchpad, 7), 
       BGTM = new JoystickButton(launchpad, 2),
       BGTR = new JoystickButton(launchpad, 4), 

@@ -333,7 +333,7 @@ public class Robot extends TimedRobot {
 
     if (Robot.oi.BGTM.get()) {
 
-      lights = -.59; //Sinelon Rainbow
+      lights = -.89; //Glitter Rainbow(I Think)
 
     }
 

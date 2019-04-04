@@ -36,7 +36,7 @@ public class LeadScrew extends Subsystem {
 
   public void screwYourself() {
 
-    theScrewer.set(-1);
+    theScrewer.set(-0.62);
 
   }
 

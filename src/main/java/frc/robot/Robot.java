@@ -7,6 +7,7 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Spark;
 
@@ -140,6 +141,7 @@ public class Robot extends TimedRobot {
 
     camera = CameraServer.getInstance().startAutomaticCapture();
 
+    DriverStation.reportError("Ryan deleted some autons.", true);
 
     
     //camera.setResolution(IMG_WIDTH, IMG_HEIGHT);
@@ -231,6 +233,7 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousInit() {
 
+    DriverStation.reportError("Ryan deleted some autons.", false);
 
     teleopPeriodic();
     /*

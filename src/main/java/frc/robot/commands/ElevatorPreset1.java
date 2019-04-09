@@ -36,17 +36,17 @@ public class ElevatorPreset1 extends Command {
 
     SmartDashboard.putString("DB/String 1", "Elev:" + Double.toString(Robot.Elevator.getElevatorHeight()));
     
-    if (((Robot.Elevator.getElevatorHeight()) > TARGETHEIGHT - 2 ) && ((Robot.Elevator.getElevatorHeight()) < TARGETHEIGHT + 2)) {
+    if (((Robot.Elevator.getElevatorHeight()) > TARGETHEIGHT - 5 ) && ((Robot.Elevator.getElevatorHeight()) < TARGETHEIGHT + 5)) {
 
       success = true;
       isFinished();
 
-    } else if ((Robot.Elevator.getElevatorHeight()) > (TARGETHEIGHT - 15) ) {
+    } else if ((Robot.Elevator.getElevatorHeight()) > (TARGETHEIGHT + 5) ) {
 
       Robot.Elevator.elevatorDown();
       success = false;
 
-    } else if ((Robot.Elevator.getElevatorHeight() < TARGETHEIGHT)) {
+    } else if ((Robot.Elevator.getElevatorHeight() < TARGETHEIGHT - 5)) {
 
       Robot.Elevator.elevatorUp();
 

@@ -309,7 +309,7 @@ public class Robot extends TimedRobot {
 
     if (Robot.oi.BGTL.get()) {
 
-      lights = -.93; //Rainbow, Lava Palette
+      lights = -.87; //Rainbow, Lava Palette
 
     }
 

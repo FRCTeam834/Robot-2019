@@ -31,7 +31,6 @@ public class DriveMaxSpeed extends Command {
 
     double leftSpeed = Robot.oi.leftJoystick.getY();
     double rightSpeed = Robot.oi.rightJoystick.getY();
-
     Robot.DriveTrain.setDrive((leftSpeed), (rightSpeed));
 
   }

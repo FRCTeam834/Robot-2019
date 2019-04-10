@@ -45,14 +45,35 @@ public class NavX extends Subsystem {
 
   }
 
-  
+  public float getDisplacementX() {
 
+    return ahrs.getDisplacementX();
 
+  }
 
+  public float getDisplacementY() {
 
+    return ahrs.getDisplacementY();
 
+  }
 
+  public float getDisplacementZ() {
 
+    return ahrs.getDisplacementZ();
+
+  }
+
+  public float getCurrentDegrees() {
+
+    return ahrs.getCompassHeading();
+
+  }
+
+  public void resetYaw() {
+
+    ahrs.reset();
+
+  }
 
 
 

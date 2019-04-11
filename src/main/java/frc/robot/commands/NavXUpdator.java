@@ -34,7 +34,7 @@ public class NavXUpdator extends Command {
     Robot.yDisplacement = Robot.NavX.getDisplacementY();
     Robot.zDisplacement = Robot.NavX.getDisplacementZ();
     Robot.degreeHeading = Robot.NavX.getCurrentDegrees();
-    Robot.onTape = Robot.NavX.getTape();
+    //Robot.onTape = Robot.NavX.getTape();
 
   }
 

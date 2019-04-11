@@ -134,8 +134,8 @@ public class DriveTrain extends Subsystem {
 
     while (!success) {
 
-      if ((!(Robot.oi.leftJoystick.getRawAxis(0) > -5 && Robot.oi.leftJoystick.getRawAxis(0) < 5))
-          && (!(Robot.oi.rightJoystick.getRawAxis(0) > -5 && Robot.oi.rightJoystick.getRawAxis(0) < 5))) {
+      if ((!(Robot.oi.leftJoystick.getY() > -5 && Robot.oi.leftJoystick.getY() < 5))
+          && (!(Robot.oi.rightJoystick.getY() > -5 && Robot.oi.rightJoystick.getY() < 5))) {
 
         success = true; // If joysticks are at 0
 

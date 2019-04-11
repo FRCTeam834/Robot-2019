@@ -12,7 +12,7 @@ import frc.robot.Robot;
 
 public class FRLDriveAndPlaceHatch extends Command {
 
-  public double motorSpeed = .25;
+  public final double MOTORSPEED = .25;
 
   public boolean success = false;
   public boolean tookStartingEncoder = false;
@@ -31,17 +31,18 @@ public class FRLDriveAndPlaceHatch extends Command {
   @Override
   protected void initialize() {
 
-    Robot.DriveTrain.stop();
-    Robot.Arm.armStop();
-    Robot.Elevator.elevatorHold();
-
+    Robot.DriveTrain.setDrive(MOTORSPEED, MOTORSPEED);
+    
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
 
-    Robot.DriveTrain.setDrive(motorSpeed, motorSpeed);
+
+
+
+
 
     /* EXPERIMENTAL, WOULD NOT WORK
     
@@ -63,6 +64,18 @@ public class FRLDriveAndPlaceHatch extends Command {
     */
 
     if (Robot.oi.xboxLB.get()) { //Once they see the hatch is in the correct position, it continues on.
+
+      success = true;
+
+    }
+
+    if (Robot.oi.leftJoystick.getY() > .05 || Robot.oi.leftJoystick.getY() < -.05) {
+
+      success = true;
+
+    }
+
+    if (Robot.oi.rightJoystick.getY() > .05 || Robot.oi.rightJoystick.getY() < -.05) {
 
       success = true;
 

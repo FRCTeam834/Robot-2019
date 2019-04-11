@@ -74,12 +74,6 @@ public class FRLTurnOnTape extends Command {
   @Override
   protected boolean isFinished() {
 
-    if (!Robot.onTape) {
-
-      return true;
-
-    }
-
     if (success) {
 
       return true;

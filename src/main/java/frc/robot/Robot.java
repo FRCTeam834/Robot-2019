@@ -126,7 +126,8 @@ public class Robot extends TimedRobot {
   public static float yDisplacement = 0;
   public static float zDisplacement = 0;
   public static float degreeHeading = 0;
-  public static boolean onTape = false;
+  public static boolean leftTapeSensor = false;
+  public static boolean rightTapeSensor = false;
 
   /**
    * This function is run when the robot is first started up and should be used
@@ -346,6 +347,16 @@ public class Robot extends TimedRobot {
       lights = .83; // Sky Blue
 
     }
+
+    SmartDashboard.putString("DB/String 7", Float.toString(YAW));
+    SmartDashboard.putString("DB/String 6", Float.toString(xDisplacement));
+    SmartDashboard.putString("DB/String 5", Float.toString(yDisplacement));
+    SmartDashboard.putString("DB/String 4", Float.toString(degreeHeading));
+
+
+
+
+
 
     // System.out.println(recordStatus);
     // System.out.println(SmartDashboard.getString("DB/String 1", ""));

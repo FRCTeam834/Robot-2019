@@ -33,7 +33,7 @@ public class AutoHatch extends CommandGroup {
     // a CommandGroup containing them would require both the chassis and the
     // arm.
 
-    if (Robot.onTape) {
+    
 
       addParallel(new ElevatorPreset1()); // Sets elevator to correct height
       addSequential(new FRLTurnOnTape()); // Turns to angle -45 to face the front rocket hatch on the right
@@ -43,7 +43,7 @@ public class AutoHatch extends CommandGroup {
       // Do I need to add anything to lower the elevator, or can I just have them
       // drive away?
 
-    }
+    
 
   }
 }

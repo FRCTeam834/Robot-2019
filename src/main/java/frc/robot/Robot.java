@@ -120,7 +120,7 @@ public class Robot extends TimedRobot {
   public static double lights = -.45;
   Spark led;
 
-  //NavX Variables (To Be Used Everywhere) //MAKE SURE TO OMNIMOUNT THE NAVX
+  // NavX Variables (To Be Used Everywhere) //MAKE SURE TO OMNIMOUNT THE NAVX
   public static float YAW = 0;
   public static float xDisplacement = 0;
   public static float yDisplacement = 0;
@@ -141,7 +141,7 @@ public class Robot extends TimedRobot {
 
     camera = CameraServer.getInstance().startAutomaticCapture();
 
-    DriverStation.reportError("Ryan deleted some autons.", true);
+    // DriverStation.reportError("Ryan deleted some autons.", true);
 
     // camera.setResolution(IMG_WIDTH, IMG_HEIGHT);
 
@@ -220,7 +220,7 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousInit() {
 
-    DriverStation.reportError("Ryan deleted some autons.", false);
+    // DriverStation.reportError("Ryan deleted some autons.", false);
 
     teleopPeriodic();
     /*

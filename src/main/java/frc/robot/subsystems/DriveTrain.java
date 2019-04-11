@@ -7,17 +7,16 @@
 
 package frc.robot.subsystems;
 
-
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.Robot;
 import frc.robot.commands.Drive;
 
 //import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.revrobotics.CANSparkMax;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 //import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
-
-
 
 /**
  * Add your docs here.
@@ -25,37 +24,36 @@ import edu.wpi.first.wpilibj.SpeedControllerGroup;
 public class DriveTrain extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
+
   /*
-  TalonSRX stuff
-  WPI_TalonSRX leftDrive1 = new WPI_TalonSRX(1);
-  WPI_TalonSRX leftDrive2 = new WPI_TalonSRX(2);
-  WPI_TalonSRX leftDrive3 = new WPI_TalonSRX(3);
-  WPI_TalonSRX rightDrive1 = new WPI_TalonSRX(4);
-  WPI_TalonSRX rightDrive2 = new WPI_TalonSRX(5);
-  WPI_TalonSRX rightDrive3 = new WPI_TalonSRX(6);
+   * TalonSRX stuff WPI_TalonSRX leftDrive1 = new WPI_TalonSRX(1); WPI_TalonSRX
+   * leftDrive2 = new WPI_TalonSRX(2); WPI_TalonSRX leftDrive3 = new
+   * WPI_TalonSRX(3); WPI_TalonSRX rightDrive1 = new WPI_TalonSRX(4); WPI_TalonSRX
+   * rightDrive2 = new WPI_TalonSRX(5); WPI_TalonSRX rightDrive3 = new
+   * WPI_TalonSRX(6);
+   * 
+   * 
+   * CANSparkMax leftDrive1 = new CANSparkMax(1,
+   * CANSparkMaxLowLevel.MotorType.kBrushed); CANSparkMax leftDrive2 = new
+   * CANSparkMax(2, CANSparkMaxLowLevel.MotorType.kBrushed); CANSparkMax
+   * leftDrive3 = new CANSparkMax(3, CANSparkMaxLowLevel.MotorType.kBrushed);
+   * CANSparkMax rightDrive1 = new CANSparkMax(4,
+   * CANSparkMaxLowLevel.MotorType.kBrushed); CANSparkMax rightDrive2 = new
+   * CANSparkMax(5, CANSparkMaxLowLevel.MotorType.kBrushed); CANSparkMax
+   * rightDrive3 = new CANSparkMax(6, CANSparkMaxLowLevel.MotorType.kBrushed);
+   * 
+   * 8 wheel bot sparks Spark leftDrive1 = new Spark(1); Spark leftDrive2 = new
+   * Spark(2); Spark leftDrive3 = new Spark(3); Spark rightDrive1 = new Spark(4);
+   * Spark rightDrive2 = new Spark(5); Spark rightDrive3 = new Spark(6);
+   * 
+   * 
+   * SpeedControllerGroup leftDriveGroup = new SpeedControllerGroup(leftDrive1,
+   * leftDrive2, leftDrive3); SpeedControllerGroup rightDriveGroup = new
+   * SpeedControllerGroup(rightDrive1, rightDrive2, rightDrive3);
+   * 
+   * 
+   */
 
-
-  CANSparkMax leftDrive1 = new CANSparkMax(1, CANSparkMaxLowLevel.MotorType.kBrushed);
-  CANSparkMax leftDrive2 = new CANSparkMax(2, CANSparkMaxLowLevel.MotorType.kBrushed);
-  CANSparkMax leftDrive3 = new CANSparkMax(3, CANSparkMaxLowLevel.MotorType.kBrushed);
-  CANSparkMax rightDrive1 = new CANSparkMax(4, CANSparkMaxLowLevel.MotorType.kBrushed);
-  CANSparkMax rightDrive2 = new CANSparkMax(5, CANSparkMaxLowLevel.MotorType.kBrushed);
-  CANSparkMax rightDrive3 = new CANSparkMax(6, CANSparkMaxLowLevel.MotorType.kBrushed);  
-
-  8 wheel bot sparks
-  Spark leftDrive1 = new Spark(1);
-  Spark leftDrive2 = new Spark(2);
-  Spark leftDrive3 = new Spark(3);
-  Spark rightDrive1 = new Spark(4);
-  Spark rightDrive2 = new Spark(5);
-  Spark rightDrive3 = new Spark(6);
-
-
-  SpeedControllerGroup leftDriveGroup = new SpeedControllerGroup(leftDrive1, leftDrive2, leftDrive3);
-  SpeedControllerGroup rightDriveGroup = new SpeedControllerGroup(rightDrive1, rightDrive2, rightDrive3);
-
-
-*/
   CANSparkMax leftDrive1 = new CANSparkMax(4, CANSparkMax.MotorType.kBrushless);
   CANSparkMax leftDrive2 = new CANSparkMax(5, CANSparkMax.MotorType.kBrushless);
   CANSparkMax leftDrive3 = new CANSparkMax(6, CANSparkMax.MotorType.kBrushless);
@@ -65,7 +63,6 @@ public class DriveTrain extends Subsystem {
 
   SpeedControllerGroup leftDriveGroup = new SpeedControllerGroup(leftDrive1, leftDrive2, leftDrive3);
   SpeedControllerGroup rightDriveGroup = new SpeedControllerGroup(rightDrive1, rightDrive2, rightDrive3);
-  
 
   @Override
   public void initDefaultCommand() {
@@ -87,10 +84,26 @@ public class DriveTrain extends Subsystem {
   }
 
   public void setDrive(double leftSpeed, double rightSpeed) {
-    
+
     rightDriveGroup.setInverted(true);
     leftDriveGroup.set(leftSpeed);
     rightDriveGroup.set(rightSpeed);
+
+  }
+
+  public void pointTurnRight() {
+
+    rightDriveGroup.setInverted(true);
+    leftDriveGroup.set(.25);
+    rightDriveGroup.set(-.25);
+
+  }
+
+  public void pointTurnLeft() {
+
+    rightDriveGroup.setInverted(true);
+    leftDriveGroup.set(-.25);
+    rightDriveGroup.set(.25);
 
   }
 
@@ -98,35 +111,63 @@ public class DriveTrain extends Subsystem {
 
     leftDriveGroup.set(0);
     rightDriveGroup.set(0);
-    
+
   }
 
   public double getLeftEncoder() {
 
-    return (leftDrive1.getEncoder().getPosition() + leftDrive2.getEncoder().getPosition() + leftDrive3.getEncoder().getPosition()) / 3;
+    return (leftDrive1.getEncoder().getPosition() + leftDrive2.getEncoder().getPosition()
+        + leftDrive3.getEncoder().getPosition()) / 3;
 
   }
 
   public double getRightEncoder() {
-  
-    return (rightDrive1.getEncoder().getPosition() + rightDrive2.getEncoder().getPosition() + rightDrive3.getEncoder().getPosition()) / 3;
+
+    return (rightDrive1.getEncoder().getPosition() + rightDrive2.getEncoder().getPosition()
+        + rightDrive3.getEncoder().getPosition()) / 3;
 
   }
 
-  public void resetEncoders() {
+  public void snapToAngle(float angle) {
 
-    
+    boolean success = false;
 
-  }
+    while (!success) {
 
+      if ((!(Robot.oi.leftJoystick.getRawAxis(0) == 0)) && (!(Robot.oi.rightJoystick.getRawAxis(0) == 0))) {
 
+        success = true;
 
+      }
 
+      if (Robot.YAW > angle) { // Right Turn
 
+        Robot.DriveTrain.pointTurnRight();
 
+        if (Robot.YAW < (angle + 2) && Robot.YAW > (angle - 2)) {
 
+          Robot.DriveTrain.stop();
+          success = true;
 
+        }
 
+      } // Right Turn
 
+      else if (Robot.YAW < angle) { // Left Turn
+
+        Robot.DriveTrain.pointTurnLeft();
+
+        if (Robot.YAW < (angle + 2) && Robot.YAW > (angle - 2)) {
+
+          Robot.DriveTrain.stop();
+          success = true;
+
+        }
+
+      } // Left Turn
+
+    } // Ends loop
+
+  } // Ends function
 
 }

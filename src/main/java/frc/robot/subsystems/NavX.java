@@ -5,10 +5,14 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
+//Make sure to run NavX AutoCalibration with Omnimount:
+// https://pdocs.kauailabs.com/navx-mxp/installation/omnimount/
+
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
-
+import frc.robot.commands.NavXUpdator;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.SPI;
 import com.kauailabs.navx.frc.AHRS;
 
@@ -19,12 +23,14 @@ public class NavX extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
-  AHRS ahrs = new AHRS(SPI.Port.kMXP); 
+  AHRS ahrs = new AHRS(SPI.Port.kMXP);
+  DigitalInput tapeSensor = new DigitalInput(20);
 
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
+    setDefaultCommand(new NavXUpdator());
   }
 
   public float getYaw() {
@@ -75,13 +81,16 @@ public class NavX extends Subsystem {
 
   }
 
+  public void resetDisplacement() {
 
+    ahrs.resetDisplacement();
 
+  }
 
+  public boolean getTape() {
 
+    return tapeSensor.get(); // Are we on top of white tape?
 
-
-
-
+  }
 
 }

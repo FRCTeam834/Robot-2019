@@ -12,9 +12,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 
 public class ElevatorPreset1 extends Command {
-  
+
   boolean success = false;
-  final double TARGETHEIGHT = 691; //Change to wanted height
+  final double TARGETHEIGHT = 691; // Change to wanted height
 
   public ElevatorPreset1() {
     // Use requires() here to declare subsystem dependencies
@@ -35,13 +35,29 @@ public class ElevatorPreset1 extends Command {
   protected void execute() {
 
     SmartDashboard.putString("DB/String 1", "Elev:" + Double.toString(Robot.Elevator.getElevatorHeight()));
-    
-    if (((Robot.Elevator.getElevatorHeight()) > TARGETHEIGHT - 5 ) && ((Robot.Elevator.getElevatorHeight()) < TARGETHEIGHT + 5)) {
+
+    if (((Robot.Elevator.getElevatorHeight()) > TARGETHEIGHT - 5)
+        && ((Robot.Elevator.getElevatorHeight()) < TARGETHEIGHT + 5)) {
 
       success = true;
       isFinished();
 
-    } else if ((Robot.Elevator.getElevatorHeight()) > (TARGETHEIGHT + 5) ) {
+    } else if (((Robot.Elevator.getElevatorHeight()) > (TARGETHEIGHT - 100))
+        && ((Robot.Elevator.getElevatorHeight()) < (TARGETHEIGHT + 100))) { // Slower speeds in here
+
+      if ((Robot.Elevator.getElevatorHeight()) > (TARGETHEIGHT + 5)) {
+
+        Robot.Elevator.setElevator(-.15);
+        success = false;
+
+      } else if ((Robot.Elevator.getElevatorHeight() < TARGETHEIGHT - 5)) {
+
+        Robot.Elevator.setElevator(.15);
+        success = false;
+
+      }
+
+    } else if ((Robot.Elevator.getElevatorHeight()) > (TARGETHEIGHT + 5)) {
 
       Robot.Elevator.elevatorDown();
       success = false;
@@ -49,21 +65,10 @@ public class ElevatorPreset1 extends Command {
     } else if ((Robot.Elevator.getElevatorHeight() < TARGETHEIGHT - 5)) {
 
       Robot.Elevator.elevatorUp();
-
-
-
-
-
-
-
-
-
-
       success = false;
 
     }
 
-    
   }
 
   // Make this return true when this Command no longer needs to run execute()

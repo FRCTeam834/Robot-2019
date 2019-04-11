@@ -40,31 +40,33 @@ public class FRLTurnOnTape extends Command {
   @Override
   protected void execute() {
 
-    if (Robot.YAW > -45 && Robot.YAW < 90) { // Right Turn
+    Robot.DriveTrain.snapToAngle(-45);
 
-      Robot.DriveTrain.pointTurnRight();
-
-      if (Robot.YAW == -45) {
-
-        Robot.DriveTrain.stop();
-        success = true;
-
-      }
-
-    } // Right Turn
-
-    else { // Left Turn
-
-      Robot.DriveTrain.pointTurnLeft();
-
-      if (Robot.YAW == -45) {
-
-        Robot.DriveTrain.stop();
-        success = true;
-
-      }
-
-    } // Left Turn
+    /* Just in case
+     * if (Robot.YAW > -45 && Robot.YAW < 90) { // Right Turn
+     * 
+     * Robot.DriveTrain.pointTurnRight();
+     * 
+     * if (Robot.YAW == -45) {
+     * 
+     * Robot.DriveTrain.stop(); success = true;
+     * 
+     * }
+     * 
+     * } // Right Turn
+     * 
+     * else { // Left Turn
+     * 
+     * Robot.DriveTrain.pointTurnLeft();
+     * 
+     * if (Robot.YAW == -45) {
+     * 
+     * Robot.DriveTrain.stop(); success = true;
+     * 
+     * }
+     * 
+     * } // Left Turn
+     */
 
   }
 

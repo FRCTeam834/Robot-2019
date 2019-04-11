@@ -134,15 +134,18 @@ public class DriveTrain extends Subsystem {
 
     while (!success) {
 
-      if ((!(Robot.oi.leftJoystick.getRawAxis(0) == 0)) && (!(Robot.oi.rightJoystick.getRawAxis(0) == 0))) {
+      if ((!(Robot.oi.leftJoystick.getRawAxis(0) > -5 && Robot.oi.leftJoystick.getRawAxis(0) < 5))
+          && (!(Robot.oi.rightJoystick.getRawAxis(0) > -5 && Robot.oi.rightJoystick.getRawAxis(0) < 5))) {
 
-        success = true;
+        success = true; // If joysticks are at 0
 
       }
 
       if (Robot.YAW > angle) { // Right Turn
 
-        Robot.DriveTrain.pointTurnRight();
+        rightDriveGroup.setInverted(true); // Point Turn Right
+        leftDriveGroup.set(.25);
+        rightDriveGroup.set(-.25);
 
         if (Robot.YAW < (angle + 2) && Robot.YAW > (angle - 2)) {
 
@@ -155,7 +158,9 @@ public class DriveTrain extends Subsystem {
 
       else if (Robot.YAW < angle) { // Left Turn
 
-        Robot.DriveTrain.pointTurnLeft();
+        rightDriveGroup.setInverted(true); // Point Turn Left
+        leftDriveGroup.set(-.25);
+        rightDriveGroup.set(.25);
 
         if (Robot.YAW < (angle + 2) && Robot.YAW > (angle - 2)) {
 

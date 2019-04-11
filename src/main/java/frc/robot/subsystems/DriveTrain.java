@@ -128,7 +128,7 @@ public class DriveTrain extends Subsystem {
 
   }
 
-  public void snapToAngle(float angle) {
+  public boolean snapToAngle(float angle) {
 
     boolean success = false;
 
@@ -172,6 +172,8 @@ public class DriveTrain extends Subsystem {
       } // Left Turn
 
     } // Ends loop
+
+    return success;
 
   } // Ends function
 

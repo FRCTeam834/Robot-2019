@@ -35,8 +35,8 @@ public class AutoHatch extends CommandGroup {
 
     if (Robot.onTape) {
 
-      addParallel(new ElevatorPreset1());
-      addSequential(new FRLTurnOnTape());
+      addParallel(new ElevatorPreset1()); // Sets elevator to correct height
+      addSequential(new FRLTurnOnTape()); // Turns to angle -45 to face the front rocket hatch on the right
 
       addSequential(new FRLDriveAndPlaceHatch());
 

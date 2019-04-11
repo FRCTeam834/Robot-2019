@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.*;
+import frc.robot.hatchPlacement.SnapToAngle45;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -135,7 +136,7 @@ public class OI {
     // xboxBack.whileHeld(new ScissorDown());
 
     // Stop all climbing mechanisms
-    xboxBack.whenPressed(new StopAllClimbing());
+    xboxBack.whenPressed(new SnapToAngle45());
 
   }
 

@@ -87,10 +87,11 @@ public class NavX extends Subsystem {
 
   }
 
+  /*
   public boolean getTape() {
 
     return tapeSensor.get(); // Are we on top of white tape?
 
   }
-
+  */
 }

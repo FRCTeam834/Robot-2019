@@ -94,16 +94,16 @@ public class DriveTrain extends Subsystem {
   public void pointTurnRight() {
 
     rightDriveGroup.setInverted(true);
-    leftDriveGroup.set(.25);
-    rightDriveGroup.set(-.25);
+    leftDriveGroup.set(.15);
+    rightDriveGroup.set(-.15);
 
   }
 
   public void pointTurnLeft() {
 
     rightDriveGroup.setInverted(true);
-    leftDriveGroup.set(-.25);
-    rightDriveGroup.set(.25);
+    leftDriveGroup.set(-.15);
+    rightDriveGroup.set(.15);
 
   }
 
@@ -132,22 +132,22 @@ public class DriveTrain extends Subsystem {
 
     boolean success = false;
 
-    while (!success) {
+    //while (!success) {
 
-      if ((!(Robot.oi.leftJoystick.getY() > -5 && Robot.oi.leftJoystick.getY() < 5))
-          && (!(Robot.oi.rightJoystick.getY() > -5 && Robot.oi.rightJoystick.getY() < 5))) {
+      /*if ((!((Robot.oi.leftJoystick.getY() < -5) || (Robot.oi.leftJoystick.getY() > 5)))
+          && (!((Robot.oi.rightJoystick.getY() < -5) || (Robot.oi.rightJoystick.getY() > 5)))) {
 
         success = true; // If joysticks are at 0
 
-      }
+      } */
 
       if (Robot.YAW > angle) { // Right Turn
 
         rightDriveGroup.setInverted(true); // Point Turn Right
-        leftDriveGroup.set(.25);
-        rightDriveGroup.set(-.25);
+        leftDriveGroup.set(.15);
+        rightDriveGroup.set(-.15);
 
-        if (Robot.YAW < (angle + 2) && Robot.YAW > (angle - 2)) {
+        if (Robot.YAW < (angle + 5) && Robot.YAW > (angle - 5)) {
 
           Robot.DriveTrain.stop();
           success = true;
@@ -159,10 +159,10 @@ public class DriveTrain extends Subsystem {
       else if (Robot.YAW < angle) { // Left Turn
 
         rightDriveGroup.setInverted(true); // Point Turn Left
-        leftDriveGroup.set(-.25);
-        rightDriveGroup.set(.25);
+        leftDriveGroup.set(-.15);
+        rightDriveGroup.set(.15);
 
-        if (Robot.YAW < (angle + 2) && Robot.YAW > (angle - 2)) {
+        if ((Robot.YAW < (angle + 5)) && (Robot.YAW > (angle - 5))) {
 
           Robot.DriveTrain.stop();
           success = true;
@@ -171,7 +171,7 @@ public class DriveTrain extends Subsystem {
 
       } // Left Turn
 
-    } // Ends loop
+    //} // Ends loop
 
     return success;
 

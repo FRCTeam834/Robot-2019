@@ -24,7 +24,7 @@ public class SnapToAngle45 extends Command {
   @Override
   protected void initialize() {
 
-    success = Robot.DriveTrain.snapToAngle(45);
+    
 
   }
 
@@ -32,13 +32,20 @@ public class SnapToAngle45 extends Command {
   @Override
   protected void execute() {
 
+    success = Robot.DriveTrain.snapToAngle(45);
+
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
 
-    return success;
+    if (success) {
+
+      return true;
+
+    }
+    return false;
 
   }
 

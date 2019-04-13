@@ -5,16 +5,16 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.hatchPlacement;
+package frc.robot.AngleSnap;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class SnapToAngle45 extends Command {
+public class Snap0 extends Command {
 
   boolean success = false;
 
-  public SnapToAngle45() {
+  public Snap0() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Robot.DriveTrain);
@@ -23,16 +23,42 @@ public class SnapToAngle45 extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-
-    
-
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
 
-    success = Robot.DriveTrain.snapToAngle(45);
+    if (Robot.YAW >= 0) { // Right Turn
+
+      Robot.DriveTrain.pointTurnRight();
+
+      if ((Robot.YAW < (3)) && (Robot.YAW > (-3))) {
+
+        Robot.DriveTrain.stop();
+        success = true;
+
+      }
+
+    } // Right Turn
+
+    
+
+    else if (Robot.YAW < 0) { // Left Turn
+
+      Robot.DriveTrain.pointTurnLeft();
+
+      if ((Robot.YAW < (3)) && (Robot.YAW > (-3))) {
+
+        Robot.DriveTrain.stop();
+        success = true;
+
+      }
+
+    }
+
+
+
 
   }
 
@@ -45,8 +71,14 @@ public class SnapToAngle45 extends Command {
       return true;
 
     }
-    return false;
 
+    if ((Robot.YAW < (3)) && (Robot.YAW > (-3))) {
+
+      return true;
+
+    }
+
+    return false;
   }
 
   // Called once after isFinished returns true

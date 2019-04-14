@@ -52,5 +52,11 @@ public class Scissor extends Subsystem {
 
   }
 
+  public void scissorHold() {
+
+    scissor.set(.15);
+
+  }
+
 
 }

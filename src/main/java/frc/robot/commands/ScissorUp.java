@@ -55,7 +55,8 @@ public class ScissorUp extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.Scissor.setScissor(0);
+
+    Robot.Scissor.scissorHold();
     
   }
 
@@ -64,5 +65,6 @@ public class ScissorUp extends Command {
   @Override
   protected void interrupted() {
     System.out.println("ScissorUp interrupted");
+    Robot.Scissor.scissorHold();
   }
 }

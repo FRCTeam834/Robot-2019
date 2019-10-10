@@ -229,7 +229,7 @@ public class Robot extends TimedRobot {
 
     // DriverStation.reportError("Ryan deleted some autons.", false);
 
-    teleopPeriodic();
+    //teleopPeriodic();
     /*
      * String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
      * switch(autoSelected) { case "My Auto": autonomousCommand = new
@@ -270,7 +270,7 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousPeriodic() {
     Scheduler.getInstance().run();
-    teleopPeriodic();
+    //teleopPeriodic();
   }
 
   @Override

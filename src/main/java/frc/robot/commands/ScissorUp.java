@@ -30,16 +30,17 @@ public class ScissorUp extends Command {
   @Override
   protected void execute() {
     
-    if (Robot.Scissor.scissorsClosed()) {
+    if (Robot.Scissor.scissorsOpened()) {
 
       Robot.Scissor.stop();
 
-    } else {
-
-    Robot.Scissor.setScissor(1);
+    }
+    else {
+      
+      Robot.Scissor.setScissor(-1);
 
     }
-
+    
     //Robot.Scissor.setScissor(-1);
 
   }
@@ -56,7 +57,7 @@ public class ScissorUp extends Command {
   @Override
   protected void end() {
 
-    Robot.Scissor.scissorHold();
+    Robot.Scissor.setScissor(0);
     
   }
 
@@ -65,6 +66,5 @@ public class ScissorUp extends Command {
   @Override
   protected void interrupted() {
     System.out.println("ScissorUp interrupted");
-    Robot.Scissor.scissorHold();
   }
 }

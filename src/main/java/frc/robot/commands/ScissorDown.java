@@ -31,17 +31,17 @@ public class ScissorDown extends Command {
   @Override
   protected void execute() {
 
-    /*if (Robot.Scissor.scissorsClosed()) {
+    if (Robot.Scissor.scissorsClosed()) {
 
       Robot.Scissor.stop();
 
     } else {
 
-    Robot.Scissor.setScissor(1);
+    Robot.Scissor.setScissor(0.82);
 
-    } */
+    }
 
-    Robot.Scissor.setScissor(-1);
+    //Robot.Scissor.setScissor(1);
 
   }
 

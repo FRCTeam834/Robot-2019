@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.commands.ScissorStop;
 
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+//import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 
@@ -23,6 +23,7 @@ public class Scissor extends Subsystem {
   //WPI_TalonSRX scissor = new WPI_TalonSRX(7);
   WPI_VictorSPX scissor = new WPI_VictorSPX(12);
   DigitalInput scissorBottom = new DigitalInput(6);
+  DigitalInput scissorTop = new DigitalInput(7);
 
 
 
@@ -47,6 +48,12 @@ public class Scissor extends Subsystem {
   }
 
   public boolean scissorsClosed() {
+
+    return !(scissorTop.get());
+
+  }
+
+  public boolean scissorsOpened() {
 
     return !(scissorBottom.get());
 

@@ -29,7 +29,17 @@ public class ScrewIn extends Command {
   @Override
   protected void execute() {
 
+    if (Robot.LeadScrew.screwDown()) {
+
+      Robot.LeadScrew.screwHer_IBarelyKnowHer();
+
+    } else {
+
     Robot.LeadScrew.screwYourself();
+
+    }
+
+    //Robot.LeadScrew.screwYourself();
 
   }
 

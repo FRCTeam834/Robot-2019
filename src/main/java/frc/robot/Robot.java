@@ -28,6 +28,10 @@ import frc.robot.subsystems.ScrewWheels;
 import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.LeadScrew;
 import frc.robot.subsystems.Compressor;
+import frc.robot.AngleSnap.Snap0;
+import frc.robot.AngleSnap.Snap180;
+import frc.robot.AngleSnap.Snap90;
+import frc.robot.AngleSnap.SnapNeg90;
 import frc.robot.auton.Baseline;
 import frc.robot.commands.Drive;
 import frc.robot.commands.RunAuton;
@@ -121,6 +125,7 @@ public class Robot extends TimedRobot {
   Spark led;
 
   // NavX Variables (To Be Used Everywhere) //MAKE SURE TO OMNIMOUNT THE NAVX
+  //Automatically Updates
   public static float YAW = 0;
   public static float xDisplacement = 0;
   public static float yDisplacement = 0;
@@ -128,6 +133,7 @@ public class Robot extends TimedRobot {
   public static float degreeHeading = 0;
   public static boolean leftTapeSensor = false;
   public static boolean rightTapeSensor = false;
+  public static boolean holdScissor = false;
 
   /**
    * This function is run when the robot is first started up and should be used
@@ -348,13 +354,45 @@ public class Robot extends TimedRobot {
 
     }
 
+    if (Robot.oi.BGMM.get()) {
+
+      holdScissor = true;
+
+    }
+
+    if (Robot.oi.BGBM.get()) {
+
+      holdScissor = false;
+
+    }
+
     SmartDashboard.putString("DB/String 7", Float.toString(YAW));
     SmartDashboard.putString("DB/String 6", Float.toString(xDisplacement));
     SmartDashboard.putString("DB/String 5", Float.toString(yDisplacement));
     SmartDashboard.putString("DB/String 4", Float.toString(degreeHeading));
 
 
+    /*if (oi.xboxBack.get()) {
 
+      if ( (Robot.YAW <= 45) && (Robot.YAW > -45) ) {
+
+        new Snap0();
+  
+      } else if ( (Robot.YAW <= -45) && (Robot.YAW > -135) ) {
+  
+        new SnapNeg90();
+  
+      } else if ( (Robot.YAW <= -135) && (Robot.YAW > 135) ) {
+  
+        new Snap180();
+  
+      } else if ( (Robot.YAW <= 135) && (Robot.YAW > 45) ) {
+  
+        new Snap90();
+  
+      }
+
+    } */
 
 
 

@@ -34,7 +34,7 @@ public class ElevatorPreset1 extends Command {
   @Override
   protected void execute() {
 
-    SmartDashboard.putString("DB/String 1", "Elev:" + Double.toString(Robot.Elevator.getElevatorHeight()));
+    
 
     if (((Robot.Elevator.getElevatorHeight()) > TARGETHEIGHT - 5)
         && ((Robot.Elevator.getElevatorHeight()) < TARGETHEIGHT + 5)) {

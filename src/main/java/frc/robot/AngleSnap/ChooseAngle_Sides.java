@@ -32,19 +32,26 @@ public class ChooseAngle_Sides extends CommandGroup {
     // a CommandGroup containing them would require both the chassis and the
     // arm.
 
+    System.out.println(Robot.YAW);
     if ( (Robot.YAW <= 45) && (Robot.YAW > -45) ) {
 
       addSequential(new Snap0());
 
-    } else if ( (Robot.YAW <= -45) && (Robot.YAW > -135) ) {
+    }
+    
+    if ( (Robot.YAW <= -45) && (Robot.YAW > -135) ) {
 
       addSequential(new SnapNeg90());
 
-    } else if ( (Robot.YAW <= -135) && (Robot.YAW > 135) ) {
+    }
+    
+    if ( (Robot.YAW <= -135) || (Robot.YAW > 135) ) {
 
       addSequential(new Snap180());
 
-    } else if ( (Robot.YAW <= 135) && (Robot.YAW > 45) ) {
+    }
+    
+    if ( (Robot.YAW <= 135) && (Robot.YAW > 45) ) {
 
       addSequential(new Snap90());
 

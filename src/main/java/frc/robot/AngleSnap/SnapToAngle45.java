@@ -39,13 +39,13 @@ public class SnapToAngle45 extends Command {
   @Override
   protected boolean isFinished() {
 
-    if (Robot.oi.xboxStart.get()) {
+    if (Robot.oi.BGTM.get()) {
 
       return true;
 
     }
 
-    if ((Robot.YAW < 48) && (Robot.YAW > 52)) {
+    if ((Robot.YAW < 48) && (Robot.YAW > 42)) {
 
       return true;
 

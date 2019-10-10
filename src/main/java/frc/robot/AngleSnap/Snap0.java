@@ -8,7 +8,7 @@
 package frc.robot.AngleSnap;
 
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.Robot;
+import frc.robot.Robot; 
 
 public class Snap0 extends Command {
 
@@ -29,7 +29,7 @@ public class Snap0 extends Command {
   @Override
   protected void execute() {
 
-    if (Robot.YAW >= 0) { // Right Turn
+    /*if (Robot.YAW >= 0) { // Right Turn
 
       Robot.DriveTrain.pointTurnRight();
 
@@ -53,11 +53,11 @@ public class Snap0 extends Command {
         Robot.DriveTrain.stop();
         success = true;
 
-      }
+      } 
 
-    }
+    }*/
 
-
+    Robot.DriveTrain.snapToAngle(0);
 
 
   }
@@ -72,6 +72,12 @@ public class Snap0 extends Command {
 
     }
 
+    if (Robot.oi.xboxBack.get()) {
+
+      return true;
+      
+    }
+
     if ((Robot.YAW < (3)) && (Robot.YAW > (-3))) {
 
       return true;
@@ -84,7 +90,7 @@ public class Snap0 extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-  }
+  } 
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run

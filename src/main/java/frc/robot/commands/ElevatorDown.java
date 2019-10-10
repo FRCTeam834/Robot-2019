@@ -24,7 +24,7 @@ public class ElevatorDown extends Command {
     Robot.Elevator.elevatorDown();
 
   }
-
+ 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
@@ -37,7 +37,7 @@ public class ElevatorDown extends Command {
 
     } else */ if (Robot.Elevator.getLimitBottom()) {
 
-      Robot.elevBottom = true;
+      Robot.elevBottom = true; 
       Robot.Elevator.elevatorHold();
       Robot.Elevator.encoderReset();
 

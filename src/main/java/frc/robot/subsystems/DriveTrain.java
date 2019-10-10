@@ -137,7 +137,7 @@ public class DriveTrain extends Subsystem {
       /*if ((!((Robot.oi.leftJoystick.getY() < -5) || (Robot.oi.leftJoystick.getY() > 5)))
           && (!((Robot.oi.rightJoystick.getY() < -5) || (Robot.oi.rightJoystick.getY() > 5)))) {
 
-        success = true; // If joysticks are at 0
+        success = true; // If joysticks are at 0 
 
       } */
 

@@ -52,6 +52,7 @@ public class RunAuton extends Command{
         System.out.println("Autoning");
         Robot.DriveTrain.setDrive(driveTrainSpeed[0][cycleCount], driveTrainSpeed[1][cycleCount]);
         //Elevator
+        System.out.println(driveTrainSpeed[0]);
         if(motorValues[0][cycleCount]){
             new ElevatorUp();
         }

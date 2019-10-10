@@ -31,7 +31,19 @@ public class ScissorStop extends Command {
   @Override
   protected void execute() {
     
-    Robot.Scissor.setScissor(0);
+    if (Robot.holdScissor) {
+
+      Robot.Scissor.scissorHold();
+
+    }
+
+    if (!Robot.holdScissor) {
+
+      Robot.Scissor.stop();
+
+    }
+
+    
 
   }
 

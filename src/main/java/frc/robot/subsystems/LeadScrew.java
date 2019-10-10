@@ -7,9 +7,9 @@
 
 package frc.robot.subsystems;
 
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.commands.ScrewStop;
 
@@ -20,6 +20,8 @@ public class LeadScrew extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
   WPI_VictorSPX theScrewer = new WPI_VictorSPX(14);
+  DigitalInput screwDown = new DigitalInput(8);
+
 
   @Override
   public void initDefaultCommand() {
@@ -36,7 +38,13 @@ public class LeadScrew extends Subsystem {
 
   public void screwYourself() {
 
-    theScrewer.set(-0.62);
+    theScrewer.set(-1);
+
+  }
+
+  public boolean screwDown() {
+
+    return !(screwDown.get());
 
   }
 

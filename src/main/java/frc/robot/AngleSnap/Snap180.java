@@ -37,25 +37,25 @@ public class Snap180 extends Command {
 
       Robot.DriveTrain.pointTurnRight();
 
-      if ((Robot.YAW < (-175)) && (Robot.YAW > (175))) {
+      if ((Robot.YAW < (-175)) || (Robot.YAW > (175))) {
 
         Robot.DriveTrain.stop();
         success = true;
+        isFinished();
 
       }
 
     } // Right Turn
 
-    
-
     else if (Robot.YAW >= 0) { // Left Turn
 
       Robot.DriveTrain.pointTurnLeft();
 
-      if ((Robot.YAW < (-177)) && (Robot.YAW > (177))) {
+      if ((Robot.YAW < (-175)) || (Robot.YAW > (175))) {
 
         Robot.DriveTrain.stop();
         success = true;
+        isFinished();
 
       }
 
@@ -67,7 +67,7 @@ public class Snap180 extends Command {
   @Override
   protected boolean isFinished() {
 
-    if ((Robot.YAW < (-175)) && (Robot.YAW > (175))) {
+    if ((Robot.YAW < (-175)) || (Robot.YAW > (175))) {
 
       return true;
 

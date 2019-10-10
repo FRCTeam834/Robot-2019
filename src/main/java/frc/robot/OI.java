@@ -13,6 +13,10 @@ import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.*;
 import frc.robot.AngleSnap.ChooseAngle_Sides;
+import frc.robot.AngleSnap.Snap0;
+import frc.robot.AngleSnap.Snap180;
+import frc.robot.AngleSnap.SnapNeg90;
+import frc.robot.AngleSnap.SnapToAngle45;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -101,7 +105,7 @@ public class OI {
     // Elevator
     xboxY.whileHeld(new ElevatorUp());
     xboxX.whileHeld(new ElevatorDown());
-    BGTL.whenPressed(new ElevatorPreset1());
+    //BGTL.whenPressed(new ElevatorPreset1());
     // BGTM.whenPressed(new ElevatorPreset2());
     // BGTL.whenPressed(new ElevatorPreset3());
     // BGBR.whenPressed(new ElevatorPreset4());
@@ -136,8 +140,9 @@ public class OI {
     // xboxBack.whileHeld(new ScissorDown());
 
     // Stop all climbing mechanisms
-    xboxBack.whenPressed(new ChooseAngle_Sides());
-
+    xboxStart.whenPressed(new Snap0());
+    //xboxStart.whenPressed(new Snap180());
+    //xboxBack.whenPressed(new Snap180());
   }
 
 }

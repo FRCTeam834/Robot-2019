@@ -18,8 +18,8 @@ public class Constants {
     public static final double systemTimeStart = 0;
 
     //Camera and Vision constants
-    public static final int imageWidth = 320;
-    public static final int imageHeight = 240;
+    public static final int imageWidth = 1280;
+    public static final int imageHeight = 720;
 
     //Arm Motor
     public static final int armMotorPort = 8;

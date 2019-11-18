@@ -12,6 +12,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.Constants;
 import frc.robot.commands.BallIntakeAll;
 
 /**
@@ -23,7 +24,7 @@ public class BallIntake extends Subsystem {
   // here. Call these from Commands.
 
   //WPI_TalonSRX ballIntake = new WPI_TalonSRX(12);
-  WPI_VictorSPX ballIntake = new WPI_VictorSPX(9);
+  WPI_VictorSPX ballIntake = new WPI_VictorSPX(Constants.ballIntakeMotorPort);
   //DigitalInput photoEye = new DigitalInput(4);
 
   @Override
@@ -37,19 +38,19 @@ public class BallIntake extends Subsystem {
 
   public void ballIntakeIn() {
 
-    ballIntake.set(1);
+    ballIntake.set(Constants.ballIntakeInSpeed);
 
   }
 
   public void ballIntakeOut() {
 
-    ballIntake.set(-1);
+    ballIntake.set(Constants.ballIntakeOutSpeed);
 
   }
 
   public void ballIntakeStop() {
 
-    ballIntake.set(0);
+    ballIntake.set(Constants.ballIntakeStopSpeed);
   }
 
   public void setBallIntake(double speed) {

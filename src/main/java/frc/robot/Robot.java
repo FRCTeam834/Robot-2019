@@ -83,8 +83,8 @@ public class Robot extends TimedRobot {
   public static Drive Drive;
 
   // Camera Things
-  private static final int IMG_WIDTH = 320;
-  private static final int IMG_HEIGHT = 240;
+  private static final int IMG_WIDTH = Constants.imageWidth;
+  private static final int IMG_HEIGHT = Constants.imageHeight;
   public VisionThread visionThread;
   public double centerX = 0.0;
   private boolean recordStatus = false;
@@ -99,7 +99,7 @@ public class Robot extends TimedRobot {
   KeyPoint[] mat;
 
   // DriverInput things
-  private double systemTimeStart = 0;
+  private double systemTimeStart = Constants.systemTimeStart;
   public static boolean autoDriveOn = false;
   private final Object imgLock = new Object();
 

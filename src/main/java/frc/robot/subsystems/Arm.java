@@ -13,6 +13,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.Constants;
 import frc.robot.commands.ArmHold;
 
 /**
@@ -24,9 +25,9 @@ public class Arm extends Subsystem {
   // here. Call these from Commands.
 
   //WPI_TalonSRX arm = new WPI_TalonSRX(11);
-  WPI_VictorSPX arm = new WPI_VictorSPX(8);
-  DigitalInput armLimit = new DigitalInput(4);
-
+  WPI_VictorSPX arm = new WPI_VictorSPX(Constants.armMotorPort);
+  DigitalInput armLimit = new DigitalInput(Constants.armLimitSwitchPort);
+  
 
   @Override
   public void initDefaultCommand() {
@@ -39,26 +40,26 @@ public class Arm extends Subsystem {
 
   public void armUp() {
 
-    arm.set(-.8);
+    arm.set(Constants.armUpSpeed);
     
 
   }
 
   public void armDown() {
 
-    arm.set(.8);
+    arm.set(Constants.armDownSpeed);
 
   }
 
   public void armStop() {
 
-    arm.set(0);
+    arm.set(Constants.armStopSpeed);
 
   }
 
   public void armHold() {
 
-    arm.set(0);
+    arm.set(Constants.armHoldSpeed);
   }
 
   public void setArm(double speed) {

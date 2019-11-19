@@ -22,6 +22,7 @@ import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.BallIntake;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.MyVisionPipeline;
+import frc.robot.subsystems.EVSNetworkTables;
 import frc.robot.subsystems.NavX;
 import frc.robot.subsystems.Scissor;
 import frc.robot.subsystems.ScrewWheels;
@@ -80,6 +81,7 @@ public class Robot extends TimedRobot {
   public static MyVisionPipeline MyVisionPipeline;
   public static RunAuton RunAuton;
   public static Baseline Baseline;
+  public static EVSNetworkTables EVSNetworkTables;
   public static Drive Drive;
 
   // Camera Things
@@ -125,7 +127,7 @@ public class Robot extends TimedRobot {
   Spark led;
 
   // NavX Variables (To Be Used Everywhere) //MAKE SURE TO OMNIMOUNT THE NAVX
-  //Automatically Updates
+  // Automatically Updates
   public static float YAW = 0;
   public static float xDisplacement = 0;
   public static float yDisplacement = 0;
@@ -176,6 +178,7 @@ public class Robot extends TimedRobot {
     ScrewWheels = new ScrewWheels();
     LeadScrew = new LeadScrew();
     NavX = new NavX();
+    EVSNetworkTables = new EVSNetworkTables();
 
     // OI MUST BE CREATED LAST!!!!!!!!!!
     oi = new OI();
@@ -229,7 +232,7 @@ public class Robot extends TimedRobot {
 
     // DriverStation.reportError("Ryan deleted some autons.", false);
 
-    //teleopPeriodic();
+    // teleopPeriodic();
     /*
      * String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
      * switch(autoSelected) { case "My Auto": autonomousCommand = new
@@ -270,7 +273,7 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousPeriodic() {
     Scheduler.getInstance().run();
-    //teleopPeriodic();
+    // teleopPeriodic();
   }
 
   @Override
@@ -371,30 +374,29 @@ public class Robot extends TimedRobot {
     SmartDashboard.putString("DB/String 5", Float.toString(yDisplacement));
     SmartDashboard.putString("DB/String 4", Float.toString(degreeHeading));
 
-
-    /*if (oi.xboxBack.get()) {
-
-      if ( (Robot.YAW <= 45) && (Robot.YAW > -45) ) {
-
-        new Snap0();
-  
-      } else if ( (Robot.YAW <= -45) && (Robot.YAW > -135) ) {
-  
-        new SnapNeg90();
-  
-      } else if ( (Robot.YAW <= -135) && (Robot.YAW > 135) ) {
-  
-        new Snap180();
-  
-      } else if ( (Robot.YAW <= 135) && (Robot.YAW > 45) ) {
-  
-        new Snap90();
-  
-      }
-
-    } */
-
-
+    /*
+     * if (oi.xboxBack.get()) {
+     * 
+     * if ( (Robot.YAW <= 45) && (Robot.YAW > -45) ) {
+     * 
+     * new Snap0();
+     * 
+     * } else if ( (Robot.YAW <= -45) && (Robot.YAW > -135) ) {
+     * 
+     * new SnapNeg90();
+     * 
+     * } else if ( (Robot.YAW <= -135) && (Robot.YAW > 135) ) {
+     * 
+     * new Snap180();
+     * 
+     * } else if ( (Robot.YAW <= 135) && (Robot.YAW > 45) ) {
+     * 
+     * new Snap90();
+     * 
+     * }
+     * 
+     * }
+     */
 
     // System.out.println(recordStatus);
     // System.out.println(SmartDashboard.getString("DB/String 1", ""));

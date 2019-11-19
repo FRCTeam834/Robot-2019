@@ -9,41 +9,38 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.Constants;
 import frc.robot.commands.ScissorStop;
 
 //import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
-
 
 /*
  * Add your docs here.
  */
 public class Scissor extends Subsystem {
 
-  //WPI_TalonSRX scissor = new WPI_TalonSRX(7);
-  WPI_VictorSPX scissor = new WPI_VictorSPX(12);
-  DigitalInput scissorBottom = new DigitalInput(6);
-  DigitalInput scissorTop = new DigitalInput(7);
+  // WPI_TalonSRX scissor = new WPI_TalonSRX(7);
+  WPI_VictorSPX scissor = new WPI_VictorSPX(Constants.backScrewMotorPort);
+  DigitalInput scissorBottom = new DigitalInput(Constants.backScrewLimitSwitchBottomPort);
+  DigitalInput scissorTop = new DigitalInput(Constants.backScrewLimitSwitchTopPort);
 
-
-
-    @Override
+  @Override
   public void initDefaultCommand() {
-    
+
     setDefaultCommand(new ScissorStop());
     // Set the default command for a subsystem here.
   }
 
-
   public void setScissor(double speed) {
-    
+
     scissor.set(speed);
 
   }
 
   public void stop() {
 
-    setScissor(0);
+    setScissor(Constants.backScrewStopSpeed);
 
   }
 
@@ -61,9 +58,8 @@ public class Scissor extends Subsystem {
 
   public void scissorHold() {
 
-    scissor.set(.15);
+    scissor.set(Constants.backScrewHoldSpeed);
 
   }
-
 
 }

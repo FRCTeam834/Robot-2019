@@ -24,7 +24,7 @@ public class NavX extends Subsystem {
   // here. Call these from Commands.
 
   AHRS ahrs = new AHRS(SPI.Port.kMXP);
-  //DigitalInput tapeSensor = new DigitalInput(20);
+  // DigitalInput tapeSensor = new DigitalInput(20);
 
   @Override
   public void initDefaultCommand() {
@@ -88,10 +88,10 @@ public class NavX extends Subsystem {
   }
 
   /*
-  public boolean getTape() {
-
-    return tapeSensor.get(); // Are we on top of white tape?
-
-  }
-  */
+   * public boolean getTape() {
+   * 
+   * return tapeSensor.get(); // Are we on top of white tape?
+   * 
+   * }
+   */
 }

@@ -11,6 +11,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.Constants;
 import frc.robot.commands.ScrewWheelsStop;
 
 /**
@@ -19,9 +20,7 @@ import frc.robot.commands.ScrewWheelsStop;
 public class ScrewWheels extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-  WPI_VictorSPX screwWheels = new WPI_VictorSPX(13);
-
-
+  WPI_VictorSPX screwWheels = new WPI_VictorSPX(Constants.backScrewWheelsMotorPort);
 
   @Override
   public void initDefaultCommand() {
@@ -32,19 +31,19 @@ public class ScrewWheels extends Subsystem {
 
   public void screwTheFront() {
 
-    screwWheels.set(1);
+    screwWheels.set(Constants.backScrewWheelsForwardSpeed);
 
   }
 
   public void screwTheBack() {
 
-    screwWheels.set(-1);
+    screwWheels.set(Constants.backScrewWheelsBackwardSpeed);
 
   }
 
   public void screwStandingStill() {
 
-    screwWheels.set(0);
+    screwWheels.set(Constants.backScrewWheelsStopSpeed);
 
   }
 }

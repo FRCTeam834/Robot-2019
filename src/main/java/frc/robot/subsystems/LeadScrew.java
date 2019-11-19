@@ -11,6 +11,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.Constants;
 import frc.robot.commands.ScrewStop;
 
 /**
@@ -19,9 +20,8 @@ import frc.robot.commands.ScrewStop;
 public class LeadScrew extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-  WPI_VictorSPX theScrewer = new WPI_VictorSPX(14);
-  DigitalInput screwDown = new DigitalInput(8);
-
+  WPI_VictorSPX theScrewer = new WPI_VictorSPX(Constants.leadScrewMotorPort);
+  DigitalInput screwDown = new DigitalInput(Constants.leadScrewLimitSwitchPort);
 
   @Override
   public void initDefaultCommand() {
@@ -32,13 +32,13 @@ public class LeadScrew extends Subsystem {
 
   public void screwHer() {
 
-    theScrewer.set(1);
+    theScrewer.set(Constants.leadScrewMotorDownSpeed);
 
   }
 
   public void screwYourself() {
 
-    theScrewer.set(-1);
+    theScrewer.set(Constants.leadScrewMotorUpSpeed);
 
   }
 
@@ -50,7 +50,7 @@ public class LeadScrew extends Subsystem {
 
   public void screwHer_IBarelyKnowHer() {
 
-    theScrewer.set(0);
+    theScrewer.set(Constants.leadScrewStoppedSpeed);
 
   }
 

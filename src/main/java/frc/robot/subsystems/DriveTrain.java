@@ -8,6 +8,7 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.Constants;
 import frc.robot.Robot;
 import frc.robot.commands.Drive;
 
@@ -54,12 +55,12 @@ public class DriveTrain extends Subsystem {
    * 
    */
 
-  CANSparkMax leftDrive1 = new CANSparkMax(4, CANSparkMax.MotorType.kBrushless);
-  CANSparkMax leftDrive2 = new CANSparkMax(5, CANSparkMax.MotorType.kBrushless);
-  CANSparkMax leftDrive3 = new CANSparkMax(6, CANSparkMax.MotorType.kBrushless);
-  CANSparkMax rightDrive1 = new CANSparkMax(1, CANSparkMax.MotorType.kBrushless);
-  CANSparkMax rightDrive2 = new CANSparkMax(2, CANSparkMax.MotorType.kBrushless);
-  CANSparkMax rightDrive3 = new CANSparkMax(3, CANSparkMax.MotorType.kBrushless);
+  CANSparkMax leftDrive1 = new CANSparkMax(Constants.leftDrive1Port, CANSparkMax.MotorType.kBrushless);
+  CANSparkMax leftDrive2 = new CANSparkMax(Constants.leftDrive2Port, CANSparkMax.MotorType.kBrushless);
+  CANSparkMax leftDrive3 = new CANSparkMax(Constants.leftDrive3Port, CANSparkMax.MotorType.kBrushless);
+  CANSparkMax rightDrive1 = new CANSparkMax(Constants.rightDrive1Port, CANSparkMax.MotorType.kBrushless);
+  CANSparkMax rightDrive2 = new CANSparkMax(Constants.rightDrive2Port, CANSparkMax.MotorType.kBrushless);
+  CANSparkMax rightDrive3 = new CANSparkMax(Constants.rightDrive3Port, CANSparkMax.MotorType.kBrushless);
 
   SpeedControllerGroup leftDriveGroup = new SpeedControllerGroup(leftDrive1, leftDrive2, leftDrive3);
   SpeedControllerGroup rightDriveGroup = new SpeedControllerGroup(rightDrive1, rightDrive2, rightDrive3);
@@ -72,20 +73,26 @@ public class DriveTrain extends Subsystem {
 
   public void leftDrive(double speed) {
 
+    leftDriveGroup.setInverted(Constants.isLeftDriveInverted);
+    rightDriveGroup.setInverted(Constants.isRightDriveInverted);
     leftDriveGroup.set(speed);
 
   }
 
   public void rightDrive(double speed) {
 
-    rightDriveGroup.setInverted(true);
+    leftDriveGroup.setInverted(Constants.isLeftDriveInverted);
+    rightDriveGroup.setInverted(Constants.isRightDriveInverted);
+
     rightDriveGroup.set(speed);
 
   }
 
   public void setDrive(double leftSpeed, double rightSpeed) {
 
-    rightDriveGroup.setInverted(true);
+    leftDriveGroup.setInverted(Constants.isLeftDriveInverted);
+    rightDriveGroup.setInverted(Constants.isRightDriveInverted);
+
     leftDriveGroup.set(leftSpeed);
     rightDriveGroup.set(rightSpeed);
 
@@ -93,7 +100,8 @@ public class DriveTrain extends Subsystem {
 
   public void pointTurnRight() {
 
-    rightDriveGroup.setInverted(true);
+    leftDriveGroup.setInverted(Constants.isLeftDriveInverted);
+    rightDriveGroup.setInverted(Constants.isRightDriveInverted);
     leftDriveGroup.set(.15);
     rightDriveGroup.set(-.15);
 
@@ -101,7 +109,8 @@ public class DriveTrain extends Subsystem {
 
   public void pointTurnLeft() {
 
-    rightDriveGroup.setInverted(true);
+    leftDriveGroup.setInverted(Constants.isLeftDriveInverted);
+    rightDriveGroup.setInverted(Constants.isRightDriveInverted);
     leftDriveGroup.set(-.15);
     rightDriveGroup.set(.15);
 
@@ -109,6 +118,8 @@ public class DriveTrain extends Subsystem {
 
   public void stop() {
 
+    leftDriveGroup.setInverted(Constants.isLeftDriveInverted);
+    rightDriveGroup.setInverted(Constants.isRightDriveInverted);
     leftDriveGroup.set(0);
     rightDriveGroup.set(0);
 
@@ -130,48 +141,53 @@ public class DriveTrain extends Subsystem {
 
   public boolean snapToAngle(float angle) {
 
+    leftDriveGroup.setInverted(Constants.isLeftDriveInverted);
+    rightDriveGroup.setInverted(Constants.isRightDriveInverted);
     boolean success = false;
 
-    //while (!success) {
+    // while (!success) {
 
-      /*if ((!((Robot.oi.leftJoystick.getY() < -5) || (Robot.oi.leftJoystick.getY() > 5)))
-          && (!((Robot.oi.rightJoystick.getY() < -5) || (Robot.oi.rightJoystick.getY() > 5)))) {
+    /*
+     * if ((!((Robot.oi.leftJoystick.getY() < -5) || (Robot.oi.leftJoystick.getY() >
+     * 5))) && (!((Robot.oi.rightJoystick.getY() < -5) ||
+     * (Robot.oi.rightJoystick.getY() > 5)))) {
+     * 
+     * success = true; // If joysticks are at 0
+     * 
+     * }
+     */
 
-        success = true; // If joysticks are at 0 
+    if (Robot.YAW > angle) { // Right Turn
 
-      } */
+      // rightDriveGroup.setInverted(true); // Point Turn Right
+      leftDriveGroup.set(.15);
+      rightDriveGroup.set(-.15);
 
-      if (Robot.YAW > angle) { // Right Turn
+      if (Robot.YAW < (angle + 5) && Robot.YAW > (angle - 5)) {
 
-        rightDriveGroup.setInverted(true); // Point Turn Right
-        leftDriveGroup.set(.15);
-        rightDriveGroup.set(-.15);
+        Robot.DriveTrain.stop();
+        success = true;
 
-        if (Robot.YAW < (angle + 5) && Robot.YAW > (angle - 5)) {
+      }
 
-          Robot.DriveTrain.stop();
-          success = true;
+    } // Right Turn
 
-        }
+    else if (Robot.YAW < angle) { // Left Turn
 
-      } // Right Turn
+      // rightDriveGroup.setInverted(true); // Point Turn Left
+      leftDriveGroup.set(-.15);
+      rightDriveGroup.set(.15);
 
-      else if (Robot.YAW < angle) { // Left Turn
+      if ((Robot.YAW < (angle + 5)) && (Robot.YAW > (angle - 5))) {
 
-        rightDriveGroup.setInverted(true); // Point Turn Left
-        leftDriveGroup.set(-.15);
-        rightDriveGroup.set(.15);
+        Robot.DriveTrain.stop();
+        success = true;
 
-        if ((Robot.YAW < (angle + 5)) && (Robot.YAW > (angle - 5))) {
+      }
 
-          Robot.DriveTrain.stop();
-          success = true;
+    } // Left Turn
 
-        }
-
-      } // Left Turn
-
-    //} // Ends loop
+    // } // Ends loop
 
     return success;
 

@@ -88,20 +88,20 @@ public class EVSNetworkTables extends Subsystem {
     confidence0 = hatch0.getEntry("confidence");
 
     inUse1 = hatch1.getEntry("inUse");
-    centerX1 = hatch0.getEntry("centerX");
-    centerY1 = hatch0.getEntry("centerY");
-    endX1 = hatch0.getEntry("endX");
-    endY1 = hatch0.getEntry("endY");
-    area1 = hatch0.getEntry("area");
-    confidence1 = hatch0.getEntry("confidence");
+    centerX1 = hatch1.getEntry("centerX");
+    centerY1 = hatch1.getEntry("centerY");
+    endX1 = hatch1.getEntry("endX");
+    endY1 = hatch1.getEntry("endY");
+    area1 = hatch1.getEntry("area");
+    confidence1 = hatch1.getEntry("confidence");
 
     inUse2 = hatch2.getEntry("inUse");
-    centerX2 = hatch0.getEntry("centerX");
-    centerY2 = hatch0.getEntry("centerY");
-    endX2 = hatch0.getEntry("endX");
-    endY2 = hatch0.getEntry("endY");
-    area2 = hatch0.getEntry("area");
-    confidence2 = hatch0.getEntry("confidence");
+    centerX2 = hatch2.getEntry("centerX");
+    centerY2 = hatch2.getEntry("centerY");
+    endX2 = hatch2.getEntry("endX");
+    endY2 = hatch2.getEntry("endY");
+    area2 = hatch2.getEntry("area");
+    confidence2 = hatch2.getEntry("confidence");
 
     double[][] hatchValues = new double[3][7];
     // if inUse is true, store values and check next table

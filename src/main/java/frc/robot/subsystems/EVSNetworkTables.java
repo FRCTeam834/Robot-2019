@@ -21,7 +21,7 @@ public class EVSNetworkTables extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
   NetworkTableInstance n = NetworkTableInstance.getDefault();
-  NetworkTable visionValues;
+  NetworkTable evs;
 
   NetworkTableEntry inUse0;
   NetworkTableEntry centerX0;
@@ -47,9 +47,9 @@ public class EVSNetworkTables extends Subsystem {
   NetworkTableEntry area2;
   NetworkTableEntry confidence2;
 
-  NetworkTable hatch0 = visionValues.getSubTable("Hatch0");
-  NetworkTable hatch1 = visionValues.getSubTable("Hatch1");
-  NetworkTable hatch2 = visionValues.getSubTable("Hatch2");
+  NetworkTable hatch0 = evs.getSubTable("Hatch0");
+  NetworkTable hatch1 = evs.getSubTable("Hatch1");
+  NetworkTable hatch2 = evs.getSubTable("Hatch2");
 
   @Override
   public void initDefaultCommand() {
@@ -61,14 +61,14 @@ public class EVSNetworkTables extends Subsystem {
 
   public void getVisionNetworkTable() {
 
-    visionValues = n.getTable("VisionValues");
+    evs = n.getTable("EVS");
 
   }
 
   /*
    * public NetworkTable getSubTable(String tableName) {
    * 
-   * return visionValues.getSubTable(tableName);
+   * return evs.getSubTable(tableName);
    * 
    * }
    */

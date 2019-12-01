@@ -11,162 +11,103 @@ import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.commands.FaceTowards;
 
 /**
- * Data structure for returned arrays is as follows:
- * - Each column (first value) represents a space to store object values
- * The data structure of the rows is as follows:
- * - 0 or -1, with -1 being not used and 0 being used (meaning data is valid and should be considered)
- * - centerX - the x cordinate of the center
- * - centerY - the y cordinate of the center
- * - endX - the x cordinate of the bottom right corner of the bounding box
- * - endY - the y cordinate of the bottom right corner of the counding box
- * - area - the area of the bounding box
- * - confidence - the confidence level of the neural network that the object is indeed what it is tagged as
+ * Data structure for returned arrays is as follows: - Each column (first value)
+ * represents a space to store object values The data structure of the rows is
+ * as follows: - 0 or -1, with -1 being not used and 0 being used (meaning data
+ * is valid and should be considered) - centerX - the x cordinate of the center
+ * - centerY - the y cordinate of the center - endX - the x cordinate of the
+ * bottom right corner of the bounding box - endY - the y cordinate of the
+ * bottom right corner of the counding box - area - the area of the bounding box
+ * - confidence - the confidence level of the neural network that the object is
+ * indeed what it is tagged as
  */
 public class EVSNetworkTables extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
   String inUse = "inUse";
-  String centerX = "centerX";
-  String centerY = "centerY";
-  String endX = "endX";
-  String endY = "endY";
-  String area = "area";
-  String confidence = "confidence";
-
+  String values = "values";
 
   NetworkTableInstance n = NetworkTableInstance.getDefault();
   NetworkTable evs;
 
   // Create and assign hatch tables
-  NetworkTable hatch0 = evs.getSubTable("Hatch0");
-  NetworkTable hatch1 = evs.getSubTable("Hatch1");
-  NetworkTable hatch2 = evs.getSubTable("Hatch2");
+  NetworkTable hatch0;
+  NetworkTable hatch1;
+  NetworkTable hatch2;
 
   NetworkTableEntry hatch_inUse0;
-  NetworkTableEntry hatch_centerX0;
-  NetworkTableEntry hatch_centerY0;
-  NetworkTableEntry hatch_endX0;
-  NetworkTableEntry hatch_endY0;
-  NetworkTableEntry hatch_area0;
-  NetworkTableEntry hatch_confidence0;
+  NetworkTableEntry hatch_values0;
 
   NetworkTableEntry hatch_inUse1;
-  NetworkTableEntry hatch_centerX1;
-  NetworkTableEntry hatch_centerY1;
-  NetworkTableEntry hatch_endX1;
-  NetworkTableEntry hatch_endY1;
-  NetworkTableEntry hatch_area1;
-  NetworkTableEntry hatch_confidence1;
+  NetworkTableEntry hatch_values1;
 
   NetworkTableEntry hatch_inUse2;
-  NetworkTableEntry hatch_centerX2;
-  NetworkTableEntry hatch_centerY2;
-  NetworkTableEntry hatch_endX2;
-  NetworkTableEntry hatch_endY2;
-  NetworkTableEntry hatch_area2;
-  NetworkTableEntry hatch_confidence2;
+  NetworkTableEntry hatch_values2;
 
   // Create and assign ball values
-  NetworkTable ball0 = evs.getSubTable("Ball0");
-  NetworkTable ball1 = evs.getSubTable("Ball1");
-  NetworkTable ball2 = evs.getSubTable("Ball2");
-  
+  NetworkTable ball0;
+  NetworkTable ball1;
+  NetworkTable ball2;
+
   NetworkTableEntry ball_inUse0;
-  NetworkTableEntry ball_centerX0;
-  NetworkTableEntry ball_centerY0;
-  NetworkTableEntry ball_endX0;
-  NetworkTableEntry ball_endY0;
-  NetworkTableEntry ball_area0;
-  NetworkTableEntry ball_confidence0;
+  NetworkTableEntry ball_values0;
 
   NetworkTableEntry ball_inUse1;
-  NetworkTableEntry ball_centerX1;
-  NetworkTableEntry ball_centerY1;
-  NetworkTableEntry ball_endX1;
-  NetworkTableEntry ball_endY1;
-  NetworkTableEntry ball_area1;
-  NetworkTableEntry ball_confidence1;
+  NetworkTableEntry ball_values1;
 
   NetworkTableEntry ball_inUse2;
-  NetworkTableEntry ball_centerX2;
-  NetworkTableEntry ball_centerY2;
-  NetworkTableEntry ball_endX2;
-  NetworkTableEntry ball_endY2;
-  NetworkTableEntry ball_area2;
-  NetworkTableEntry ball_confidence2;
+  NetworkTableEntry ball_values2;
 
   // Create and assign ball values
-  NetworkTable tape0 = evs.getSubTable("Tape0");
+  /*NetworkTable tape0 = evs.getSubTable("Tape0");
   NetworkTable tape1 = evs.getSubTable("Tape1");
   NetworkTable tape2 = evs.getSubTable("Tape2");
   NetworkTable tape3 = evs.getSubTable("Tape3");
   NetworkTable tape4 = evs.getSubTable("Tape4");
   NetworkTable tape5 = evs.getSubTable("Tape5");
-  
+
   NetworkTableEntry tape_inUse0;
-  NetworkTableEntry tape_centerX0;
-  NetworkTableEntry tape_centerY0;
-  NetworkTableEntry tape_endX0;
-  NetworkTableEntry tape_endY0;
-  NetworkTableEntry tape_area0;
-  NetworkTableEntry tape_confidence0;
+  NetworkTableEntry tape_values0;
 
   NetworkTableEntry tape_inUse1;
-  NetworkTableEntry tape_centerX1;
-  NetworkTableEntry tape_centerY1;
-  NetworkTableEntry tape_endX1;
-  NetworkTableEntry tape_endY1;
-  NetworkTableEntry tape_area1;
-  NetworkTableEntry tape_confidence1;
+  NetworkTableEntry tape_values1;
 
   NetworkTableEntry tape_inUse2;
-  NetworkTableEntry tape_centerX2;
-  NetworkTableEntry tape_centerY2;
-  NetworkTableEntry tape_endX2;
-  NetworkTableEntry tape_endY2;
-  NetworkTableEntry tape_area2;
-  NetworkTableEntry tape_confidence2;
+  NetworkTableEntry tape_values2;
 
   NetworkTableEntry tape_inUse3;
-  NetworkTableEntry tape_centerX3;
-  NetworkTableEntry tape_centerY3;
-  NetworkTableEntry tape_endX3;
-  NetworkTableEntry tape_endY3;
-  NetworkTableEntry tape_area3;
-  NetworkTableEntry tape_confidence3;
+  NetworkTableEntry tape_values3;
 
   NetworkTableEntry tape_inUse4;
-  NetworkTableEntry tape_centerX4;
-  NetworkTableEntry tape_centerY4;
-  NetworkTableEntry tape_endX4;
-  NetworkTableEntry tape_endY4;
-  NetworkTableEntry tape_area4;
-  NetworkTableEntry tape_confidence4;
+  NetworkTableEntry tape_values4;
 
   NetworkTableEntry tape_inUse5;
-  NetworkTableEntry tape_centerX5;
-  NetworkTableEntry tape_centerY5;
-  NetworkTableEntry tape_endX5;
-  NetworkTableEntry tape_endY5;
-  NetworkTableEntry tape_area5;
-  NetworkTableEntry tape_confidence5;
-
-  
+  NetworkTableEntry tape_values5;
+*/
   @Override
-  public void initDefaultCommand() 
-  {
+  public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
-    // setDefaultCommand(new VisionUpdater());
+    
+    //setDefaultCommand(new FaceTowards());
 
   }
 
-  public void getVisionNetworkTable() 
-  {
+  public void getVisionNetworkTable() {
 
+    n = NetworkTableInstance.getDefault();
     evs = n.getTable("EVS");
+
+    hatch0 = evs.getSubTable("Hatch0");
+    hatch1 = evs.getSubTable("Hatch1");
+    hatch2 = evs.getSubTable("Hatch2");
+
+    ball0 = evs.getSubTable("Ball0");
+    ball1 = evs.getSubTable("Ball1");
+    ball2 = evs.getSubTable("Ball2");
 
   }
 
@@ -178,85 +119,73 @@ public class EVSNetworkTables extends Subsystem {
    * }
    */
 
-  public double[][] getHatches() 
-  {
+  public double[][] getAllObjects() {
+
+    double[][] allValues = new double[12][7];
+    return allValues;
+
+  }
+
+  public double[][] getHatches() {
+    getVisionNetworkTable();
 
     hatch_inUse0 = hatch0.getEntry(inUse);
-    hatch_centerX0 = hatch0.getEntry(centerX);
-    hatch_centerY0 = hatch0.getEntry(centerY);
-    hatch_endX0 = hatch0.getEntry(endX);
-    hatch_endY0 = hatch0.getEntry(endY);
-    hatch_area0 = hatch0.getEntry(area);
-    hatch_confidence0 = hatch0.getEntry(confidence);
+    hatch_values0 = hatch0.getEntry(values);
 
     hatch_inUse1 = hatch1.getEntry(inUse);
-    hatch_centerX1 = hatch1.getEntry(centerX);
-    hatch_centerY1 = hatch1.getEntry(centerY);
-    hatch_endX1 = hatch1.getEntry(endX);
-    hatch_endY1 = hatch1.getEntry(endY);
-    hatch_area1 = hatch1.getEntry(area);
-    hatch_confidence1 = hatch1.getEntry(confidence);
+    hatch_values1 = hatch1.getEntry(values);
 
     hatch_inUse2 = hatch2.getEntry(inUse);
-    hatch_centerX2 = hatch2.getEntry(centerX);
-    hatch_centerY2 = hatch2.getEntry(centerY);
-    hatch_endX2 = hatch2.getEntry(endX);
-    hatch_endY2 = hatch2.getEntry(endY);
-    hatch_area2 = hatch2.getEntry(area);
-    hatch_confidence2 = hatch2.getEntry(confidence);
+    hatch_values2 = hatch2.getEntry(values);
 
     double[][] hatchValues = new double[3][7];
+
     // if inUse is true, store values and check next table
-  
-  
-    if (hatch_inUse0.getBoolean(false) == true) 
-      {
+    if (hatch_inUse0.getBoolean(false) == true) {
+      double hatch0_values_array[] = hatch_values0.getDoubleArray(new double[6]);
 
-        hatchValues[0][0] = 0;
-        hatchValues[0][1] = hatch_centerX0.getDouble(-1);
-        hatchValues[0][2] = hatch_centerY0.getDouble(-1);
-        hatchValues[0][3] = hatch_endX0.getDouble(-1);
-        hatchValues[0][4] = hatch_endY0.getDouble(-1);
-        hatchValues[0][5] = hatch_area0.getDouble(-1);
-        hatchValues[0][6] = hatch_confidence0.getDouble(-1);
-
-        if (hatch_inUse1.getBoolean(false) == true) 
-          {
-
-            hatchValues[1][0] = 0;
-            hatchValues[1][1] = hatch_centerX1.getDouble(-1);
-            hatchValues[1][2] = hatch_centerY1.getDouble(-1);
-            hatchValues[1][3] = hatch_endX1.getDouble(-1);
-            hatchValues[1][4] = hatch_endY1.getDouble(-1);
-            hatchValues[1][5] = hatch_area1.getDouble(-1);
-            hatchValues[1][6] = hatch_confidence1.getDouble(-1);
-
-            if (hatch_inUse2.getBoolean(false) == true) 
-              {
-    
-                hatchValues[2][0] = 0;
-                hatchValues[2][1] = hatch_centerX2.getDouble(-1);
-                hatchValues[2][2] = hatch_centerY2.getDouble(-1);
-                hatchValues[2][3] = hatch_endX2.getDouble(-1);
-                hatchValues[2][4] = hatch_endY2.getDouble(-1);
-                hatchValues[2][5] = hatch_area2.getDouble(-1);
-                hatchValues[2][6] = hatch_confidence2.getDouble(-1);
-            }
-            else 
-            {
-              hatchValues[2][0] = -1;
-            }
-
+      for (int i = 0; i < 7; i++) {
+        if (i == 0) {
+          hatchValues[0][i] = 0;
+        } else {
+          hatchValues[0][i] = hatch0_values_array[i - 1];
         }
-        else 
-        {
-          hatchValues[1][0] = -1;
+
+      }
+
+      if (hatch_inUse1.getBoolean(false) == true) {
+
+        double hatch1_values_array[] = hatch_values1.getDoubleArray(new double[6]);
+
+        for (int i = 0; i < 7; i++) {
+          if (i == 0) {
+            hatchValues[1][i] = 0;
+          } else {
+            hatchValues[1][i] = hatch1_values_array[i - 1];
+          }
+        }
+
+        if (hatch_inUse2.getBoolean(false) == true) {
+
+          double hatch2_values_array[] = hatch_values2.getDoubleArray(new double[6]);
+
+          for (int i = 0; i < 7; i++) {
+            if (i == 0) {
+              hatchValues[2][i] = 0;
+            } else {
+              hatchValues[2][i] = hatch2_values_array[i - 1];
+            }
+          }
+        } else {
           hatchValues[2][0] = -1;
         }
 
-    }
-    else 
-    {
+      } else {
+        hatchValues[1][0] = -1;
+        hatchValues[2][0] = -1;
+      }
+
+    } else {
       hatchValues[0][0] = -1;
       hatchValues[1][0] = -1;
       hatchValues[2][0] = -1;
@@ -266,99 +195,76 @@ public class EVSNetworkTables extends Subsystem {
 
   }
 
-
-  public double[][] getBalls() 
-  {
+  public double[][] getBalls() {
+    getVisionNetworkTable();
 
     ball_inUse0 = ball0.getEntry(inUse);
-    ball_centerX0 = ball0.getEntry(centerX);
-    ball_centerY0 = ball0.getEntry(centerY);
-    ball_endX0 = ball0.getEntry(endX);
-    ball_endY0 = ball0.getEntry(endY);
-    ball_area0 = ball0.getEntry(area);
-    ball_confidence0 = ball0.getEntry(confidence);
+    ball_values0 = ball0.getEntry(values);
 
     ball_inUse1 = ball1.getEntry(inUse);
-    ball_centerX1 = ball1.getEntry(centerX);
-    ball_centerY1 = ball1.getEntry(centerY);
-    ball_endX1 = ball1.getEntry(endX);
-    ball_endY1 = ball1.getEntry(endY);
-    ball_area1 = ball1.getEntry(area);
-    ball_confidence1 = ball1.getEntry(confidence);
+    ball_values1 = ball1.getEntry(values);
 
     ball_inUse2 = ball2.getEntry(inUse);
-    ball_centerX2 = ball2.getEntry(centerX);
-    ball_centerY2 = ball2.getEntry(centerY);
-    ball_endX2 = ball2.getEntry(endX);
-    ball_endY2 = ball2.getEntry(endY);
-    ball_area2 = ball2.getEntry(area);
-    ball_confidence2 = ball2.getEntry(confidence);
+    ball_values2 = ball2.getEntry(values);
 
     double[][] ballValues = new double[3][7];
+
     // if inUse is true, store values and check next table
-  
-  
-    if (ball_inUse0.getBoolean(false) == true) 
-      {
+    if (ball_inUse0.getBoolean(false) == true) {
+      double ball0_values_array[] = ball_values0.getDoubleArray(new double[6]);
 
-        ballValues[0][0] = 0;
-        ballValues[0][1] = ball_centerX0.getDouble(-1);
-        ballValues[0][2] = ball_centerY0.getDouble(-1);
-        ballValues[0][3] = ball_endX0.getDouble(-1);
-        ballValues[0][4] = ball_endY0.getDouble(-1);
-        ballValues[0][5] = ball_area0.getDouble(-1);
-        ballValues[0][6] = ball_confidence0.getDouble(-1);
-
-        if (ball_inUse1.getBoolean(false) == true) 
-          {
-
-            ballValues[1][0] = 0;
-            ballValues[1][1] = ball_centerX1.getDouble(-1);
-            ballValues[1][2] = ball_centerY1.getDouble(-1);
-            ballValues[1][3] = ball_endX1.getDouble(-1);
-            ballValues[1][4] = ball_endY1.getDouble(-1);
-            ballValues[1][5] = ball_area1.getDouble(-1);
-            ballValues[1][6] = ball_confidence1.getDouble(-1);
-
-            if (ball_inUse2.getBoolean(false) == true) 
-              {
-    
-                ballValues[2][0] = 0;
-                ballValues[2][1] = ball_centerX2.getDouble(-1);
-                ballValues[2][2] = ball_centerY2.getDouble(-1);
-                ballValues[2][3] = ball_endX2.getDouble(-1);
-                ballValues[2][4] = ball_endY2.getDouble(-1);
-                ballValues[2][5] = ball_area2.getDouble(-1);
-                ballValues[2][6] = ball_confidence2.getDouble(-1);
-
-            }
-            else 
-            {
-              ballValues[2][0] = -1;
-            }
-
+      for (int i = 0; i < 7; i++) {
+        if (i == 0) {
+          ballValues[0][i] = 0;
+        } else {
+          ballValues[0][i] = ball0_values_array[i - 1];
         }
-        else 
-        {
-          ballValues[1][0] = -1;
+
+      }
+
+      if (ball_inUse1.getBoolean(false) == true) {
+
+        double ball1_values_array[] = ball_values1.getDoubleArray(new double[6]);
+
+        for (int i = 0; i < 7; i++) {
+          if (i == 0) {
+            ballValues[1][i] = 0;
+          } else {
+            ballValues[1][i] = ball1_values_array[i - 1];
+          }
+        }
+
+        if (ball_inUse2.getBoolean(false) == true) {
+
+          double ball2_values_array[] = ball_values2.getDoubleArray(new double[6]);
+
+          for (int i = 0; i < 7; i++) {
+            if (i == 0) {
+              ballValues[2][i] = 0;
+            } else {
+              ballValues[2][i] = ball2_values_array[i - 1];
+            }
+          }
+        } else {
           ballValues[2][0] = -1;
         }
 
-    }
-    else 
-    {
+      } else {
+        ballValues[1][0] = -1;
+        ballValues[2][0] = -1;
+      }
+
+    } else {
       ballValues[0][0] = -1;
       ballValues[1][0] = -1;
       ballValues[2][0] = -1;
     }
-    
 
     return ballValues;
 
   }
-
-  public double[][] getTape() 
-  {
+/*
+  public double[][] getTape() {
 
     tape_inUse0 = tape0.getEntry(inUse);
     tape_centerX0 = tape0.getEntry(centerX);
@@ -408,138 +314,117 @@ public class EVSNetworkTables extends Subsystem {
     tape_area5 = tape5.getEntry(area);
     tape_confidence2 = tape5.getEntry(confidence);
 
-    double[][] tapeValues = new double[3][7];
+    double[][] tapeValues = new double[6][7];
     // if inUse is true, store values and check next table
-  
-  
-    if (tape_inUse0.getBoolean(false) == true) 
-      {
 
-        tapeValues[0][0] = 0;
-        tapeValues[0][1] = tape_centerX0.getDouble(-1);
-        tapeValues[0][2] = tape_centerY0.getDouble(-1);
-        tapeValues[0][3] = tape_endX0.getDouble(-1);
-        tapeValues[0][4] = tape_endY0.getDouble(-1);
-        tapeValues[0][5] = tape_area0.getDouble(-1);
-        tapeValues[0][6] = tape_confidence0.getDouble(-1);
+    if (tape_inUse0.getBoolean(false) == true) {
 
-        if (tape_inUse1.getBoolean(false) == true) 
-          {
+      tapeValues[0][0] = 0;
+      tapeValues[0][1] = tape_centerX0.getDouble(-1);
+      tapeValues[0][2] = tape_centerY0.getDouble(-1);
+      tapeValues[0][3] = tape_endX0.getDouble(-1);
+      tapeValues[0][4] = tape_endY0.getDouble(-1);
+      tapeValues[0][5] = tape_area0.getDouble(-1);
+      tapeValues[0][6] = tape_confidence0.getDouble(-1);
 
-            tapeValues[1][0] = 0;
-            tapeValues[1][1] = tape_centerX1.getDouble(-1);
-            tapeValues[1][2] = tape_centerY1.getDouble(-1);
-            tapeValues[1][3] = tape_endX1.getDouble(-1);
-            tapeValues[1][4] = tape_endY1.getDouble(-1);
-            tapeValues[1][5] = tape_area1.getDouble(-1);
-            tapeValues[1][6] = tape_confidence1.getDouble(-1);
+      if (tape_inUse1.getBoolean(false) == true) {
 
-            if (tape_inUse2.getBoolean(false) == true) 
-              {
-    
-                tapeValues[2][0] = 0;
-                tapeValues[2][1] = tape_centerX2.getDouble(-1);
-                tapeValues[2][2] = tape_centerY2.getDouble(-1);
-                tapeValues[2][3] = tape_endX2.getDouble(-1);
-                tapeValues[2][4] = tape_endY2.getDouble(-1);
-                tapeValues[2][5] = tape_area2.getDouble(-1);
-                tapeValues[2][6] = tape_confidence2.getDouble(-1);
+        tapeValues[1][0] = 0;
+        tapeValues[1][1] = tape_centerX1.getDouble(-1);
+        tapeValues[1][2] = tape_centerY1.getDouble(-1);
+        tapeValues[1][3] = tape_endX1.getDouble(-1);
+        tapeValues[1][4] = tape_endY1.getDouble(-1);
+        tapeValues[1][5] = tape_area1.getDouble(-1);
+        tapeValues[1][6] = tape_confidence1.getDouble(-1);
 
-                if (tape_inUse3.getBoolean(false) == true) 
-                {
-    
-                  tapeValues[3][0] = 0;
-                  tapeValues[3][1] = tape_centerX3.getDouble(-1);
-                  tapeValues[3][2] = tape_centerY3.getDouble(-1);
-                  tapeValues[3][3] = tape_endX3.getDouble(-1);
-                  tapeValues[3][4] = tape_endY3.getDouble(-1);
-                  tapeValues[3][5] = tape_area3.getDouble(-1);
-                  tapeValues[3][6] = tape_confidence3.getDouble(-1);
+        if (tape_inUse2.getBoolean(false) == true) {
 
-                  if (tape_inUse3.getBoolean(false) == true) 
-                    {
-    
-                    tapeValues[3][0] = 0;
-                    tapeValues[3][1] = tape_centerX3.getDouble(-1);
-                    tapeValues[3][2] = tape_centerY3.getDouble(-1);
-                    tapeValues[3][3] = tape_endX3.getDouble(-1);
-                    tapeValues[3][4] = tape_endY3.getDouble(-1);
-                    tapeValues[3][5] = tape_area3.getDouble(-1);
-                    tapeValues[3][6] = tape_confidence3.getDouble(-1);
+          tapeValues[2][0] = 0;
+          tapeValues[2][1] = tape_centerX2.getDouble(-1);
+          tapeValues[2][2] = tape_centerY2.getDouble(-1);
+          tapeValues[2][3] = tape_endX2.getDouble(-1);
+          tapeValues[2][4] = tape_endY2.getDouble(-1);
+          tapeValues[2][5] = tape_area2.getDouble(-1);
+          tapeValues[2][6] = tape_confidence2.getDouble(-1);
 
-                      if (tape_inUse4.getBoolean(false) == true) 
-                      {
-    
-                      tapeValues[4][0] = 0;
-                      tapeValues[4][1] = tape_centerX4.getDouble(-1);
-                      tapeValues[4][2] = tape_centerY4.getDouble(-1);
-                      tapeValues[4][3] = tape_endX4.getDouble(-1);
-                      tapeValues[4][4] = tape_endY4.getDouble(-1);
-                      tapeValues[4][5] = tape_area4.getDouble(-1);
-                      tapeValues[4][6] = tape_confidence4.getDouble(-1);
+          if (tape_inUse3.getBoolean(false) == true) {
 
-                        if (tape_inUse5.getBoolean(false) == true) 
-                        {
-    
-                        tapeValues[5][0] = 0;
-                        tapeValues[5][1] = tape_centerX5.getDouble(-1);
-                        tapeValues[5][2] = tape_centerY5.getDouble(-1);
-                        tapeValues[5][3] = tape_endX5.getDouble(-1);
-                        tapeValues[5][4] = tape_endY5.getDouble(-1);
-                        tapeValues[5][5] = tape_area5.getDouble(-1);
-                        tapeValues[5][6] = tape_confidence5.getDouble(-1);
+            tapeValues[3][0] = 0;
+            tapeValues[3][1] = tape_centerX3.getDouble(-1);
+            tapeValues[3][2] = tape_centerY3.getDouble(-1);
+            tapeValues[3][3] = tape_endX3.getDouble(-1);
+            tapeValues[3][4] = tape_endY3.getDouble(-1);
+            tapeValues[3][5] = tape_area3.getDouble(-1);
+            tapeValues[3][6] = tape_confidence3.getDouble(-1);
 
-                        }
-                        else 
-                        {
-                          tapeValues[5][0] = -1;
-                        }
+            if (tape_inUse3.getBoolean(false) == true) {
 
-                      }
-                      else 
-                      {
-                        tapeValues[4][0] = -1;
-                        tapeValues[5][0] = -1;
-                      }
+              tapeValues[3][0] = 0;
+              tapeValues[3][1] = tape_centerX3.getDouble(-1);
+              tapeValues[3][2] = tape_centerY3.getDouble(-1);
+              tapeValues[3][3] = tape_endX3.getDouble(-1);
+              tapeValues[3][4] = tape_endY3.getDouble(-1);
+              tapeValues[3][5] = tape_area3.getDouble(-1);
+              tapeValues[3][6] = tape_confidence3.getDouble(-1);
 
-                    }
-                    else 
-                    {
-                      tapeValues[3][0] = -1;
-                      tapeValues[4][0] = -1;
-                      tapeValues[5][0] = -1;
-                    }
-                }
-                else 
-                {
-                  tapeValues[3][0] = -1;
-                  tapeValues[4][0] = -1;
+              if (tape_inUse4.getBoolean(false) == true) {
+
+                tapeValues[4][0] = 0;
+                tapeValues[4][1] = tape_centerX4.getDouble(-1);
+                tapeValues[4][2] = tape_centerY4.getDouble(-1);
+                tapeValues[4][3] = tape_endX4.getDouble(-1);
+                tapeValues[4][4] = tape_endY4.getDouble(-1);
+                tapeValues[4][5] = tape_area4.getDouble(-1);
+                tapeValues[4][6] = tape_confidence4.getDouble(-1);
+
+                if (tape_inUse5.getBoolean(false) == true) {
+
+                  tapeValues[5][0] = 0;
+                  tapeValues[5][1] = tape_centerX5.getDouble(-1);
+                  tapeValues[5][2] = tape_centerY5.getDouble(-1);
+                  tapeValues[5][3] = tape_endX5.getDouble(-1);
+                  tapeValues[5][4] = tape_endY5.getDouble(-1);
+                  tapeValues[5][5] = tape_area5.getDouble(-1);
+                  tapeValues[5][6] = tape_confidence5.getDouble(-1);
+
+                } else {
                   tapeValues[5][0] = -1;
-
                 }
-            }
-            else 
-            {
-              tapeValues[2][0] = -1;
+
+              } else {
+                tapeValues[4][0] = -1;
+                tapeValues[5][0] = -1;
+              }
+
+            } else {
               tapeValues[3][0] = -1;
               tapeValues[4][0] = -1;
               tapeValues[5][0] = -1;
             }
+          } else {
+            tapeValues[3][0] = -1;
+            tapeValues[4][0] = -1;
+            tapeValues[5][0] = -1;
 
-        }
-        else 
-        {
-          tapeValues[1][0] = -1;
+          }
+        } else {
           tapeValues[2][0] = -1;
           tapeValues[3][0] = -1;
           tapeValues[4][0] = -1;
           tapeValues[5][0] = -1;
         }
 
+      } else {
+        tapeValues[1][0] = -1;
+        tapeValues[2][0] = -1;
+        tapeValues[3][0] = -1;
+        tapeValues[4][0] = -1;
+        tapeValues[5][0] = -1;
+      }
+
     }
 
-    else 
-    {
+    else {
       tapeValues[0][0] = -1;
       tapeValues[1][0] = -1;
       tapeValues[2][0] = -1;
@@ -547,10 +432,9 @@ public class EVSNetworkTables extends Subsystem {
       tapeValues[4][0] = -1;
       tapeValues[5][0] = -1;
     }
-    
 
     return tapeValues;
 
   }
-
+*/
 }

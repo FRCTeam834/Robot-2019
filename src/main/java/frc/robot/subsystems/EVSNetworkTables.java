@@ -37,12 +37,12 @@ public class EVSNetworkTables extends Subsystem {
 
 
   NetworkTableInstance n = NetworkTableInstance.getDefault();
-  NetworkTable visionValues;
+  NetworkTable evs;
 
   // Create and assign hatch tables
-  NetworkTable hatch0 = visionValues.getSubTable("Hatch0");
-  NetworkTable hatch1 = visionValues.getSubTable("Hatch1");
-  NetworkTable hatch2 = visionValues.getSubTable("Hatch2");
+  NetworkTable hatch0 = evs.getSubTable("Hatch0");
+  NetworkTable hatch1 = evs.getSubTable("Hatch1");
+  NetworkTable hatch2 = evs.getSubTable("Hatch2");
 
   NetworkTableEntry hatch_inUse0;
   NetworkTableEntry hatch_centerX0;
@@ -69,9 +69,9 @@ public class EVSNetworkTables extends Subsystem {
   NetworkTableEntry hatch_confidence2;
 
   // Create and assign ball values
-  NetworkTable ball0 = visionValues.getSubTable("Ball0");
-  NetworkTable ball1 = visionValues.getSubTable("Ball1");
-  NetworkTable ball2 = visionValues.getSubTable("Ball2");
+  NetworkTable ball0 = evs.getSubTable("Ball0");
+  NetworkTable ball1 = evs.getSubTable("Ball1");
+  NetworkTable ball2 = evs.getSubTable("Ball2");
   
   NetworkTableEntry ball_inUse0;
   NetworkTableEntry ball_centerX0;
@@ -98,12 +98,12 @@ public class EVSNetworkTables extends Subsystem {
   NetworkTableEntry ball_confidence2;
 
   // Create and assign ball values
-  NetworkTable tape0 = visionValues.getSubTable("Tape0");
-  NetworkTable tape1 = visionValues.getSubTable("Tape1");
-  NetworkTable tape2 = visionValues.getSubTable("Tape2");
-  NetworkTable tape3 = visionValues.getSubTable("Tape3");
-  NetworkTable tape4 = visionValues.getSubTable("Tape4");
-  NetworkTable tape5 = visionValues.getSubTable("Tape5");
+  NetworkTable tape0 = evs.getSubTable("Tape0");
+  NetworkTable tape1 = evs.getSubTable("Tape1");
+  NetworkTable tape2 = evs.getSubTable("Tape2");
+  NetworkTable tape3 = evs.getSubTable("Tape3");
+  NetworkTable tape4 = evs.getSubTable("Tape4");
+  NetworkTable tape5 = evs.getSubTable("Tape5");
   
   NetworkTableEntry tape_inUse0;
   NetworkTableEntry tape_centerX0;
@@ -166,14 +166,14 @@ public class EVSNetworkTables extends Subsystem {
   public void getVisionNetworkTable() 
   {
 
-    visionValues = n.getTable("VisionValues");
+    evs = n.getTable("EVS");
 
   }
 
   /*
    * public NetworkTable getSubTable(String tableName) {
    * 
-   * return visionValues.getSubTable(tableName);
+   * return evs.getSubTable(tableName);
    * 
    * }
    */

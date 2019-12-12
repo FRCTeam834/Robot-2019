@@ -20,8 +20,8 @@ import frc.robot.commands.ScrewStop;
 public class LeadScrew extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-  WPI_VictorSPX theScrewer = new WPI_VictorSPX(Constants.leadScrewMotorPort);
-  DigitalInput screwDown = new DigitalInput(Constants.leadScrewLimitSwitchPort);
+  WPI_VictorSPX theScrewer = new WPI_VictorSPX(Constants.LEAD_SCREW_MOTOR_PORT);
+  DigitalInput screwDown = new DigitalInput(Constants.LEAD_SCREW_LIMIT_SWITCH_PORT);
 
   @Override
   public void initDefaultCommand() {
@@ -32,13 +32,13 @@ public class LeadScrew extends Subsystem {
 
   public void screwHer() {
 
-    theScrewer.set(Constants.leadScrewMotorDownSpeed);
+    theScrewer.set(Constants.LEAD_SCREW_MOTOR_DOWN_SPEED);
 
   }
 
   public void screwYourself() {
 
-    theScrewer.set(Constants.leadScrewMotorUpSpeed);
+    theScrewer.set(Constants.LEAD_SCREW_MOTOR_UP_SPEED);
 
   }
 
@@ -50,7 +50,7 @@ public class LeadScrew extends Subsystem {
 
   public void screwHer_IBarelyKnowHer() {
 
-    theScrewer.set(Constants.leadScrewStoppedSpeed);
+    theScrewer.set(Constants.LEAD_SCREW_STOPPED_SPEED);
 
   }
 

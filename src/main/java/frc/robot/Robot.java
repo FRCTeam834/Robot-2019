@@ -22,7 +22,6 @@ import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.BallIntake;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.MyVisionPipeline;
-import frc.robot.subsystems.EVSNetworkTables;
 import frc.robot.subsystems.NavX;
 import frc.robot.subsystems.Scissor;
 import frc.robot.subsystems.ScrewWheels;
@@ -81,12 +80,9 @@ public class Robot extends TimedRobot {
   public static MyVisionPipeline MyVisionPipeline;
   public static RunAuton RunAuton;
   public static Baseline Baseline;
-  public static EVSNetworkTables EVSNetworkTables;
   public static Drive Drive;
 
   // Camera Things
-  private static final int IMG_WIDTH = Constants.imageWidth;
-  private static final int IMG_HEIGHT = Constants.imageHeight;
   public VisionThread visionThread;
   public double centerX = 0.0;
   private boolean recordStatus = false;
@@ -101,7 +97,7 @@ public class Robot extends TimedRobot {
   KeyPoint[] mat;
 
   // DriverInput things
-  private double systemTimeStart = Constants.systemTimeStart;
+  private double systemTimeStart = Constants.SYSTEM_TIME_START;
   public static boolean autoDriveOn = false;
   private final Object imgLock = new Object();
 
@@ -178,7 +174,6 @@ public class Robot extends TimedRobot {
     ScrewWheels = new ScrewWheels();
     LeadScrew = new LeadScrew();
     NavX = new NavX();
-    EVSNetworkTables = new EVSNetworkTables();
 
     // OI MUST BE CREATED LAST!!!!!!!!!!
     oi = new OI();
@@ -305,55 +300,55 @@ public class Robot extends TimedRobot {
 
     if (Robot.oi.BGTL.get()) {
 
-      lights = -.87; // Rainbow, Lava Palette
+      lights = Constants.LAVA_RAINBOW; // Rainbow, Lava Palette
 
     }
 
     if (Robot.oi.BGTR.get()) {
 
-      lights = -.11; // ABORT ABORT (Strobe Red) WE GOIN MAX SPEED BOIS
+      lights = Constants.STROBE_RED; // ABORT ABORT (Strobe Red) WE GOIN MAX SPEED BOIS
 
     }
 
     if (Robot.oi.BGMM.get()) {
 
-      lights = -.43; // We climbing, so lets partyyyyy
+      lights = Constants.PARTY; // We climbing, so lets partyyyyy
 
     }
 
     if (Robot.oi.BGBR.get()) {
 
-      lights = .57; // Wheels going back makes robot hot pink
+      lights = Constants.PINK; // Wheels going back makes robot hot pink
 
     }
 
     if (Robot.oi.BGTM.get()) {
 
-      lights = -.89; // Glitter Rainbow(I Think)
+      lights = Constants.GLITTER_RAINBOW; // Glitter Rainbow(I Think)
 
     }
 
     if (Robot.oi.xboxY.get()) {
 
-      lights = -.95; // Ocean Palette
+      lights = Constants.OCEAN; // Ocean Palette
 
     }
 
     if (Robot.oi.xboxX.get()) {
 
-      lights = .25; // Color 1 pattern - heartbeat (white)
+      lights = Constants.WHITE_HB; // Color 1 pattern - heartbeat (white)
 
     }
 
     if (Robot.oi.xboxA.get()) {
 
-      lights = .89; // Blue Violet
+      lights = Constants.BLUE_VIOLET; // Blue Violet
 
     }
 
     if (Robot.oi.xboxB.get()) {
 
-      lights = .83; // Sky Blue
+      lights = Constants.SKY_BLUE; // Sky Blue
 
     }
 

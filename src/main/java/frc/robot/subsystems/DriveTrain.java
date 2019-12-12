@@ -55,12 +55,12 @@ public class DriveTrain extends Subsystem {
    * 
    */
 
-  CANSparkMax leftDrive1 = new CANSparkMax(Constants.leftDrive1Port, CANSparkMax.MotorType.kBrushless);
-  CANSparkMax leftDrive2 = new CANSparkMax(Constants.leftDrive2Port, CANSparkMax.MotorType.kBrushless);
-  CANSparkMax leftDrive3 = new CANSparkMax(Constants.leftDrive3Port, CANSparkMax.MotorType.kBrushless);
-  CANSparkMax rightDrive1 = new CANSparkMax(Constants.rightDrive1Port, CANSparkMax.MotorType.kBrushless);
-  CANSparkMax rightDrive2 = new CANSparkMax(Constants.rightDrive2Port, CANSparkMax.MotorType.kBrushless);
-  CANSparkMax rightDrive3 = new CANSparkMax(Constants.rightDrive3Port, CANSparkMax.MotorType.kBrushless);
+  CANSparkMax leftDrive1 = new CANSparkMax(Constants.LEFT_DRIVE1_PORT, CANSparkMax.MotorType.kBrushless);
+  CANSparkMax leftDrive2 = new CANSparkMax(Constants.LEFT_DRIVE2_PORT, CANSparkMax.MotorType.kBrushless);
+  CANSparkMax leftDrive3 = new CANSparkMax(Constants.LEFT_DRIVE3_PORT, CANSparkMax.MotorType.kBrushless);
+  CANSparkMax rightDrive1 = new CANSparkMax(Constants.RIGHT_DRIVE1_PORT, CANSparkMax.MotorType.kBrushless);
+  CANSparkMax rightDrive2 = new CANSparkMax(Constants.RIGHT_DRIVE2_PORT, CANSparkMax.MotorType.kBrushless);
+  CANSparkMax rightDrive3 = new CANSparkMax(Constants.RIGHT_DRIVE3_PORT, CANSparkMax.MotorType.kBrushless);
 
   SpeedControllerGroup leftDriveGroup = new SpeedControllerGroup(leftDrive1, leftDrive2, leftDrive3);
   SpeedControllerGroup rightDriveGroup = new SpeedControllerGroup(rightDrive1, rightDrive2, rightDrive3);
@@ -73,16 +73,16 @@ public class DriveTrain extends Subsystem {
 
   public void leftDrive(double speed) {
 
-    leftDriveGroup.setInverted(Constants.isLeftDriveInverted);
-    rightDriveGroup.setInverted(Constants.isRightDriveInverted);
+    leftDriveGroup.setInverted(Constants.IS_LEFT_DRIVE_INVERTED);
+    rightDriveGroup.setInverted(Constants.IS_RIGHT_DRIVE_INVERTED);
     leftDriveGroup.set(speed);
 
   }
 
   public void rightDrive(double speed) {
 
-    leftDriveGroup.setInverted(Constants.isLeftDriveInverted);
-    rightDriveGroup.setInverted(Constants.isRightDriveInverted);
+    leftDriveGroup.setInverted(Constants.IS_LEFT_DRIVE_INVERTED);
+    rightDriveGroup.setInverted(Constants.IS_RIGHT_DRIVE_INVERTED);
 
     rightDriveGroup.set(speed);
 
@@ -90,8 +90,8 @@ public class DriveTrain extends Subsystem {
 
   public void setDrive(double leftSpeed, double rightSpeed) {
 
-    leftDriveGroup.setInverted(Constants.isLeftDriveInverted);
-    rightDriveGroup.setInverted(Constants.isRightDriveInverted);
+    leftDriveGroup.setInverted(Constants.IS_LEFT_DRIVE_INVERTED);
+    rightDriveGroup.setInverted(Constants.IS_RIGHT_DRIVE_INVERTED);
 
     leftDriveGroup.set(leftSpeed);
     rightDriveGroup.set(rightSpeed);
@@ -100,8 +100,8 @@ public class DriveTrain extends Subsystem {
 
   public void pointTurnRight() {
 
-    leftDriveGroup.setInverted(Constants.isLeftDriveInverted);
-    rightDriveGroup.setInverted(Constants.isRightDriveInverted);
+    leftDriveGroup.setInverted(Constants.IS_LEFT_DRIVE_INVERTED);
+    rightDriveGroup.setInverted(Constants.IS_RIGHT_DRIVE_INVERTED);
     leftDriveGroup.set(.15);
     rightDriveGroup.set(-.15);
 
@@ -109,8 +109,8 @@ public class DriveTrain extends Subsystem {
 
   public void pointTurnLeft() {
 
-    leftDriveGroup.setInverted(Constants.isLeftDriveInverted);
-    rightDriveGroup.setInverted(Constants.isRightDriveInverted);
+    leftDriveGroup.setInverted(Constants.IS_LEFT_DRIVE_INVERTED);
+    rightDriveGroup.setInverted(Constants.IS_RIGHT_DRIVE_INVERTED);
     leftDriveGroup.set(-.15);
     rightDriveGroup.set(.15);
 
@@ -118,8 +118,8 @@ public class DriveTrain extends Subsystem {
 
   public void stop() {
 
-    leftDriveGroup.setInverted(Constants.isLeftDriveInverted);
-    rightDriveGroup.setInverted(Constants.isRightDriveInverted);
+    leftDriveGroup.setInverted(Constants.IS_LEFT_DRIVE_INVERTED);
+    rightDriveGroup.setInverted(Constants.IS_RIGHT_DRIVE_INVERTED);
     leftDriveGroup.set(0);
     rightDriveGroup.set(0);
 
@@ -141,8 +141,8 @@ public class DriveTrain extends Subsystem {
 
   public boolean snapToAngle(float angle) {
 
-    leftDriveGroup.setInverted(Constants.isLeftDriveInverted);
-    rightDriveGroup.setInverted(Constants.isRightDriveInverted);
+    leftDriveGroup.setInverted(Constants.IS_LEFT_DRIVE_INVERTED);
+    rightDriveGroup.setInverted(Constants.IS_RIGHT_DRIVE_INVERTED);
     boolean success = false;
 
     // while (!success) {

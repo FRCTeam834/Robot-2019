@@ -24,7 +24,7 @@ public class BallIntake extends Subsystem {
   // here. Call these from Commands.
 
   //WPI_TalonSRX ballIntake = new WPI_TalonSRX(12);
-  WPI_VictorSPX ballIntake = new WPI_VictorSPX(Constants.ballIntakeMotorPort);
+  WPI_VictorSPX ballIntake = new WPI_VictorSPX(Constants.BALL_INTAKE_MOTOR_PORT);
   //DigitalInput photoEye = new DigitalInput(4);
 
   @Override
@@ -38,19 +38,19 @@ public class BallIntake extends Subsystem {
 
   public void ballIntakeIn() {
 
-    ballIntake.set(Constants.ballIntakeInSpeed);
+    ballIntake.set(Constants.BALL_INTAKE_IN_SPEED);
 
   }
 
   public void ballIntakeOut() {
 
-    ballIntake.set(Constants.ballIntakeOutSpeed);
+    ballIntake.set(Constants.BALL_INTAKE_OUT_SPEED);
 
   }
 
   public void ballIntakeStop() {
 
-    ballIntake.set(Constants.ballIntakeStopSpeed);
+    ballIntake.set(Constants.BALL_INTAKE_STOP_SPEED);
   }
 
   public void setBallIntake(double speed) {

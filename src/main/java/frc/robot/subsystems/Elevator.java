@@ -24,11 +24,11 @@ public class Elevator extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
   // WPI_TalonSRX elevator = new WPI_TalonSRX(9);
-  WPI_VictorSPX elevator = new WPI_VictorSPX(Constants.elevatorMotorPort);
-  Encoder elevEncoder = new Encoder(Constants.elevatorEncoderPortA, Constants.elevatorEncoderPortB);
+  WPI_VictorSPX elevator = new WPI_VictorSPX(Constants.ELEVATOR_MOTOR_PORT);
+  Encoder elevEncoder = new Encoder(Constants.ELEVATOR_ENCODER_PORT_A, Constants.ELEVATOR_ENCODER_PORT_B);
   // DigitalInput photoEye = new DigitalInput(2);
-  DigitalInput limitBottom = new DigitalInput(Constants.elevatorLimitSwitchBottomPort);
-  DigitalInput limitTop = new DigitalInput(Constants.elevatorLimitSwitchTopPort);
+  DigitalInput limitBottom = new DigitalInput(Constants.ELEVATOR_LIMIT_SWITCH_BOTTOM_PORT);
+  DigitalInput limitTop = new DigitalInput(Constants.ELEVATOR_LIMIT_SWITCH_TOP_PORT);
 
   // double spoolCircumference = (pi * 4); // Fix with actual calculations
 
@@ -46,25 +46,25 @@ public class Elevator extends Subsystem {
 
   public void elevatorUp() {
 
-    elevator.set(Constants.elevatorUpSpeed);
+    elevator.set(Constants.ELEVATOR_UP_SPEED);
 
   }
 
   public void elevatorDown() {
 
-    elevator.set(Constants.elevatorDownSpeed);
+    elevator.set(Constants.ELEVATOR_DOWN_SPEED);
 
   }
 
   public void elevatorStop() {
 
-    elevator.set(Constants.elevatorStopSpeed);
+    elevator.set(Constants.ELEVATOR_STOP_SPEED);
 
   }
 
   public void elevatorHold() {
 
-    elevator.set(Constants.elevatorHoldSpeed);
+    elevator.set(Constants.ELEVATOR_HOLD_SPEED);
   }
 
   public void setElevator(double speed) {

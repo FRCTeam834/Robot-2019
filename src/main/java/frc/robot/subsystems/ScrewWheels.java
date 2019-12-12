@@ -20,7 +20,7 @@ import frc.robot.commands.ScrewWheelsStop;
 public class ScrewWheels extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-  WPI_VictorSPX screwWheels = new WPI_VictorSPX(Constants.backScrewWheelsMotorPort);
+  WPI_VictorSPX screwWheels = new WPI_VictorSPX(Constants.BACK_SCREW_WHEELS_MOTOR_PORT);
 
   @Override
   public void initDefaultCommand() {
@@ -31,19 +31,19 @@ public class ScrewWheels extends Subsystem {
 
   public void screwTheFront() {
 
-    screwWheels.set(Constants.backScrewWheelsForwardSpeed);
+    screwWheels.set(Constants.BACK_SCREW_WHEELS_FORWARD_SPEED);
 
   }
 
   public void screwTheBack() {
 
-    screwWheels.set(Constants.backScrewWheelsBackwardSpeed);
+    screwWheels.set(Constants.BACK_SCREW_WHEELS_BACKWARDS_SPEED);
 
   }
 
   public void screwStandingStill() {
 
-    screwWheels.set(Constants.backScrewWheelsStopSpeed);
+    screwWheels.set(Constants.BACK_SCREW_WHEELS_STOP_SPEED);
 
   }
 }

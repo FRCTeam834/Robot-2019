@@ -21,8 +21,8 @@ import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 public class Scissor extends Subsystem {
 
   // WPI_TalonSRX scissor = new WPI_TalonSRX(7);
-  WPI_VictorSPX scissor = new WPI_VictorSPX(Constants.backScrewMotorPort);
-  DigitalInput scissorBottom = new DigitalInput(Constants.backScrewLimitSwitchBottomPort);
+  WPI_VictorSPX scissor = new WPI_VictorSPX(Constants.BACK_SCREW_MOTOR_PORT);
+  DigitalInput scissorBottom = new DigitalInput(Constants.BACK_SCREW_LIMIT_SWITCH_BOTTOM_PORT);
   DigitalInput scissorTop = new DigitalInput(Constants.backScrewLimitSwitchTopPort);
 
   @Override
@@ -40,7 +40,7 @@ public class Scissor extends Subsystem {
 
   public void stop() {
 
-    setScissor(Constants.backScrewStopSpeed);
+    setScissor(Constants.BACK_SCREW_STOP_SPEED);
 
   }
 
@@ -58,7 +58,7 @@ public class Scissor extends Subsystem {
 
   public void scissorHold() {
 
-    scissor.set(Constants.backScrewHoldSpeed);
+    scissor.set(Constants.BACK_SCREW_HOLD_SPEED);
 
   }
 

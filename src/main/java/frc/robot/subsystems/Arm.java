@@ -25,8 +25,8 @@ public class Arm extends Subsystem {
   // here. Call these from Commands.
 
   //WPI_TalonSRX arm = new WPI_TalonSRX(11);
-  WPI_VictorSPX arm = new WPI_VictorSPX(Constants.armMotorPort);
-  DigitalInput armLimit = new DigitalInput(Constants.armLimitSwitchPort);
+  WPI_VictorSPX arm = new WPI_VictorSPX(Constants.ARM_MOTOR_PORT);
+  DigitalInput armLimit = new DigitalInput(Constants.ARM_LIMIT_SWITCH_PORT);
   
 
   @Override
@@ -40,26 +40,26 @@ public class Arm extends Subsystem {
 
   public void armUp() {
 
-    arm.set(Constants.armUpSpeed);
+    arm.set(Constants.ARM_UP_SPEED);
     
 
   }
 
   public void armDown() {
 
-    arm.set(Constants.armDownSpeed);
+    arm.set(Constants.ARM_DOWN_SPEED);
 
   }
 
   public void armStop() {
 
-    arm.set(Constants.armStopSpeed);
+    arm.set(Constants.ARM_STOP_SPEED);
 
   }
 
   public void armHold() {
 
-    arm.set(Constants.armHoldSpeed);
+    arm.set(Constants.ARM_HOLD_SPEED);
   }
 
   public void setArm(double speed) {

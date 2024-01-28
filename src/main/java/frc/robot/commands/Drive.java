@@ -31,8 +31,17 @@ public class Drive extends Command {
   @Override
   protected void execute() {
 
-    double leftSpeed = Robot.oi.leftJoystick.getY();
-    double rightSpeed = Robot.oi.rightJoystick.getY();
+    double leftSpeed = Robot.oi.xbox.getY();
+    double rightSpeed = Robot.oi.xbox.getY();
+
+    if(Robot.oi.xbox.getX() > 0){
+      leftSpeed += Robot.oi.xbox.getX();
+      rightSpeed -= Robot.oi.xbox.getX();
+    }
+    if(Robot.oi.xbox.getX() < 0){
+      leftSpeed -= Robot.oi.xbox.getX();
+      rightSpeed += Robot.oi.xbox.getX();
+    }
 
     //Pushing code
     /*
